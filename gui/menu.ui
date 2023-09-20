@@ -192,6 +192,51 @@
      <string>MODEL TRAINING</string>
     </property>
    </widget>
+
+   <widget class="QPushButton" name="btn_Risk">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>520</y>
+      <width>801</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">* {
+	background-color:#ffffff;
+	border-radius:42px;
+	border:6px solid #2982ff;
+	color:#355398;
+	font: 75 20pt &quot;MS Shell Dlg 2&quot;;
+	font-weight: bold;
+	padding:16px 31px;
+	text-decoration:none;
+}
+*:hover {
+	background-color:#def2ff;
+}
+*:active {
+	position:relative;
+	top:1px;
+}</string>
+    </property>
+    <property name="text">
+     <string>RISK</string>
+    </property>
+   </widget>
+
    <widget class="QPushButton" name="btn_Predictions">
     <property name="geometry">
      <rect>
