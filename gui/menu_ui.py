@@ -33,6 +33,9 @@ class Ui_MainWindow(object):
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -78,6 +81,12 @@ class Ui_MainWindow(object):
         self.btn_Models.setObjectName("btn_Models")
         self.btn_Models.setGeometry(QtCore.QRect(120, 320, 30, 100))
         self.vlayout.addWidget(self.btn_Models)
+        # 09/14/2023 (adding risk button)
+        self.btn_Risk = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_Risk.setObjectName("btn_Risk")
+        self.btn_Risk.setGeometry(QtCore.QRect(120, 320, 30, 100))
+        self.vlayout.addWidget(self.btn_Risk)
+
         self.btn_Predictions = QtWidgets.QPushButton(self.centralwidget)
         self.btn_Predictions.setObjectName("btn_Predictions")
         self.btn_Predictions.setGeometry(QtCore.QRect(120, 440, 30, 100))
@@ -176,6 +185,36 @@ class Ui_MainWindow(object):
             "    top:1px;\n"
             "}"
         )
+        # 09/14/2023
+        self.btn_Risk.setObjectName("btn_Risk")
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(75)
+        font.setStrikeOut(False)
+        self.btn_Risk.setFont(font)
+        self.btn_Risk.setStyleSheet(
+            "* {\n"
+            "    background-color:#ffffff;\n"
+            "    border-radius:30px;\n"
+            "    border:6px solid #5d64b0;\n"
+            "    color:#355398;\n"
+            '    font: 75 20pt "Times";\n'
+            "    font-weight: bold;\n"
+            "    padding:16px 31px;\n"
+            "    text-decoration:none;\n"
+            "}\n"
+            "*:hover {\n"
+            "    background-color:#def2ff;\n"
+            "}\n"
+            "*:active {\n"
+            "    position:relative;\n"
+            "    top:1px;\n"
+            "}"
+        )
         self.btn_Predictions.setObjectName("btn_Predictions")
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
@@ -226,6 +265,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Vinci ML Tool"))
         self.btn_Datasets.setText(_translate("MainWindow", "DATASETS"))
         self.btn_Models.setText(_translate("MainWindow", "MODEL TRAINING"))
+        # 09/14/2023
+        self.btn_Risk.setText(_translate("MainWindow", "RISK"))
         self.btn_Predictions.setText(_translate("MainWindow", "PREDICTIONS"))
         self.btn_Help.setText(_translate("MainWindow", "HELP"))
 
