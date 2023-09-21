@@ -1,10 +1,19 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget
+
 from menu_ui import Ui_MainWindow
 from datasets import Impl_DatasetsWindow
 from models import Impl_ModelsWindow
 from predictions import Impl_PredictionsWindow
 from help import Impl_HelpWindow
+
+# 2023 september (sprint 2)
+class RiskWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('Risk Window')
+        self.setGeometry(100, 100, 400, 300)
 
 
 class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
@@ -26,6 +35,11 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         """Custom events method; here you connect functions with the UI."""
         self.btn_Datasets.clicked.connect(self.btn_Datasets_clicked)
         self.btn_Models.clicked.connect(self.btn_Models_clicked)
+        # 2023 september (sprint 2)
+        self.btn_Risk.clicked.connect(self.btn_Risk_clicked)
+        self.btn_Risk.setGeometry(100, 100, 400, 300)
+        self.risk_window = None
+
         self.btn_Predictions.clicked.connect(self.btn_Predictions_clicked)
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
 
@@ -49,6 +63,12 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         """
         self.pd_ui = Impl_PredictionsWindow()
         self.pd_ui.show()
+
+    # 2023 September (sprint2)
+    def btn_Risk_clicked(self):
+        if self.risk_window is None:
+            self.risk_window = RiskWindow()
+        self.risk_window.show()
 
     def btn_Help_clicked(self):
         """Clicked event on btn_Help component.
