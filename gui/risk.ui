@@ -3381,7 +3381,7 @@ p, li { white-space: pre-wrap; }
       <string>Save Schema</string>
      </property>
     </widget>
-    <widget class="QWidget" name="tab_5">
+ <!--   <widget class="QWidget" name="tab_5">
      <attribute name="title">
       <string>CWSS Score</string>
      </attribute>
@@ -3408,7 +3408,7 @@ p, li { white-space: pre-wrap; }
       <property name="text">
        <string>Base Finding Subscore:</string>
       </property>
-     </widget>
+     </widget> 
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
@@ -3653,7 +3653,7 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </widget>
-   </widget>
+   </widget> -->
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
