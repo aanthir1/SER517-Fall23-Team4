@@ -7,13 +7,7 @@ from datasets import Impl_DatasetsWindow
 from models import Impl_ModelsWindow
 from predictions import Impl_PredictionsWindow
 from help import Impl_HelpWindow
-
-# 2023 september (sprint 2)
-class RiskWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Risk Window')
-        self.setGeometry(100, 100, 400, 300)
+from Main_risk_ui import RiskWindow
 
 
 class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
