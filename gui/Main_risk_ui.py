@@ -8,36 +8,114 @@ class RiskWindow(QtWidgets.QWidget):
         self.setWindowTitle('Risk Window')
         self.setMinimumSize(1280, 720)
 
+        # Create a vertical layout for the central widget
+        central_layout = QVBoxLayout()
+
         # Set up Load Dataset layout
-        self.setupLoadDatasetLayout()
+        self.setupLoadDatasetLayout(central_layout)
 
         # Set up Sample Info and Attack Surface layouts
-        self.setupTabsLayout()
-     
+        self.setupTabsLayout(central_layout)
 
-    def setupLoadDatasetLayout(self):
+        # Set the central layout for the main window
+        self.setLayout(central_layout) 
+
+    def setupLoadDatasetLayout(self, layout):
+        # Create a horizontal layout for "Load Dataset" and "File Path"
+        load_dataset_layout = QHBoxLayout()
+
         # Create a button named "Load Dataset"
-        self.load_dataset_button = QtWidgets.QPushButton(self)
-        self.load_dataset_button.setGeometry(QtCore.QRect(50, 50, 200, 100))
-        self.load_dataset_button.setText("Load Dataset")
-        self.load_dataset_button.clicked.connect(self.btn_Load_Dataset_clicked)
+        load_dataset_button = QtWidgets.QPushButton(self)
+        load_dataset_button.setText("Load Dataset")
+        load_dataset_button.clicked.connect(self.btn_Load_Dataset_clicked)
 
         # Create a QLabel to display the label "File Path:"
-        self.file_path_label = QtWidgets.QLabel(self)
-        self.file_path_label.setGeometry(QtCore.QRect(self.load_dataset_button.geometry().right() + 10, 50, 100, 100))
-        self.file_path_label.setText("Path:")
-        self.file_path_label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        file_path_label = QtWidgets.QLabel(self)
+        file_path_label.setText("Path:")
 
         # Calculate the width for the file path line edit
-        line_edit_width = self.width() - self.load_dataset_button.geometry().right() - 120
+        line_edit_width = self.width() - 320
 
         # Create a line edit widget to display the file path
-        self.file_path_lineedit = QtWidgets.QLineEdit(self)
-        self.file_path_lineedit.setGeometry(QtCore.QRect(self.file_path_label.geometry().right() + 10, 50, line_edit_width, 100))
-        self.file_path_lineedit.setPlaceholderText('Selected file path')
-        self.file_path_lineedit.setReadOnly(True)
+        file_path_lineedit = QtWidgets.QLineEdit(self)
+        file_path_lineedit.setPlaceholderText('Selected file path')
+        file_path_lineedit.setReadOnly(True)
 
-    def setupTabsLayout(self):
+        # Add widgets for "Load Dataset" and "File Path" to the horizontal layout
+        load_dataset_layout.addWidget(load_dataset_button)
+        load_dataset_layout.addWidget(file_path_label)
+        load_dataset_layout.addWidget(file_path_lineedit)
+
+        # Create a group box for "Current Score" with a vertical layout
+        current_score_group = QGroupBox("Current Score")
+        current_score_layout = QVBoxLayout()
+
+        # Create labels and placeholders for subscores and threat level
+        subscore_labels = [
+            "Base Finding Subscore:",
+            "Environmental Subscore:",
+            "Threat Level:",
+            "Attack Surface Subscore:",
+            "Final CWSS Score:"
+        ]
+
+        for label_text in subscore_labels:
+            label = QtWidgets.QLabel(self)
+            label.setText(label_text)
+            label.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+
+            value_label = QtWidgets.QLabel(self)
+            value_label.setText("0")  # Initialize the value to 0
+            value_label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+
+            # Add labels and value labels to the vertical layout inside the group box
+            current_score_layout.addWidget(label)
+            current_score_layout.addWidget(value_label)
+
+        # Set the layout of the group box to the vertical layout
+        current_score_group.setLayout(current_score_layout)
+
+        # Add the horizontal layout for "Load Dataset" and "File Path" and the group box to the main layout
+        layout.addLayout(load_dataset_layout)
+        layout.addWidget(current_score_group)
+
+    def currentScoreLayout(self,layout):
+
+        # Create a group box for "Current Score" with a vertical layout
+        current_score_group = QGroupBox("Current Score")
+        current_score_layout = QVBoxLayout()
+
+        # Create labels and placeholders for subscores and threat level
+        subscore_labels = [
+            "Base Finding Subscore:",
+            "Environmental Subscore:",
+            "Threat Level:",
+            "Attack Surface Subscore:",
+            "Final CWSS Score:"
+        ]
+
+        for label_text in subscore_labels:
+            label = QtWidgets.QLabel(self)
+            label.setText(label_text)
+            label.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+
+            value_label = QtWidgets.QLabel(self)
+            value_label.setText("0")  # Initialize the value to 0
+            value_label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+
+            # Add labels and value labels to the vertical layout inside the group box
+            current_score_layout.addWidget(label)
+            current_score_layout.addWidget(value_label)
+
+        # Set the layout of the group box to the vertical layout
+        current_score_group.setLayout(current_score_layout)
+
+        # Add the horizontal layout for "Load Dataset" and "File Path" and the group box to the main layout
+        layout.addWidget(current_score_group)
+
+
+
+    def setupTabsLayout(self,layout):
         # Creating the tab widget
         self.tabWidget = QtWidgets.QTabWidget(self)
         self.tabWidget.setGeometry(20, 200, 981, 500)
@@ -47,6 +125,9 @@ class RiskWindow(QtWidgets.QWidget):
         self.setupAttackSurfaceTab()
         self.setupBaseFindingTab()
         self.setupEnvironmentalTab()
+
+        # Add the tabWidget to the central layout
+        layout.addWidget(self.tabWidget)
 
     def setupSampleInfoTab(self):
         # Sample Info tab
