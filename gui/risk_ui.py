@@ -14,7 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_RiskWindow(object):
     def setupUi(self, RiskWindow):
         RiskWindow.setObjectName("RiskWindow")
-        RiskWindow.setMinimumSize(1280, 800)
+        RiskWindow.resize(1280, 720)
+        RiskWindow.setMinimumSize(QtCore.QSize(1280, 720))
+        RiskWindow.setMaximumSize(QtCore.QSize(1280, 720))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -48,15 +50,8 @@ class Ui_RiskWindow(object):
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
-        self.tab_layout = QtWidgets.QHBoxLayout()
-        self.tab.setLayout(self.tab_layout)
-        self.groupBox_3 = QtWidgets.QGroupBox(self.tab)
-        self.groupBox_3.setEnabled(True)
-        self.groupBox_3.setGeometry(QtCore.QRect(20, 0, 1171, 141))
-        self.groupBox_3_layout = QtWidgets.QHBoxLayout()     
-        self.groupBox_3.setLayout(self.groupBox_3_layout)
-        self.tbl_CurrentExample = QtWidgets.QTableWidget(self.groupBox_3)
-        self.tbl_CurrentExample.setGeometry(QtCore.QRect(20, 150, 1171, 281))
+        self.tbl_CurrentExample = QtWidgets.QTableWidget(self.tab)
+        self.tbl_CurrentExample.setGeometry(QtCore.QRect(-10, 140, 1221, 291))
         self.tbl_CurrentExample.setObjectName("tbl_CurrentExample")
         self.tbl_CurrentExample.setColumnCount(2)
         self.tbl_CurrentExample.setRowCount(0)
@@ -73,8 +68,6 @@ class Ui_RiskWindow(object):
         self.groupBox_2.setEnabled(True)
         self.groupBox_2.setGeometry(QtCore.QRect(20, 0, 1171, 141))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.groupBox_2_layout = QtWidgets.QHBoxLayout()     
-        self.groupBox_2.setLayout(self.groupBox_2_layout)
         self.label = QtWidgets.QLabel(self.groupBox_2)
         self.label.setGeometry(QtCore.QRect(10, 20, 171, 21))
         self.label.setObjectName("label")
@@ -91,7 +84,7 @@ class Ui_RiskWindow(object):
         self.label_3.setGeometry(QtCore.QRect(710, 40, 61, 31))
         self.label_3.setObjectName("label_3")
         self.txtB_GL_Values = QtWidgets.QTextEdit(self.groupBox_2)
-        self.txtB_GL_Values.setGeometry(QtCore.QRect(950, 20, 161, 31))
+        self.txtB_GL_Values.setGeometry(QtCore.QRect(950, 20, 211, 111))
         self.txtB_GL_Values.setReadOnly(True)
         self.txtB_GL_Values.setObjectName("txtB_GL_Values")
         self.cBox_GL_Values = QtWidgets.QComboBox(self.groupBox_2)
@@ -140,331 +133,334 @@ class Ui_RiskWindow(object):
         font.setWeight(75)
         self.btn_ValuesTooltip.setFont(font)
         self.btn_ValuesTooltip.setObjectName("btn_ValuesTooltip")
-        self.btn_Page_1 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_1 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_1.setEnabled(False)
         self.btn_Page_1.setGeometry(QtCore.QRect(20, 440, 31, 25))
         self.btn_Page_1.setText("")
         self.btn_Page_1.setObjectName("btn_Page_1")
-        self.btn_Page_5 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_5 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_5.setEnabled(False)
         self.btn_Page_5.setGeometry(QtCore.QRect(140, 440, 31, 25))
         self.btn_Page_5.setText("")
         self.btn_Page_5.setObjectName("btn_Page_5")
-        self.btn_Page_15 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_15 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_15.setEnabled(False)
         self.btn_Page_15.setGeometry(QtCore.QRect(440, 440, 31, 25))
         self.btn_Page_15.setText("")
         self.btn_Page_15.setObjectName("btn_Page_15")
-        self.lbl_PageMaxNumber = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_PageMaxNumber = QtWidgets.QLabel(self.tab)
         self.lbl_PageMaxNumber.setGeometry(QtCore.QRect(890, 440, 41, 31))
         self.lbl_PageMaxNumber.setObjectName("lbl_PageMaxNumber")
-        self.btn_Page_10 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_10 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_10.setEnabled(False)
         self.btn_Page_10.setGeometry(QtCore.QRect(290, 440, 31, 25))
         self.btn_Page_10.setText("")
         self.btn_Page_10.setObjectName("btn_Page_10")
-        self.btn_Page_17 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_17 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_17.setEnabled(False)
         self.btn_Page_17.setGeometry(QtCore.QRect(500, 440, 31, 25))
         self.btn_Page_17.setText("")
         self.btn_Page_17.setObjectName("btn_Page_17")
-        self.btn_Page_14 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_14 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_14.setEnabled(False)
         self.btn_Page_14.setGeometry(QtCore.QRect(410, 440, 31, 25))
         self.btn_Page_14.setText("")
         self.btn_Page_14.setObjectName("btn_Page_14")
-        self.label_32 = QtWidgets.QLabel(self.groupBox_3)
+        self.label_32 = QtWidgets.QLabel(self.tab)
         self.label_32.setGeometry(QtCore.QRect(780, 440, 41, 31))
         self.label_32.setObjectName("label_32")
-        self.sBox_Page = QtWidgets.QSpinBox(self.groupBox_3)
+        self.sBox_Page = QtWidgets.QSpinBox(self.tab)
         self.sBox_Page.setEnabled(False)
         self.sBox_Page.setGeometry(QtCore.QRect(830, 440, 51, 31))
         self.sBox_Page.setObjectName("sBox_Page")
-        self.btn_Page_23 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_23 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_23.setEnabled(False)
         self.btn_Page_23.setGeometry(QtCore.QRect(680, 440, 31, 25))
         self.btn_Page_23.setText("")
         self.btn_Page_23.setObjectName("btn_Page_23")
-        self.btn_Page_7 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_7 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_7.setEnabled(False)
         self.btn_Page_7.setGeometry(QtCore.QRect(200, 440, 31, 25))
         self.btn_Page_7.setText("")
         self.btn_Page_7.setObjectName("btn_Page_7")
-        self.btn_Page_11 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_11 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_11.setEnabled(False)
         self.btn_Page_11.setGeometry(QtCore.QRect(320, 440, 31, 25))
         self.btn_Page_11.setText("")
         self.btn_Page_11.setObjectName("btn_Page_11")
-        self.btn_Page_2 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_2 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_2.setEnabled(False)
         self.btn_Page_2.setGeometry(QtCore.QRect(50, 440, 31, 25))
         self.btn_Page_2.setText("")
         self.btn_Page_2.setObjectName("btn_Page_2")
-        self.btn_Page_18 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_18 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_18.setEnabled(False)
         self.btn_Page_18.setGeometry(QtCore.QRect(530, 440, 31, 25))
         self.btn_Page_18.setText("")
         self.btn_Page_18.setObjectName("btn_Page_18")
-        self.btn_Page_21 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_21 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_21.setEnabled(False)
         self.btn_Page_21.setGeometry(QtCore.QRect(620, 440, 31, 25))
         self.btn_Page_21.setText("")
         self.btn_Page_21.setObjectName("btn_Page_21")
-        self.btn_Page_22 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_22 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_22.setEnabled(False)
         self.btn_Page_22.setGeometry(QtCore.QRect(650, 440, 31, 25))
         self.btn_Page_22.setText("")
         self.btn_Page_22.setObjectName("btn_Page_22")
-        self.btn_Page_4 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_4 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_4.setEnabled(False)
         self.btn_Page_4.setGeometry(QtCore.QRect(110, 440, 31, 25))
         self.btn_Page_4.setText("")
         self.btn_Page_4.setObjectName("btn_Page_4")
-        self.btn_Page_25 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_25 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_25.setEnabled(False)
         self.btn_Page_25.setGeometry(QtCore.QRect(740, 440, 31, 25))
         self.btn_Page_25.setText("")
         self.btn_Page_25.setObjectName("btn_Page_25")
-        self.btn_Page_6 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_6 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_6.setEnabled(False)
         self.btn_Page_6.setGeometry(QtCore.QRect(170, 440, 31, 25))
         self.btn_Page_6.setText("")
         self.btn_Page_6.setObjectName("btn_Page_6")
-        self.btn_Page_13 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_13 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_13.setEnabled(False)
         self.btn_Page_13.setGeometry(QtCore.QRect(380, 440, 31, 25))
         self.btn_Page_13.setText("")
         self.btn_Page_13.setObjectName("btn_Page_13")
-        self.btn_Page_16 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_16 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_16.setEnabled(False)
         self.btn_Page_16.setGeometry(QtCore.QRect(470, 440, 31, 25))
         self.btn_Page_16.setText("")
         self.btn_Page_16.setObjectName("btn_Page_16")
-        self.btn_Page_20 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_20 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_20.setEnabled(False)
         self.btn_Page_20.setGeometry(QtCore.QRect(590, 440, 31, 25))
         font = QtGui.QFont()
+        font.setPointSize(10)
         font.setBold(False)
         font.setWeight(50)
         self.btn_Page_20.setFont(font)
         self.btn_Page_20.setText("")
         self.btn_Page_20.setObjectName("btn_Page_20")
-        self.btn_Page_24 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_24 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_24.setEnabled(False)
         self.btn_Page_24.setGeometry(QtCore.QRect(710, 440, 31, 25))
         self.btn_Page_24.setText("")
         self.btn_Page_24.setObjectName("btn_Page_24")
-        self.btn_Page_9 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_9 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_9.setEnabled(False)
         self.btn_Page_9.setGeometry(QtCore.QRect(260, 440, 31, 25))
         self.btn_Page_9.setText("")
         self.btn_Page_9.setObjectName("btn_Page_9")
-        self.btn_Page_19 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_19 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_19.setEnabled(False)
         self.btn_Page_19.setGeometry(QtCore.QRect(560, 440, 31, 25))
         self.btn_Page_19.setText("")
         self.btn_Page_19.setObjectName("btn_Page_19")
-        self.btn_Page_12 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_12 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_12.setEnabled(False)
         self.btn_Page_12.setGeometry(QtCore.QRect(350, 440, 31, 25))
         self.btn_Page_12.setText("")
         self.btn_Page_12.setObjectName("btn_Page_12")
-        self.btn_Page_8 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_8 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_8.setEnabled(False)
         self.btn_Page_8.setGeometry(QtCore.QRect(230, 440, 31, 25))
         self.btn_Page_8.setText("")
         self.btn_Page_8.setObjectName("btn_Page_8")
-        self.btn_Page_3 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_Page_3 = QtWidgets.QPushButton(self.tab)
         self.btn_Page_3.setEnabled(False)
         self.btn_Page_3.setGeometry(QtCore.QRect(80, 440, 31, 25))
         self.btn_Page_3.setText("")
         self.btn_Page_3.setObjectName("btn_Page_3")
-        self.lbl_Page_2 = QtWidgets.QLabel(self.groupBox_3)
+        self.sBox_CurrentSample = QtWidgets.QSpinBox(self.tab)
+        self.sBox_CurrentSample.setEnabled(False)
+        self.sBox_CurrentSample.setGeometry(QtCore.QRect(1010, 440, 91, 31))
+        self.sBox_CurrentSample.setObjectName("sBox_CurrentSample")
+        self.lbl_MaxNumSamples = QtWidgets.QLabel(self.tab)
+        self.lbl_MaxNumSamples.setGeometry(QtCore.QRect(1110, 440, 81, 31))
+        self.lbl_MaxNumSamples.setObjectName("lbl_MaxNumSamples")
+        self.label_34 = QtWidgets.QLabel(self.tab)
+        self.label_34.setGeometry(QtCore.QRect(940, 440, 71, 31))
+        self.label_34.setObjectName("label_34")
+        self.lbl_Page_2 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_2.setGeometry(QtCore.QRect(50, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_2.setFont(font)
         self.lbl_Page_2.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_2.setObjectName("lbl_Page_2")
-        self.lbl_Page_4 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_4 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_4.setGeometry(QtCore.QRect(110, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_4.setFont(font)
         self.lbl_Page_4.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_4.setObjectName("lbl_Page_4")
-        self.lbl_Page_16 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_16 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_16.setGeometry(QtCore.QRect(470, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_16.setFont(font)
         self.lbl_Page_16.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_16.setObjectName("lbl_Page_16")
-        self.lbl_Page_8 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_8 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_8.setGeometry(QtCore.QRect(230, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_8.setFont(font)
         self.lbl_Page_8.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_8.setObjectName("lbl_Page_8")
-        self.lbl_Page_7 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_7 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_7.setGeometry(QtCore.QRect(200, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_7.setFont(font)
         self.lbl_Page_7.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_7.setObjectName("lbl_Page_7")
-        self.lbl_Page_11 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_11 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_11.setGeometry(QtCore.QRect(320, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_11.setFont(font)
         self.lbl_Page_11.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_11.setObjectName("lbl_Page_11")
-        self.lbl_Page_22 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_22 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_22.setGeometry(QtCore.QRect(650, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_22.setFont(font)
         self.lbl_Page_22.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_22.setObjectName("lbl_Page_22")
-        self.lbl_Page_6 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_6 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_6.setGeometry(QtCore.QRect(170, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_6.setFont(font)
         self.lbl_Page_6.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_6.setObjectName("lbl_Page_6")
-        self.lbl_Page_9 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_9 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_9.setGeometry(QtCore.QRect(260, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_9.setFont(font)
         self.lbl_Page_9.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_9.setObjectName("lbl_Page_9")
-        self.lbl_Page_17 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_17 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_17.setGeometry(QtCore.QRect(500, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_17.setFont(font)
         self.lbl_Page_17.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_17.setObjectName("lbl_Page_17")
-        self.lbl_Page_25 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_25 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_25.setGeometry(QtCore.QRect(740, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_25.setFont(font)
         self.lbl_Page_25.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_25.setObjectName("lbl_Page_25")
-        self.lbl_Page_20 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_20 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_20.setGeometry(QtCore.QRect(590, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_20.setFont(font)
         self.lbl_Page_20.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_20.setObjectName("lbl_Page_20")
-        self.lbl_Page_14 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_14 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_14.setGeometry(QtCore.QRect(410, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_14.setFont(font)
         self.lbl_Page_14.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_14.setObjectName("lbl_Page_14")
-        self.lbl_Page_3 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_3 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_3.setGeometry(QtCore.QRect(80, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_3.setFont(font)
         self.lbl_Page_3.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_3.setObjectName("lbl_Page_3")
-        self.lbl_Page_24 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_24 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_24.setGeometry(QtCore.QRect(710, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_24.setFont(font)
         self.lbl_Page_24.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_24.setObjectName("lbl_Page_24")
-        self.lbl_Page_12 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_12 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_12.setGeometry(QtCore.QRect(350, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_12.setFont(font)
         self.lbl_Page_12.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_12.setObjectName("lbl_Page_12")
-        self.lbl_Page_23 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_23 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_23.setGeometry(QtCore.QRect(680, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_23.setFont(font)
         self.lbl_Page_23.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_23.setObjectName("lbl_Page_23")
-        self.lbl_Page_18 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_18 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_18.setGeometry(QtCore.QRect(530, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_18.setFont(font)
         self.lbl_Page_18.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_18.setObjectName("lbl_Page_18")
-        self.lbl_Page_1 = QtWidgets.QLabel(self.groupBox_3)
-        self.lbl_Page_1.setGeometry(QtCore.QRect(10, 470, 31, 21))
+        self.lbl_Page_1 = QtWidgets.QLabel(self.tab)
+        self.lbl_Page_1.setGeometry(QtCore.QRect(20, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_1.setFont(font)
         self.lbl_Page_1.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_1.setObjectName("lbl_Page_1")
-        self.lbl_Page_5 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_5 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_5.setGeometry(QtCore.QRect(140, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_5.setFont(font)
         self.lbl_Page_5.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_5.setObjectName("lbl_Page_5")
-        self.lbl_Page_19 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_19 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_19.setGeometry(QtCore.QRect(560, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_19.setFont(font)
         self.lbl_Page_19.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_19.setObjectName("lbl_Page_19")
-        self.lbl_Page_13 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_13 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_13.setGeometry(QtCore.QRect(380, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_13.setFont(font)
         self.lbl_Page_13.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_13.setObjectName("lbl_Page_13")
-        self.lbl_Page_10 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_10 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_10.setGeometry(QtCore.QRect(290, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_10.setFont(font)
         self.lbl_Page_10.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_10.setObjectName("lbl_Page_10")
-        self.lbl_Page_15 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_15 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_15.setGeometry(QtCore.QRect(440, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_15.setFont(font)
         self.lbl_Page_15.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_15.setObjectName("lbl_Page_15")
-        self.lbl_Page_21 = QtWidgets.QLabel(self.groupBox_3)
+        self.lbl_Page_21 = QtWidgets.QLabel(self.tab)
         self.lbl_Page_21.setGeometry(QtCore.QRect(620, 470, 31, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.lbl_Page_21.setFont(font)
         self.lbl_Page_21.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_21.setObjectName("lbl_Page_21")
-        self.groupBox_4 = QtWidgets.QGroupBox(self.tab)
-        self.groupBox_4.setEnabled(True)
-        self.groupBox_4.setGeometry(QtCore.QRect(1000, 0, 1171, 141))
-        self.groupBox_4.setObjectName("groupBox_4")
-        self.groupBox_4_layout = QtWidgets.QHBoxLayout()     
-        self.groupBox_4.setLayout(self.groupBox_4_layout)
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
-        self.tab2_layout = QtWidgets.QHBoxLayout()     
-        self.tab_2.setLayout(self.tab2_layout)
         self.label_5 = QtWidgets.QLabel(self.tab_2)
         self.label_5.setGeometry(QtCore.QRect(50, 0, 1141, 71))
         font = QtGui.QFont()
@@ -640,8 +636,6 @@ class Ui_RiskWindow(object):
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
-        self.tab3_layout = QtWidgets.QHBoxLayout()  
-        self.tab_3.setLayout(self.tab3_layout)
         self.txtB_AS_AS_Value = QtWidgets.QLineEdit(self.tab_3)
         self.txtB_AS_AS_Value.setGeometry(QtCore.QRect(1140, 290, 61, 27))
         self.txtB_AS_AS_Value.setObjectName("txtB_AS_AS_Value")
@@ -840,8 +834,6 @@ class Ui_RiskWindow(object):
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
-        self.tab4_layout = QtWidgets.QHBoxLayout()  
-        self.tab_4.setLayout(self.tab4_layout)
         self.txtB_E_EC_Value = QtWidgets.QLineEdit(self.tab_4)
         self.txtB_E_EC_Value.setGeometry(QtCore.QRect(1140, 320, 61, 27))
         self.txtB_E_EC_Value.setObjectName("txtB_E_EC_Value")
@@ -1015,10 +1007,27 @@ class Ui_RiskWindow(object):
         self.txtB_E_DI_Letter.setGeometry(QtCore.QRect(1070, 180, 51, 27))
         self.txtB_E_DI_Letter.setObjectName("txtB_E_DI_Letter")
         self.tabWidget.addTab(self.tab_4, "")
+        self.lbl_ProgressPerc = QtWidgets.QLabel()
+        self.lbl_ProgressPerc.setText("")
+        self.lbl_ProgressPerc.setObjectName("lbl_ProgressPerc")
+        self.tabWidget.addTab(self.lbl_ProgressPerc, "")
+        self.lbl_Progress = QtWidgets.QLabel()
+        self.lbl_Progress.setObjectName("lbl_Progress")
+        self.tabWidget.addTab(self.lbl_Progress, "")
+        self.btn_PrevLabeling = QtWidgets.QPushButton()
+        self.btn_PrevLabeling.setEnabled(False)
+        self.btn_PrevLabeling.setObjectName("btn_PrevLabeling")
+        self.tabWidget.addTab(self.btn_PrevLabeling, "")
+        self.btn_NextLabeling = QtWidgets.QPushButton()
+        self.btn_NextLabeling.setEnabled(False)
+        self.btn_NextLabeling.setObjectName("btn_NextLabeling")
+        self.tabWidget.addTab(self.btn_NextLabeling, "")
+        self.btn_SaveDatasetLabeling = QtWidgets.QPushButton()
+        self.btn_SaveDatasetLabeling.setEnabled(False)
+        self.btn_SaveDatasetLabeling.setObjectName("btn_SaveDatasetLabeling")
+        self.tabWidget.addTab(self.btn_SaveDatasetLabeling, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
-        self.tab5_layout = QtWidgets.QHBoxLayout()  
-        self.tab_5.setLayout(self.tab5_layout)
         self.label_11 = QtWidgets.QLabel(self.tab_5)
         self.label_11.setGeometry(QtCore.QRect(50, 50, 491, 71))
         font = QtGui.QFont()
@@ -1134,20 +1143,14 @@ class Ui_RiskWindow(object):
         self.txtB_CWSS_Threat.setAlignment(QtCore.Qt.AlignCenter)
         self.txtB_CWSS_Threat.setObjectName("txtB_CWSS_Threat")
         self.btn_LearnMore = QtWidgets.QPushButton(self.tab_5)
-        self.btn_LearnMore.setGeometry(QtCore.QRect(1050, 410, 211, 71))
+        self.btn_LearnMore.setGeometry(QtCore.QRect(1050, 410, 141, 41))
         self.btn_LearnMore.setObjectName("btn_LearnMore")
+        self.tabWidget.addTab(self.tab_5, "")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(30, 10, 1100, 800))
+        self.groupBox.setGeometry(QtCore.QRect(30, 10, 951, 101))
         self.groupBox.setObjectName("groupBox")
-        # Layout for the entire 'Current Score' group box.
-        self.group_layout = QtWidgets.QHBoxLayout()     
-        self.groupBox.setLayout(self.group_layout)
-        self.btn_Help = QtWidgets.QPushButton(self.groupBox)
-        self.btn_Help.setGeometry(QtCore.QRect(1000, 110, 100, 40))
-        self.btn_Help.setObjectName("btn_Help")
         self.label_16 = QtWidgets.QLabel(self.groupBox)
         self.label_16.setGeometry(QtCore.QRect(10, 20, 211, 31))
-        self.tabWidget.addTab(self.tab_5, "")
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(False)
@@ -1168,9 +1171,6 @@ class Ui_RiskWindow(object):
         self.txtB_CWSS_BF_info.setAlignment(QtCore.Qt.AlignCenter)
         self.txtB_CWSS_BF_info.setReadOnly(True)
         self.txtB_CWSS_BF_info.setObjectName("txtB_CWSS_BF_info")
-        # Tooltip stating the functionality of the 'Base Finding Score' box with tooltip duration of 6 seconds.
-        self.txtB_CWSS_BF_info.setToolTip("Score to determine the risk of the vulnerability.")
-        self.txtB_CWSS_BF_info.setToolTipDuration(6000)
         self.txtB_CWSS_AS_info = QtWidgets.QLineEdit(self.groupBox)
         self.txtB_CWSS_AS_info.setGeometry(QtCore.QRect(220, 60, 131, 31))
         font = QtGui.QFont()
@@ -1181,9 +1181,6 @@ class Ui_RiskWindow(object):
         self.txtB_CWSS_AS_info.setAlignment(QtCore.Qt.AlignCenter)
         self.txtB_CWSS_AS_info.setReadOnly(True)
         self.txtB_CWSS_AS_info.setObjectName("txtB_CWSS_AS_info")
-        # Tooltip stating the functionality of the 'Attack Surface Score' box with tooltip duration of 6 seconds.
-        self.txtB_CWSS_AS_info.setToolTip("Score to determine how much part of the system needs to be tested for vulnerabilities.")
-        self.txtB_CWSS_AS_info.setToolTipDuration(6000)
         self.label_29 = QtWidgets.QLabel(self.groupBox)
         self.label_29.setGeometry(QtCore.QRect(10, 60, 231, 31))
         font = QtGui.QFont()
@@ -1206,9 +1203,6 @@ class Ui_RiskWindow(object):
         self.txtB_CWSS_E_info.setAlignment(QtCore.Qt.AlignCenter)
         self.txtB_CWSS_E_info.setReadOnly(True)
         self.txtB_CWSS_E_info.setObjectName("txtB_CWSS_E_info")
-        # Tooltip stating the functionality of the 'Environment Score' box with tooltip duration of 6 seconds.
-        self.txtB_CWSS_E_info.setToolTip("Assess the severity and risk of computer system security.")
-        self.txtB_CWSS_E_info.setToolTipDuration(6000)
         self.label_30 = QtWidgets.QLabel(self.groupBox)
         self.label_30.setGeometry(QtCore.QRect(380, 20, 241, 31))
         font = QtGui.QFont()
@@ -1243,11 +1237,8 @@ class Ui_RiskWindow(object):
         self.txtB_CWSS_Score_info.setAlignment(QtCore.Qt.AlignCenter)
         self.txtB_CWSS_Score_info.setReadOnly(True)
         self.txtB_CWSS_Score_info.setObjectName("txtB_CWSS_Score_info")
-        # Tooltip stating the functionality of the 'CWSS Score' box with tooltip duration of 6 seconds.
-        self.txtB_CWSS_Score_info.setToolTip("Score to determine the overall software vulnerability.")
-        self.txtB_CWSS_Score_info.setToolTipDuration(6000)
         self.label_33 = QtWidgets.QLabel(self.groupBox)
-        self.label_33.setGeometry(QtCore.QRect(760, 15, 151, 31))
+        self.label_33.setGeometry(QtCore.QRect(760, 30, 151, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(False)
@@ -1272,16 +1263,24 @@ class Ui_RiskWindow(object):
         self.txtB_CWSS_Threat_info.setFont(font)
         self.txtB_CWSS_Threat_info.setAlignment(QtCore.Qt.AlignCenter)
         self.txtB_CWSS_Threat_info.setObjectName("txtB_CWSS_Threat_info")
-        self.btn_SaveScore = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_SaveScore.setGeometry(QtCore.QRect(20, 20, 121, 50))
+        self.btn_SaveScore = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_SaveScore.setGeometry(QtCore.QRect(1000, 30, 111, 101))
         self.btn_SaveScore.setObjectName("btn_SaveScore")
-        self.btn_SaveResults = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_SaveResults.setGeometry(QtCore.QRect(160, 20, 121, 50))
-        self.btn_SaveResults.setObjectName("btn_SaveResults")
-        self.btn_CancelClose = QtWidgets.QPushButton(self.groupBox)
-        self.btn_CancelClose.setGeometry(QtCore.QRect(920, 60, 140, 50))
+        self.btn_CancelClose = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_CancelClose.setGeometry(QtCore.QRect(1130, 30, 121, 101))
         self.btn_CancelClose.setObjectName("btn_CancelClose")
-        self.btn_FindingFilepathTooltip = QtWidgets.QPushButton(self.groupBox)
+        self.Model_Risk = QtWidgets.QPushButton(self.centralwidget)
+        self.Model_Risk.setEnabled(False)
+        self.Model_Risk.setGeometry(QtCore.QRect(30, 120, 21, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.Model_Risk.setFont(font)
+        self.Model_Risk.setToolTip("")
+        self.Model_Risk.setFlat(False)
+        self.Model_Risk.setObjectName("Model_Risk")
+        self.btn_FindingFilepathTooltip = QtWidgets.QPushButton(self.centralwidget)
         self.btn_FindingFilepathTooltip.setEnabled(False)
         self.btn_FindingFilepathTooltip.setGeometry(QtCore.QRect(30, 120, 21, 20))
         font = QtGui.QFont()
@@ -1292,666 +1291,28 @@ class Ui_RiskWindow(object):
         self.btn_FindingFilepathTooltip.setToolTip("")
         self.btn_FindingFilepathTooltip.setFlat(False)
         self.btn_FindingFilepathTooltip.setObjectName("btn_FindingFilepathTooltip")
-        self.label_4 = QtWidgets.QLabel(self.groupBox)
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(60, 120, 91, 21))
         self.label_4.setObjectName("label_4")
-        self.cBox_FindingFilepath = QtWidgets.QComboBox(self.groupBox)
+        self.cBox_FindingFilepath = QtWidgets.QComboBox(self.centralwidget)
         self.cBox_FindingFilepath.setGeometry(QtCore.QRect(150, 120, 131, 21))
         self.cBox_FindingFilepath.setObjectName("cBox_FindingFilepath")
-        self.txtB_FindingFilepath = QtWidgets.QLineEdit(self.groupBox)
+        self.txtB_FindingFilepath = QtWidgets.QLineEdit(self.centralwidget)
         self.txtB_FindingFilepath.setGeometry(QtCore.QRect(290, 120, 691, 21))
         self.txtB_FindingFilepath.setReadOnly(True)
         self.txtB_FindingFilepath.setObjectName("txtB_FindingFilepath")
         RiskWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(RiskWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 17))
         self.menubar.setObjectName("menubar")
         RiskWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(RiskWindow)
         self.statusbar.setObjectName("statusbar")
         RiskWindow.setStatusBar(self.statusbar)
 
-        self.lbl_Progress = QtWidgets.QLabel(self.groupBox_4)
-        self.lbl_Progress.setGeometry(QtCore.QRect(400, 20, 200, 50))
-        self.lbl_Progress.setObjectName("lbl_Progress")
-
-        self.lbl_ProgressPerc = QtWidgets.QLabel(self.groupBox_4)
-        self.lbl_ProgressPerc.setGeometry(QtCore.QRect(650, 20, 121, 50))
-        self.lbl_ProgressPerc.setText("0.0")
-        self.lbl_ProgressPerc.setObjectName("lbl_ProgressPerc")
-
-        self.btn_PrevLabeling = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_PrevLabeling.setEnabled(True)
-        self.btn_PrevLabeling.setGeometry(QtCore.QRect(800, 20, 121, 50))
-        self.btn_PrevLabeling.setObjectName("btn_PrevLabeling")
-
-        self.btn_NextLabeling = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_NextLabeling.setEnabled(True)
-        self.btn_NextLabeling.setGeometry(QtCore.QRect(950, 20, 121, 50))
-        self.btn_NextLabeling.setObjectName("btn_NextLabeling")
-
-        self.btn_SaveSchema = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_SaveSchema.setEnabled(True)
-        self.btn_SaveSchema.setGeometry(QtCore.QRect(1100, 20, 150, 50))
-        self.btn_SaveSchema.setObjectName("btn_SaveSchema")
-
-        self.btn_Model = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_Model.setEnabled(True)
-        self.btn_Model.setGeometry(QtCore.QRect(1400, 20, 100, 50))
-        self.btn_Model.setObjectName("btn_Model")
-
-        self.btn_Predict = QtWidgets.QPushButton(self.groupBox_4)
-        self.btn_Predict.setEnabled(True)
-        self.btn_Predict.setGeometry(QtCore.QRect(1550, 20, 100, 50))
-        self.btn_Predict.setObjectName("btn_Predict")
-
-        self.sBox_CurrentSample = QtWidgets.QSpinBox(self.groupBox_3)
-        self.sBox_CurrentSample.setEnabled(False)
-        self.sBox_CurrentSample.setGeometry(QtCore.QRect(25, 10, 91, 31))
-        self.sBox_CurrentSample.setObjectName("sBox_CurrentSample")
-        self.lbl_MaxNumSamples = QtWidgets.QLabel(self.groupBox_3)
-        self.lbl_MaxNumSamples.setGeometry(QtCore.QRect(25, 10, 81, 31))
-        self.lbl_MaxNumSamples.setObjectName("lbl_MaxNumSamples")
-        self.label_34 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_34.setGeometry(QtCore.QRect(25, 10, 71, 31))
-        self.label_34.setObjectName("label_34")
-
         self.retranslateUi(RiskWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(RiskWindow)
-
-        # The horizontal layout for the widget to help resizing the window
-        self.hlayout = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout.setObjectName("hlayout")
-        self.hlayout.setContentsMargins(0, 0, 0, 0)
-        self.hlayout.setSpacing(0)
-
-        # Horizontal Layout 2(Current Score)
-        self.hlayout2 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout2.setObjectName("hlayout2")
-        self.hlayout2.setContentsMargins(0, 0, 0, 0)
-        self.hlayout2.setSpacing(0)
-
-        # Horizontal Layout 3(Current Score)
-        self.hlayout3 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout3.setObjectName("hlayout3")
-        self.hlayout3.setContentsMargins(0, 0, 0, 0)
-        self.hlayout3.setSpacing(0)
-
-        # Horizontal Layout 4(Current Score)
-        self.hlayout4 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout4.setObjectName("hlayout4")
-        self.hlayout4.setContentsMargins(0, 0, 0, 0)
-        self.hlayout4.setSpacing(0)
-
-        # Horizontal Layout 5(Tab 2)
-        self.hlayout5 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout5.setObjectName("hlayout5")
-        self.hlayout5.setContentsMargins(0, 0, 0, 0)
-        self.hlayout5.setSpacing(0)
-
-        # Horizontal Layout 6(Tab 2)
-        self.hlayout6 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout6.setObjectName("hlayout6")
-        self.hlayout6.setContentsMargins(0, 0, 0, 0)
-        self.hlayout6.setSpacing(0)
-
-        # Horizontal Layout 7(Tab 2)
-        self.hlayout7 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout7.setObjectName("hlayout7")
-        self.hlayout7.setContentsMargins(0, 0, 0, 0)
-        self.hlayout7.setSpacing(0)
-
-        # Horizontal Layout 8(Tab 2)
-        self.hlayout8 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout8.setObjectName("hlayout8")
-        self.hlayout8.setContentsMargins(0, 0, 0, 0)
-        self.hlayout8.setSpacing(0)
-
-        # Horizontal Layout 9(Tab 2)
-        self.hlayout9 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout9.setObjectName("hlayout7")
-        self.hlayout9.setContentsMargins(0, 0, 0, 0)
-        self.hlayout9.setSpacing(0)
-
-        # Horizontal Layout 10(Tab 2)
-        self.hlayout10 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout10.setObjectName("hlayout10")
-        self.hlayout10.setContentsMargins(0, 0, 0, 0)
-        self.hlayout10.setSpacing(0)
-
-        # Horizontal Layout 11(Tab 3)
-        self.hlayout11 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout11.setObjectName("hlayout11")
-        self.hlayout11.setContentsMargins(0, 0, 0, 0)
-        self.hlayout11.setSpacing(0)
-
-        # Horizontal Layout 12(Tab 3)
-        self.hlayout12 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout12.setObjectName("hlayout12")
-        self.hlayout12.setContentsMargins(0, 0, 0, 0)
-        self.hlayout12.setSpacing(0)
-
-        # Horizontal Layout 13(Tab 3)
-        self.hlayout13 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout13.setObjectName("hlayout13")
-        self.hlayout13.setContentsMargins(0, 0, 0, 0)
-        self.hlayout13.setSpacing(0)
-
-        # Horizontal Layout 14(Tab 3)
-        self.hlayout14 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout14.setObjectName("hlayout14")
-        self.hlayout14.setContentsMargins(0, 0, 0, 0)
-        self.hlayout14.setSpacing(0)
-
-        # Horizontal Layout 15(Tab 3)
-        self.hlayout15 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout15.setObjectName("hlayout15")
-        self.hlayout15.setContentsMargins(0, 0, 0, 0)
-        self.hlayout15.setSpacing(0)
-
-        # Horizontal Layout 16(Tab 3)
-        self.hlayout16 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout16.setObjectName("hlayout16")
-        self.hlayout16.setContentsMargins(0, 0, 0, 0)
-        self.hlayout16.setSpacing(0)
-
-        # Horizontal Layout 17(Tab 3)
-        self.hlayout17 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout17.setObjectName("hlayout17")
-        self.hlayout17.setContentsMargins(0, 0, 0, 0)
-        self.hlayout17.setSpacing(0)
-        
-         # Horizontal Layout 24(Tab 1)
-        self.hlayout24 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout24.setObjectName("hlayout24")
-        self.hlayout24.setContentsMargins(0, 0, 0, 0)
-        self.hlayout24.setSpacing(0)
-
-        # Horizontal Layout 25(Tab 1)
-        self.hlayout25 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout25.setObjectName("hlayout25")
-        self.hlayout25.setContentsMargins(0, 0, 0, 0)
-        self.hlayout25.setSpacing(10)
-
-
-        # Horizontal Layout 18(Tab 4)
-        self.hlayout18 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout18.setObjectName("hlayout18")
-        self.hlayout18.setContentsMargins(0, 0, 0, 0)
-        self.hlayout18.setSpacing(0)
-
-        # Horizontal Layout 19(Tab 4)
-        self.hlayout19 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout19.setObjectName("hlayout19")
-        self.hlayout19.setContentsMargins(0, 0, 0, 0)
-        self.hlayout19.setSpacing(0)
-
-        # Horizontal Layout 20(Tab 4)
-        self.hlayout20 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout20.setObjectName("hlayout20")
-        self.hlayout20.setContentsMargins(0, 0, 0, 0)
-        self.hlayout20.setSpacing(0)
-
-        # Horizontal Layout 21(Tab 4)
-        self.hlayout21 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout21.setObjectName("hlayout21")
-        self.hlayout21.setContentsMargins(0, 0, 0, 0)
-        self.hlayout21.setSpacing(0)
-
-        # Horizontal Layout 22(Tab 4)
-        self.hlayout22 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout22.setObjectName("hlayout22")
-        self.hlayout22.setContentsMargins(0, 0, 0, 0)
-        self.hlayout22.setSpacing(0)
-
-        # Horizontal Layout 23(Tab 4)
-        self.hlayout23 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout23.setObjectName("hlayout28")
-        self.hlayout23.setContentsMargins(0, 0, 0, 0)
-        self.hlayout23.setSpacing(0)
-
-        # Horizontal Layout 26(Tab 1)
-        self.hlayout26 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout26.setObjectName("hlayout26")
-        self.hlayout26.setContentsMargins(0,0,0,0)
-        self.hlayout26.setSpacing(0)
-
-        # Horizontal Layout 27(Tab 1)
-        self.hlayout27 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout27.setObjectName("hlayout27")
-        self.hlayout27.setContentsMargins(0,0,0,0)
-        self.hlayout27.setSpacing(0)
-
-        #Horizontal Layout 32(Tab 1)
-        self.hlayout32 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout32.setObjectName("hlayout32")
-        self.hlayout32.setContentsMargins(0,0,0,0)
-        self.hlayout32.setSpacing(0)
-       
-        # Horizontal Layout 28(Tab 5)
-        self.hlayout28 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout28.setObjectName("hlayout28")
-        self.hlayout28.setContentsMargins(0, 0, 0, 0)
-        self.hlayout28.setSpacing(0)
-
-        # Horizontal Layout 29(Tab 5)
-        self.hlayout29 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout29.setObjectName("hlayout29")
-        self.hlayout29.setContentsMargins(0, 0, 0, 0)
-        self.hlayout29.setSpacing(0)
-
-        # Horizontal Layout 30(Tab 5)
-        self.hlayout30 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout30.setObjectName("hlayout30")
-        self.hlayout30.setContentsMargins(0, 0, 0, 0)
-        self.hlayout30.setSpacing(0)
-
-        # Horizontal Layout 31(Tab 5)
-        self.hlayout31 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout31.setObjectName("hlayout31")
-        self.hlayout31.setContentsMargins(0, 0, 0, 0)
-        self.hlayout31.setSpacing(0)
-
-        #Horizontal layout 32(Tab 1 formatting)
-        self.hlayout33 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hlayout33.setObjectName("hlayout32")
-        self.hlayout33.setContentsMargins(0, 0, 0, 0)
-        self.hlayout33.setSpacing(10)
-
-        # The vertical layout of the widget to help resizing the window
-        self.vlayout = QtWidgets.QVBoxLayout()
-        self.vlayout.setObjectName("vlayout")
-        self.vlayout.setContentsMargins(50, 0, 50, 0)
-        self.vlayout.setSpacing(30)
-
-        # Vertical layout inside the group box.
-        self.vlayout2 = QtWidgets.QVBoxLayout()
-        self.vlayout2.setObjectName("vlayout2")
-        self.vlayout2.setContentsMargins(50, 0, 50, 0)
-        self.vlayout2.setSpacing(30)
-
-        # Vertical layout for group Labeling(Tab 1).
-        self.vlayout3 = QtWidgets.QVBoxLayout()
-        self.vlayout3.setObjectName("vlayout3")
-        self.vlayout3.setContentsMargins(50, 0, 50, 0)
-        self.vlayout3.setSpacing(0)
-
-        # Vertical layout for Tab 2.
-        self.vlayout4 = QtWidgets.QVBoxLayout()
-        self.vlayout4.setObjectName("vlayout4")
-        self.vlayout4.setContentsMargins(50, 50, 50, 0)
-        self.vlayout4.setSpacing(0)
-        
-        # Vertical layout for Tab 3.
-        self.vlayout5 = QtWidgets.QVBoxLayout()
-        self.vlayout5.setObjectName("vlayout5")
-        self.vlayout5.setContentsMargins(50, 50, 50, 0)
-        self.vlayout5.setSpacing(0)
-
-        #Vertical layout for the Tab 1
-        self.vlayout8 = QtWidgets.QVBoxLayout()
-        self.vlayout8.setObjectName("vlayout8")
-        self.vlayout8.setContentsMargins(50, 0, 50, 0)
-        self.vlayout8.setSpacing(0)
-
-        # Vertical layout for Tab 4.
-        self.vlayout7 = QtWidgets.QVBoxLayout()
-        self.vlayout7.setObjectName("vlayout7")
-        self.vlayout7.setContentsMargins(50, 50, 50, 0)
-        self.vlayout7.setSpacing(0)
-
-        #Vertical layout for groupBox_3
-        self.vlayout9 = QtWidgets.QVBoxLayout()
-        self.vlayout9.setObjectName("vlayout5")
-        self.vlayout9.setContentsMargins(50, 0, 50, 0)
-        self.vlayout9.setSpacing(0)
-
-        # Vertical layout for Tab 5.
-        self.vlayout10 = QtWidgets.QVBoxLayout()
-        self.vlayout10.setObjectName("vlayout10")
-        self.vlayout10.setContentsMargins(50, 50, 50, 0)
-        self.vlayout10.setSpacing(20)
-
-        # Vertical layout for the Tab 1 Formatting
-        self.vlayout11 = QtWidgets.QVBoxLayout()
-        self.vlayout11.setObjectName("vlayout11")
-        self.vlayout11.setContentsMargins(50, 50, 50, 0)
-        self.vlayout11.setSpacing(0)
-
-        # Adding first row of widgets to hlayout2
-        self.hlayout2.addWidget(self.label_16, stretch = 1)
-        self.hlayout2.addWidget(self.txtB_CWSS_BF_info, stretch = 2)
-        self.hlayout2.addWidget(self.label_30, stretch = 1)
-        self.hlayout2.addWidget(self.txtB_CWSS_E_info, stretch = 2)
-        self.hlayout2.addWidget(self.label_33, stretch = 1)
-        
-        # Adding second row of widgets to hlayout3
-        self.hlayout3.addWidget(self.label_29, stretch = 1)
-        self.hlayout3.addWidget(self.txtB_CWSS_AS_info, stretch = 2)
-        self.hlayout3.addWidget(self.label_31, stretch = 1)
-        self.hlayout3.addWidget(self.txtB_CWSS_Score_info, stretch = 2)
-        self.hlayout3.addWidget(self.txtB_CWSS_Threat_info, stretch = 1)
-
-        # Adding third row of widgets to hlayout4
-        self.hlayout4.addWidget(self.btn_FindingFilepathTooltip, stretch = 1)
-        self.hlayout4.addWidget(self.label_4, stretch = 1)
-        self.hlayout4.addWidget(self.cBox_FindingFilepath, stretch = 4)
-        self.hlayout4.addWidget(self.txtB_FindingFilepath, stretch = 4)
-        self.hlayout4.addWidget(self.btn_Help, stretch = 1)
-        self.hlayout4.addWidget(self.btn_CancelClose, stretch = 1)
-
-        # Adding all the horizontal layouts to the primary vertical layout.
-        self.vlayout2.addLayout(self.hlayout2)
-        self.vlayout2.addLayout(self.hlayout3)
-        self.vlayout2.addLayout(self.hlayout4)
-        self.group_layout.addLayout(self.vlayout2)
-
-        # Add the header widgets for Tab 2
-        self.hlayout5.addWidget(self.label_6, stretch = 1)
-        self.hlayout5.addWidget(self.label_7, stretch = 2)
-        self.hlayout5.addWidget(self.label_8, stretch = 1)
-        self.hlayout5.addWidget(self.label_9, stretch = 1)
-        self.hlayout5.addWidget(self.label_10, stretch = 1)
-
-        # Add widgets related to 'Technical Impact'
-        self.hlayout6.addWidget(self.textEdit, stretch = 1)
-        self.hlayout6.addWidget(self.textEdit_6, stretch = 2)
-        self.hlayout6.addWidget(self.cBox_BF_TI, stretch = 1)
-        self.hlayout6.addWidget(self.txtB_BF_TI_Letter, stretch = 1)
-        self.hlayout6.addWidget(self.txtB_BF_TI_Value, stretch = 1)
-
-        # Add widgets related to 'Acquired Privilege'
-        self.hlayout7.addWidget(self.textEdit_2, stretch = 1)
-        self.hlayout7.addWidget(self.textEdit_7, stretch = 2)
-        self.hlayout7.addWidget(self.cBox_BF_AP, stretch = 1)
-        self.hlayout7.addWidget(self.txtB_BF_AP_Letter, stretch = 1)
-        self.hlayout7.addWidget(self.txtB_BF_AP_Value, stretch = 1)
-
-        # Add widgets related to 'Acquired Privilege Layer'
-        self.hlayout8.addWidget(self.textEdit_3, stretch = 1)
-        self.hlayout8.addWidget(self.textEdit_8, stretch = 2)
-        self.hlayout8.addWidget(self.cBox_BF_AL, stretch = 1)
-        self.hlayout8.addWidget(self.txtB_BF_AL_Letter, stretch = 1)
-        self.hlayout8.addWidget(self.txtB_BF_AL_Value, stretch = 1)
-
-        # Add widgets related to 'Internal Control Effectiveness'
-        self.hlayout9.addWidget(self.textEdit_4, stretch = 1)
-        self.hlayout9.addWidget(self.textEdit_9, stretch = 2)
-        self.hlayout9.addWidget(self.cBox_BF_IC, stretch = 1)
-        self.hlayout9.addWidget(self.txtB_BF_IC_Letter, stretch = 1)
-        self.hlayout9.addWidget(self.txtB_BF_IC_Value, stretch = 1)
-
-        # Add widgets related to 'Finding Confidence'
-        self.hlayout10.addWidget(self.textEdit_5, stretch = 1)
-        self.hlayout10.addWidget(self.textEdit_10, stretch = 2)
-        self.hlayout10.addWidget(self.cBox_BF_FC, stretch = 1)
-        self.hlayout10.addWidget(self.txtB_BF_FC_Letter, stretch = 1)
-        self.hlayout10.addWidget(self.txtB_BF_FC_Value, stretch = 1)
-
-        # Add Tab1 widgets to Horizontal layout24
-        self.hlayout24.addWidget(self.label)
-        self.hlayout24.addWidget(self.cBox_GL_File)
-        self.hlayout24.addWidget(self.btn_FileTooltip)
-        self.hlayout24.addWidget(self.txtB_GL_Filepath)
-        self.hlayout24.addWidget(self.label_3)
-        self.hlayout24.addWidget(self.cBox_GL_Values)
-        self.hlayout24.addWidget(self.btn_ValuesTooltip)
-        self.hlayout24.addWidget(self.txtB_GL_Values)
-
-        # Add Tab1 widgets to Horizontal layout25
-        self.hlayout25.addWidget(self.label_2)
-        self.hlayout25.addWidget(self.cBox_GL_Folder)
-        self.hlayout25.addWidget(self.btn_FolderTooltip)
-        self.hlayout25.addWidget(self.txtB_GL_Folderpath)
-        self.hlayout25.addWidget(self.btn_GL_Add)
-        self.hlayout25.addWidget(self.btn_GL_Remove)
-
-        #adding the horizontal layouts to the vertical layout in the tab1
-        self.vlayout3.addLayout(self.hlayout24)
-        self.vlayout3.addLayout(self.hlayout25)
-
-        # Group box 4 for risk prediction
-        self.groupBox_4_layout.addWidget(self.btn_SaveScore)
-        self.groupBox_4_layout.addWidget(self.btn_SaveResults)
-        self.groupBox_4_layout.addWidget(self.lbl_Progress)
-        self.groupBox_4_layout.addWidget(self.lbl_ProgressPerc)
-        self.groupBox_4_layout.addWidget(self.btn_PrevLabeling)
-        self.groupBox_4_layout.addWidget(self.btn_NextLabeling)
-        self.groupBox_4_layout.addWidget(self.btn_SaveSchema)
-        self.groupBox_4_layout.addWidget(self.btn_Model)
-        self.groupBox_4_layout.addWidget(self.btn_Predict)
-
-        # Adding vlayout of the tab1 to the horizontal layout
-        self.vlayout8.addWidget(self.groupBox_2,stretch = 1)
-        self.vlayout8.addWidget(self.groupBox_3,stretch = 3)
-        self.vlayout8.addWidget(self.groupBox_4, stretch = 1)
-        self.groupBox_2_layout.addLayout(self.vlayout3)
-        self.tab_layout.addLayout(self.vlayout8, stretch = 3)
-
-        # Add the layouts to vertical layout and then to tab layout.
-        self.vlayout4.addLayout(self.hlayout5)
-        self.vlayout4.addLayout(self.hlayout6)
-        self.vlayout4.addLayout(self.hlayout7)
-        self.vlayout4.addLayout(self.hlayout8)
-        self.vlayout4.addLayout(self.hlayout9)
-        self.vlayout4.addLayout(self.hlayout10)
-        self.tab2_layout.addLayout(self.vlayout4)
-
-        # Add header widgets for Tab 3
-        self.hlayout11.addWidget(self.label_18, stretch = 1)
-        self.hlayout11.addWidget(self.label_20, stretch = 3)
-        self.hlayout11.addWidget(self.label_22, stretch = 1)
-        self.hlayout11.addWidget(self.label_21, stretch = 1)
-        self.hlayout11.addWidget(self.label_17, stretch = 1)
-
-        # Add widgets related to 'Required Privilege'
-        self.hlayout12.addWidget(self.textEdit_20, stretch = 1)
-        self.hlayout12.addWidget(self.textEdit_11, stretch = 3)
-        self.hlayout12.addWidget(self.cBox_AS_RP, stretch = 1)
-        self.hlayout12.addWidget(self.txtB_AS_RP_Letter, stretch = 1)
-        self.hlayout12.addWidget(self.txtB_AS_RP_Value, stretch = 1)
-
-        # Add widgets related to 'Required Privilege Layer'
-        self.hlayout13.addWidget(self.textEdit_18, stretch = 1)
-        self.hlayout13.addWidget(self.textEdit_13, stretch = 3)
-        self.hlayout13.addWidget(self.cBox_AS_RL, stretch = 1)
-        self.hlayout13.addWidget(self.txtB_AS_RL_Letter, stretch = 1)
-        self.hlayout13.addWidget(self.txtB_AS_RL_Value, stretch = 1)
-
-        # Add widgets related to 'Access Vector'
-        self.hlayout14.addWidget(self.textEdit_14, stretch = 1)
-        self.hlayout14.addWidget(self.textEdit_19, stretch = 3)
-        self.hlayout14.addWidget(self.cBox_AS_AV, stretch = 1)
-        self.hlayout14.addWidget(self.txtB_AS_AV_Letter, stretch = 1)
-        self.hlayout14.addWidget(self.txtB_AS_AV_Value, stretch = 1)
-
-        # Add widgets related to 'Authentication Strength'
-        self.hlayout15.addWidget(self.textEdit_16, stretch = 1)
-        self.hlayout15.addWidget(self.textEdit_12, stretch = 3)
-        self.hlayout15.addWidget(self.cBox_AS_AS, stretch = 1)
-        self.hlayout15.addWidget(self.txtB_AS_AS_Letter, stretch = 1)
-        self.hlayout15.addWidget(self.txtB_AS_AS_Value, stretch = 1)
-
-        # Add widgets related to 'Level of Interaction'
-        self.hlayout16.addWidget(self.textEdit_15, stretch = 1)
-        self.hlayout16.addWidget(self.textEdit_1, stretch = 3)
-        self.hlayout16.addWidget(self.cBox_AS_IN, stretch = 1)
-        self.hlayout16.addWidget(self.txtB_AS_IN_Letter, stretch = 1)
-        self.hlayout16.addWidget(self.txtB_AS_IN_Value, stretch = 1)
-
-        # Add widgets related to 'Deployment Scope'
-        self.hlayout17.addWidget(self.textEdit_31, stretch = 1)
-        self.hlayout17.addWidget(self.textEdit_17, stretch = 3)
-        self.hlayout17.addWidget(self.cBox_AS_SC, stretch = 1)
-        self.hlayout17.addWidget(self.txtB_AS_SC_Letter, stretch = 1)
-        self.hlayout17.addWidget(self.txtB_AS_SC_Value, stretch = 1)
-
-        # Add the layouts to vertical layout and then to tab layout.
-        self.vlayout5.addLayout(self.hlayout11)
-        self.vlayout5.addLayout(self.hlayout12)
-        self.vlayout5.addLayout(self.hlayout13)
-        self.vlayout5.addLayout(self.hlayout14)
-        self.vlayout5.addLayout(self.hlayout15)
-        self.vlayout5.addLayout(self.hlayout16)
-        self.vlayout5.addLayout(self.hlayout17)
-        self.tab3_layout.addLayout(self.vlayout5)
-
-        # Add header widgets for Tab 4
-        self.hlayout18.addWidget(self.label_24, stretch = 1)
-        self.hlayout18.addWidget(self.label_26, stretch = 3)
-        self.hlayout18.addWidget(self.label_28, stretch = 1)
-        self.hlayout18.addWidget(self.label_27, stretch = 1)
-        self.hlayout18.addWidget(self.label_23, stretch = 1)
-
-        # Add widgets related to 'Business Impact'
-        self.hlayout19.addWidget(self.textEdit_30, stretch = 1)
-        self.hlayout19.addWidget(self.textEdit_21, stretch = 3)
-        self.hlayout19.addWidget(self.cBox_E_BI, stretch = 1)
-        self.hlayout19.addWidget(self.txtB_E_BI_Letter, stretch = 1)
-        self.hlayout19.addWidget(self.txtB_E_BI_Value, stretch = 1)
-
-        # Add widgets related to 'Likelihood of Discovery'
-        self.hlayout20.addWidget(self.textEdit_28, stretch = 1)
-        self.hlayout20.addWidget(self.textEdit_23, stretch = 3)
-        self.hlayout20.addWidget(self.cBox_E_DI, stretch = 1)
-        self.hlayout20.addWidget(self.txtB_E_DI_Letter, stretch = 1)
-        self.hlayout20.addWidget(self.txtB_E_DI_Value, stretch = 1)
-
-        # Add widgets related to 'Likelihood of Exploit'
-        self.hlayout21.addWidget(self.textEdit_24, stretch = 1)
-        self.hlayout21.addWidget(self.textEdit_29, stretch = 3)
-        self.hlayout21.addWidget(self.cBox_E_EX, stretch = 1)
-        self.hlayout21.addWidget(self.txtB_E_EX_Letter, stretch = 1)
-        self.hlayout21.addWidget(self.txtB_E_EX_Value, stretch = 1)
-
-        # Add widgets related to 'External Control Efectiveness'
-        self.hlayout22.addWidget(self.textEdit_26, stretch = 1)
-        self.hlayout22.addWidget(self.textEdit_22, stretch = 3)
-        self.hlayout22.addWidget(self.cBox_E_EC, stretch = 1)
-        self.hlayout22.addWidget(self.txtB_E_EC_Letter, stretch = 1)
-        self.hlayout22.addWidget(self.txtB_E_EC_Value, stretch = 1)
-
-        # Add widgets related to 'Prevalence'
-        self.hlayout23.addWidget(self.textEdit_25, stretch = 1)
-        self.hlayout23.addWidget(self.textEdit_27, stretch = 3)
-        self.hlayout23.addWidget(self.cBox_E_P, stretch = 1)
-        self.hlayout23.addWidget(self.txtB_E_P_Letter, stretch = 1)
-        self.hlayout23.addWidget(self.txtB_E_P_Value, stretch = 1)
-
-        # Add table to the hlayout in the groupBox_3
-        self.hlayout26.addWidget(self.tbl_CurrentExample)
-
-        # Add widgets to other hLayout
-        self.hlayout27.addWidget(self.btn_Page_1)
-        self.hlayout27.addWidget(self.btn_Page_2)
-        self.hlayout27.addWidget(self.btn_Page_3)
-        self.hlayout27.addWidget(self.btn_Page_4)
-        self.hlayout27.addWidget(self.btn_Page_5)
-        self.hlayout27.addWidget(self.btn_Page_6)
-        self.hlayout27.addWidget(self.btn_Page_7)
-        self.hlayout27.addWidget(self.btn_Page_8)
-        self.hlayout27.addWidget(self.btn_Page_9)
-        self.hlayout27.addWidget(self.btn_Page_10)
-        self.hlayout27.addWidget(self.btn_Page_11)
-        self.hlayout27.addWidget(self.btn_Page_12)
-        self.hlayout27.addWidget(self.btn_Page_13)
-        self.hlayout27.addWidget(self.btn_Page_14)
-        self.hlayout27.addWidget(self.btn_Page_15)
-        self.hlayout27.addWidget(self.btn_Page_16)
-        self.hlayout27.addWidget(self.btn_Page_17)
-        self.hlayout27.addWidget(self.btn_Page_18)
-        self.hlayout27.addWidget(self.btn_Page_19)
-        self.hlayout27.addWidget(self.btn_Page_20)
-        self.hlayout27.addWidget(self.btn_Page_21)
-        self.hlayout27.addWidget(self.btn_Page_22)
-        self.hlayout27.addWidget(self.btn_Page_23)
-        self.hlayout27.addWidget(self.btn_Page_24)
-        self.hlayout27.addWidget(self.btn_Page_25)
-        
-
-        #Adding the group to the horizontal layout
-        self.vlayout11.addLayout(self.hlayout27)
-        self.vlayout11.addLayout(self.hlayout32)
-        self.hlayout33.addLayout(self.vlayout11)
-        self.hlayout33.addWidget(self.label_32)
-        self.hlayout33.addWidget(self.sBox_Page)
-        self.hlayout33.addWidget(self.lbl_PageMaxNumber)
-        self.hlayout33.addWidget(self.label_34)
-        self.hlayout33.addWidget(self.sBox_CurrentSample)
-        self.hlayout33.addWidget(self.lbl_MaxNumSamples)
-
-        #Add the labels to hlayout32
-        self.hlayout32.addWidget(self.lbl_Page_1)
-        self.hlayout32.addWidget(self.lbl_Page_2)
-        self.hlayout32.addWidget(self.lbl_Page_3)
-        self.hlayout32.addWidget(self.lbl_Page_4)
-        self.hlayout32.addWidget(self.lbl_Page_5)
-        self.hlayout32.addWidget(self.lbl_Page_6)
-        self.hlayout32.addWidget(self.lbl_Page_7)
-        self.hlayout32.addWidget(self.lbl_Page_8)
-        self.hlayout32.addWidget(self.lbl_Page_9)
-        self.hlayout32.addWidget(self.lbl_Page_10)
-        self.hlayout32.addWidget(self.lbl_Page_11)
-        self.hlayout32.addWidget(self.lbl_Page_12)
-        self.hlayout32.addWidget(self.lbl_Page_13)
-        self.hlayout32.addWidget(self.lbl_Page_14)
-        self.hlayout32.addWidget(self.lbl_Page_15)
-        self.hlayout32.addWidget(self.lbl_Page_16)
-        self.hlayout32.addWidget(self.lbl_Page_17)
-        self.hlayout32.addWidget(self.lbl_Page_18)
-        self.hlayout32.addWidget(self.lbl_Page_19)
-        self.hlayout32.addWidget(self.lbl_Page_20)
-        self.hlayout32.addWidget(self.lbl_Page_21)
-        self.hlayout32.addWidget(self.lbl_Page_22)
-        self.hlayout32.addWidget(self.lbl_Page_23)
-        self.hlayout32.addWidget(self.lbl_Page_24)
-        self.hlayout32.addWidget(self.lbl_Page_25)
-
-        #Add the layouts to the vertical layout of the GroupBox
-        self.vlayout9.addLayout(self.hlayout26)
-        self.vlayout9.addLayout(self.hlayout33)
-        self.groupBox_3_layout.addLayout(self.vlayout9)
-        
-        # Add the layouts to vertical layout and then to tab layout.
-        self.vlayout7.addLayout(self.hlayout18)
-        self.vlayout7.addLayout(self.hlayout19)
-        self.vlayout7.addLayout(self.hlayout20)
-        self.vlayout7.addLayout(self.hlayout21)
-        self.vlayout7.addLayout(self.hlayout22)
-        self.vlayout7.addLayout(self.hlayout23)
-        self.tab4_layout.addLayout(self.vlayout7)
-
-        # Add Base Finding Score label and text field.
-        self.hlayout28.addWidget(self.label_11, stretch = 1)
-        self.hlayout28.addWidget(self.txtB_CWSS_BF, stretch = 1)
-        self.hlayout28.addWidget(self.btn_LearnMore, stretch = 2)
-
-        # Add Attack Surface Score label and text field.
-        self.hlayout29.addWidget(self.label_12, stretch = 1)
-        self.hlayout29.addWidget(self.txtB_CWSS_AS, stretch = 1)
-        self.hlayout29.addWidget(self.label_15, stretch = 2)
-
-        # Add Environmental Score label and text field.
-        self.hlayout30.addWidget(self.label_13, stretch = 1)
-        self.hlayout30.addWidget(self.txtB_CWSS_E, stretch = 1)
-        self.hlayout30.addWidget(self.txtB_CWSS_Threat, stretch = 2)
-
-        # Add Final Score label and text field.
-        self.hlayout31.addWidget(self.label_14, stretch = 1)
-        self.hlayout31.addWidget(self.txtB_CWSS_Score, stretch = 3)
-
-        # Add the layouts to vertical layout and then to tab layout.
-        self.vlayout10.addLayout(self.hlayout28)
-        self.vlayout10.addLayout(self.hlayout29)
-        self.vlayout10.addLayout(self.hlayout30)
-        self.vlayout10.addLayout(self.hlayout31)
-        self.tab5_layout.addLayout(self.vlayout10)
-
-        self.vlayout.addWidget(self.groupBox, stretch = 1)
-        self.vlayout.addWidget(self.tabWidget, stretch = 5)
-
-        self.hlayout.addLayout(self.vlayout)
 
     def retranslateUi(self, RiskWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1967,8 +1328,8 @@ class Ui_RiskWindow(object):
         self.txtB_GL_Values.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Ubuntu\';\"><br /></p></body></html>"))
         self.btn_GL_Add.setText(_translate("RiskWindow", "Add"))
         self.btn_GL_Remove.setText(_translate("RiskWindow", "Remove"))
         self.btn_FileTooltip.setText(_translate("RiskWindow", "?"))
@@ -2009,58 +1370,58 @@ class Ui_RiskWindow(object):
         self.textEdit.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Technical Impact</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">TI</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Technical Impact</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">TI</span></p></body></html>"))
         self.textEdit_2.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Acquired Privilege</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">AP</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Acquired Privilege</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">AP</span></p></body></html>"))
         self.textEdit_3.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Acquired Privilege Layer</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">AL</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Acquired Privilege Layer</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">AL</span></p></body></html>"))
         self.textEdit_4.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Internal Control Efectiveness</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">IC</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Internal Control Efectiveness</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">IC</span></p></body></html>"))
         self.textEdit_5.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Finding Confidence</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">FC</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Finding Confidence</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">FC</span></p></body></html>"))
         self.label_7.setText(_translate("RiskWindow", "Description"))
         self.textEdit_6.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The potential result that can be produced by the weakness, assuming that the weakness can be successfully reached and exploited.</span></p></body></html>"))
         self.textEdit_7.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The type of privileges that are obtained by an attacker who can successfully exploit the weakness.</span></p></body></html>"))
         self.textEdit_8.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The operational layer to which the attacker gains privileges by successfully exploiting the weakness. </span></p></body></html>"))
         self.textEdit_9.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The ability of the control to render the weakness unable to be exploited by an attacker. </span></p></body></html>"))
         self.textEdit_10.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The confidence that the reported issue is a weakness that can be utilized by an attacker</span></p></body></html>"))
         self.label_8.setText(_translate("RiskWindow", "Selection"))
         self.cBox_BF_TI.setItemText(0, _translate("RiskWindow", "Critical"))
@@ -2085,14 +1446,14 @@ class Ui_RiskWindow(object):
         self.textEdit_11.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The type of privileges that an attacker must already have in order to reach the code/functionality that contains the weakness. </span></p></body></html>"))
         self.cBox_AS_AV.setItemText(0, _translate("RiskWindow", "Default"))
         self.txtB_AS_AV_Letter.setText(_translate("RiskWindow", "D"))
         self.textEdit_12.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The strength of the authentication routine that protects the code/functionality that contains the weakness. </span></p></body></html>"))
         self.txtB_AS_RP_Letter.setText(_translate("RiskWindow", "C"))
         self.txtB_AS_AV_Value.setText(_translate("RiskWindow", "0.90"))
@@ -2102,7 +1463,7 @@ class Ui_RiskWindow(object):
         self.textEdit_13.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The operational layer to which the attacker must have privileges in order to attempt to attack the weakness. </span></p></body></html>"))
         self.cBox_AS_RL.setItemText(0, _translate("RiskWindow", "Regular User"))
         self.txtB_AS_RL_Value.setText(_translate("RiskWindow", "0.70"))
@@ -2111,15 +1472,15 @@ class Ui_RiskWindow(object):
         self.textEdit_14.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Access Vector</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">AV</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Access Vector</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">AV</span></p></body></html>"))
         self.textEdit_15.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Level of Interaction</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">IN</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Level of Interaction</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">IN</span></p></body></html>"))
         self.cBox_AS_RP.setItemText(0, _translate("RiskWindow", "Critical"))
         self.label_19.setText(_translate("RiskWindow", "Attack Surface Metric Group"))
         self.label_20.setText(_translate("RiskWindow", "Description"))
@@ -2127,47 +1488,47 @@ class Ui_RiskWindow(object):
         self.textEdit_16.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Authentication Strength</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">AS</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Authentication Strength</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">AS</span></p></body></html>"))
         self.textEdit_1.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The actions that are required by the human victim(s) to enable a successful attack to take place. </span></p></body></html>"))
         self.label_21.setText(_translate("RiskWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Letter</span></p></body></html>"))
         self.textEdit_18.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Required Privilege Layer</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">RL</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Required Privilege Layer</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">RL</span></p></body></html>"))
         self.txtB_AS_AS_Letter.setText(_translate("RiskWindow", "N"))
         self.label_22.setText(_translate("RiskWindow", "Selection"))
         self.txtB_AS_IN_Letter.setText(_translate("RiskWindow", "LT"))
         self.textEdit_19.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The channel through which an attacker must communicate to reach the code or functionality that contains the weakness. </span></p></body></html>"))
         self.textEdit_20.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Required Privilege</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">RP</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Required Privilege</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">RP</span></p></body></html>"))
         self.txtB_AS_RL_Letter.setText(_translate("RiskWindow", "RU"))
         self.textEdit_31.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Deployment Scope</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">SC</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Deployment Scope</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">SC</span></p></body></html>"))
         self.txtB_AS_SC_Value.setText(_translate("RiskWindow", "0.80"))
         self.textEdit_17.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">Whether the weakness is present in all deployable instances of the software, or if it is limited to a subset of platforms and/or configurations. </span></p></body></html>"))
         self.txtB_AS_SC_Letter.setText(_translate("RiskWindow", "LT"))
         self.cBox_AS_SC.setItemText(0, _translate("RiskWindow", "Proven Locally True"))
@@ -2176,14 +1537,14 @@ class Ui_RiskWindow(object):
         self.textEdit_21.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The potential impact to the business or mission if the weakness can be successfully exploited. </span></p></body></html>"))
         self.cBox_E_EX.setItemText(0, _translate("RiskWindow", "Default"))
         self.txtB_E_EX_Letter.setText(_translate("RiskWindow", "D"))
         self.textEdit_22.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The capability of controls or mitigations outside of the software that may render the weakness more difficult for an attacker to reach and/or trigger. </span></p></body></html>"))
         self.txtB_E_BI_Letter.setText(_translate("RiskWindow", "C"))
         self.txtB_E_EX_Value.setText(_translate("RiskWindow", "0.90"))
@@ -2193,7 +1554,7 @@ class Ui_RiskWindow(object):
         self.textEdit_23.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The likelihood that an attacker can discover the weakness </span></p></body></html>"))
         self.cBox_E_DI.setItemText(0, _translate("RiskWindow", "Regular User"))
         self.txtB_E_DI_Value.setText(_translate("RiskWindow", "0.70"))
@@ -2202,15 +1563,15 @@ class Ui_RiskWindow(object):
         self.textEdit_24.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Likelihood of Exploit</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">EX</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Likelihood of Exploit</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">EX</span></p></body></html>"))
         self.textEdit_25.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Prevalence</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">P</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Prevalence</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">P</span></p></body></html>"))
         self.cBox_E_BI.setItemText(0, _translate("RiskWindow", "Critical"))
         self.label_25.setText(_translate("RiskWindow", "Environmental Metric Group"))
         self.label_26.setText(_translate("RiskWindow", "Description"))
@@ -2218,37 +1579,41 @@ class Ui_RiskWindow(object):
         self.textEdit_26.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">External Control Efectiveness</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">EC</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">External Control Efectiveness</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">EC</span></p></body></html>"))
         self.textEdit_27.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">How frequently this type of weakness appears in software. </span></p></body></html>"))
         self.label_27.setText(_translate("RiskWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Letter</span></p></body></html>"))
         self.textEdit_28.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Likelihood of Discovery</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">DI</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Likelihood of Discovery</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">DI</span></p></body></html>"))
         self.txtB_E_EC_Letter.setText(_translate("RiskWindow", "N"))
         self.label_28.setText(_translate("RiskWindow", "Selection"))
         self.txtB_E_P_Letter.setText(_translate("RiskWindow", "LT"))
         self.textEdit_29.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">The likelihood that, if the weakness is discovered, an attacker with the required privileges/authentication/access would be able to successfully exploit it. </span></p></body></html>"))
         self.textEdit_30.setHtml(_translate("RiskWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Business Impact</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">BI</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'.AppleSystemUIFont\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">Business Impact</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">BI</span></p></body></html>"))
         self.txtB_E_DI_Letter.setText(_translate("RiskWindow", "RU"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("RiskWindow", "Environmental"))
+        self.lbl_Progress.setText(_translate("RiskWindow", "Progress: "))
+        self.btn_PrevLabeling.setText(_translate("RiskWindow", "<"))
+        self.btn_NextLabeling.setText(_translate("RiskWindow", ">"))
+        self.btn_SaveDatasetLabeling.setText(_translate("RiskWindow", "Save Schema"))
         self.label_11.setText(_translate("RiskWindow", "Base Finding Subscore:"))
         self.label_12.setText(_translate("RiskWindow", "Attack Surface Subscore:"))
         self.label_13.setText(_translate("RiskWindow", "Environmental Subscore:"))
@@ -2260,7 +1625,6 @@ class Ui_RiskWindow(object):
         self.label_15.setText(_translate("RiskWindow", "Threat Level:"))
         self.txtB_CWSS_Threat.setText(_translate("RiskWindow", "MEDIUM"))
         self.btn_LearnMore.setText(_translate("RiskWindow", "Learn More"))
-        self.btn_Help.setText(_translate("RiskWindow", "Help"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("RiskWindow", "CWSS Score"))
         self.groupBox.setTitle(_translate("RiskWindow", "Current Score"))
         self.label_16.setText(_translate("RiskWindow", "Base Finding Subscore:"))
@@ -2269,19 +1633,23 @@ class Ui_RiskWindow(object):
         self.label_29.setText(_translate("RiskWindow", "Attack Surface Subscore:"))
         self.txtB_CWSS_E_info.setText(_translate("RiskWindow", "0.53"))
         self.label_30.setText(_translate("RiskWindow", "Environmental Subscore:"))
-        self.label_31.setText(_translate("RiskWindow", "Final CWSS Score:"))
+        self.label_31.setText(_translate("RiskWindow", "Final Score:"))
         self.txtB_CWSS_Score_info.setText(_translate("RiskWindow", "21.6"))
         self.label_33.setText(_translate("RiskWindow", "Threat Level:"))
         self.txtB_CWSS_Threat_info.setText(_translate("RiskWindow", "MEDIUM"))
         self.btn_SaveScore.setText(_translate("RiskWindow", "Save Score"))
-        self.btn_SaveResults.setText(_translate("RiskWindow", "Save Results"))
-        self.btn_CancelClose.setText(_translate("RiskWindow", "Cancel/Close"))
+        self.btn_CancelClose.setText(_translate("RiskWindow", "Cancel | Close"))
+        self.Model_Risk.setText(_translate("RiskWindow", "?"))
         self.btn_FindingFilepathTooltip.setText(_translate("RiskWindow", "?"))
-        self.btn_SaveSchema.setText(_translate("RiskWindow", "Save Schema"))
-        self.lbl_Progress.setText(_translate("RiskWindow", "Progress: "))
-        self.btn_NextLabeling.setText(_translate("RiskWindow", ">"))
-        self.btn_PrevLabeling.setText(_translate("RiskWindow", "<"))
-        self.btn_Model.setText(_translate("RiskWindow", "Model"))
-        self.btn_Predict.setText(_translate("RiskWindow", "Predict"))
         self.label_4.setText(_translate("RiskWindow", "Path Column:"))
 import menu_res_rc
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    RiskWindow = QtWidgets.QMainWindow()
+    ui = Ui_RiskWindow()
+    ui.setupUi(RiskWindow)
+    RiskWindow.show()
+    sys.exit(app.exec_())
