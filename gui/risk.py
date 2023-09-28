@@ -168,7 +168,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.btn_CancelClose.clicked.connect(self.btn_CancelClose_clicked)
         self.btn_SaveScore.clicked.connect(self.btn_SaveScore_clicked)
         self.btn_SaveSchema.clicked.connect(self.btn_SaveSchema_clicked)
-        self.btn_LearnMore.clicked.connect(self.btn_LearnMore_clicked)
+        #self.btn_LearnMore.clicked.connect(self.btn_LearnMore_clicked)
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
         self.btn_SaveResults.clicked.connect(self.btn_SaveResults_clicked)
         self.btn_PrevLabeling.clicked.connect(self.btn_PrevLabeling_clicked)
@@ -1104,14 +1104,3 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
             final_score,
             risk_level,
         ) = self._calculateRisk()
-
-        self.txtB_CWSS_BF.setText("{0:0.2f}".format(bf_score))
-        self.txtB_CWSS_BF_info.setText("{0:0.2f}".format(bf_score))
-        self.txtB_CWSS_AS.setText("{0:0.2f}".format(as_score))
-        self.txtB_CWSS_AS_info.setText("{0:0.2f}".format(as_score))
-        self.txtB_CWSS_E.setText("{0:0.2f}".format(e_score))
-        self.txtB_CWSS_E_info.setText("{0:0.2f}".format(e_score))
-        self.txtB_CWSS_Score.setText("{0:0.2f}".format(final_score))
-        self.txtB_CWSS_Score_info.setText("{0:0.2f}".format(final_score))
-        self.txtB_CWSS_Threat.setText(risk_level)
-        self.txtB_CWSS_Threat_info.setText(risk_level)
