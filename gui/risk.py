@@ -18,31 +18,35 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
     """Creates risk assessment window"""
 
     total_risk_list = []
-    def __init__(self, datasetDF, currentIdx):
+    #
+    def __init__(self):
         """Initializes risk window object"""
         super(Ui_RiskWindow, self).__init__()
         self.setupUi(self)
+        risk_list_signal = QtCore.pyqtSignal(list)
+      
 
-        self.datasetDF = datasetDF
-        self.currentSample = self.datasetDF.iloc[[currentIdx]]
-        self.currentIdx = currentIdx
+    def testFunction(datasetDF, currentSample):
+        # self.datasetDF = datasetDF
+        # self.currentSample = self.datasetDF.iloc[[currentIdx]]
+        # self.currentIdx = currentIdx
 
-        self.customInit()
-        self.customEvents()
+        # self.customInit()
+        # self.customEvents()
 
-        for i in range(len(self.currentSample.columns.tolist())):
-            if "path" in self.currentSample.columns.tolist()[i].lower():
-                self.cBox_FindingFilepath.setCurrentIndex(i)
-                break
+        # for i in range(len(self.currentSample.columns.tolist())):
+        #     if "path" in self.currentSample.columns.tolist()[i].lower():
+        #         self.cBox_FindingFilepath.setCurrentIndex(i)
+        #         break
+        pass
 
-    risk_list_signal = QtCore.pyqtSignal(list)
 
     def customInit(self):
         """Custom init method"""
         self.clearAll()
-        self.fillCurrentSampleData()
-        self.fillCWSSData()
-        self.calculateRisk()
+        # self.fillCurrentSampleData()
+        # self.fillCWSSData()
+        # self.calculateRisk()
 
         self.cBox_GL_File.addItems(
             ["Disabled"] + self.currentSample.columns.tolist()
@@ -325,7 +329,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         else:
             self.risk_list_signal.emit(risk_list)
         self.currentSample = self.datasetDF.iloc[[self.currentIdx]]
-        self.fillCurrentSampleData()
+        # self.fillCurrentSampleData()
         self.updatePageSamples()
         self.btn_SaveResults.setEnabled(True)
 
@@ -683,7 +687,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         else:
             self.risk_list_signal.emit(risk_list)
         self.currentSample = self.datasetDF.iloc[[self.currentIdx]]
-        self.fillCurrentSampleData()
+        # self.fillCurrentSampleData()
         self.updatePageSamples()
         self.btn_SaveResults.setEnabled(True)
 
