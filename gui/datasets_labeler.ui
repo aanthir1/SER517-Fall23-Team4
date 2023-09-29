@@ -180,10 +180,10 @@
     <widget class="QPushButton" name="btn_SaveSample">
      <property name="geometry">
       <rect>
-       <x>1010</x>
-       <y>100</y>
-       <width>181</width>
-       <height>81</height>
+       <x>800</x>
+       <y>150</y>
+       <width>201</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -271,8 +271,8 @@
     <widget class="QComboBox" name="cBox_StratifiedReference">
      <property name="geometry">
       <rect>
-       <x>810</x>
-       <y>150</y>
+       <x>1050</x>
+       <y>100</y>
        <width>171</width>
        <height>31</height>
       </rect>
@@ -281,9 +281,9 @@
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>770</x>
-       <y>150</y>
-       <width>55</width>
+       <x>1000</x>
+       <y>100</y>
+       <width>41</width>
        <height>31</height>
       </rect>
      </property>
@@ -1673,7 +1673,7 @@
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

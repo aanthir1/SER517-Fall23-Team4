@@ -160,11 +160,7 @@ class Ui_DatasetsLabelerWindow(object):
         self.cBox_SampleType.setToolTipDuration(6000)
         self.group_hlayout12.addWidget(self.cBox_SampleType, stretch=1)
         
-        self.btn_SaveSample = QtWidgets.QPushButton(self.groupBox_3)
-        self.btn_SaveSample.setGeometry(QtCore.QRect(1010, 100, 181, 81))
-        self.btn_SaveSample.setObjectName("btn_SaveSample")
-        self.group_hlayout12.addWidget(self.btn_SaveSample, stretch=1)
-
+        
         self.group_hlayout13 = QtWidgets.QHBoxLayout(self.centralwidget)
         self.group_hlayout13.setObjectName("group_hlayout13")
         self.group_vlayout1.addLayout(self.group_hlayout13)
@@ -193,18 +189,23 @@ class Ui_DatasetsLabelerWindow(object):
         self.chkBox_CustomSeed.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.group_hlayout13.addWidget(self.chkBox_InvertSample, stretch=1)
 
+        self.btn_SaveSample = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_SaveSample.setGeometry(QtCore.QRect(800, 150, 201, 51))
+        self.btn_SaveSample.setObjectName("btn_SaveSample")
+        self.group_hlayout13.addWidget(self.btn_SaveSample, stretch=1)
+
         # group 3
         self.label_5 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_5.setGeometry(QtCore.QRect(770, 150, 55, 31))
+        self.label_5.setGeometry(QtCore.QRect(1000, 100, 41, 31))
         self.label_5.setObjectName("label_5")
         self.label_5.setAlignment(QtCore.Qt.AlignRight)
-        self.group_hlayout13.addWidget(self.label_5, stretch=1)
+        self.group_hlayout12.addWidget(self.label_5, stretch=1)
 
         # group 3
         self.cBox_StratifiedReference = QtWidgets.QComboBox(self.groupBox_3)
-        self.cBox_StratifiedReference.setGeometry(QtCore.QRect(810, 150, 171, 31))
+        self.cBox_StratifiedReference.setGeometry(QtCore.QRect(1050, 100, 171, 31))
         self.cBox_StratifiedReference.setObjectName("cBox_StratifiedReference")
-        self.group_hlayout13.addWidget(self.cBox_StratifiedReference, stretch=1)
+        self.group_hlayout12.addWidget(self.cBox_StratifiedReference, stretch=1)
 
         # Tooltip stating the functionality of the 'Custom Seed' box with tooltip duration of 6 seconds.
         self.sBox_CustomSeed.setToolTip("Allows user to add seed values so that the results are similar each time.")
