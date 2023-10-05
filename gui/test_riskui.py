@@ -1,4 +1,4 @@
-from risk_from_labeller import Impl_RiskWindow_from_Labeller
+from risk import Impl_RiskWindow
 
 import sys
 import unittest
@@ -25,7 +25,7 @@ class RiskUITest(unittest.TestCase):
     'risk_level': ['3','4','2','1'],
     'risk_details': ['{}', '{}', '{}', '{}']}
         df = pd.DataFrame(data)
-        self.ui = Impl_RiskWindow_from_Labeller(df, 1)
+        self.ui = Impl_RiskWindow(df, 1)
 
     def test_horizontalLayout(self):
         """Test the horizontal layouts in the window."""
