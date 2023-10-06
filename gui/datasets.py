@@ -1,4 +1,5 @@
 import csv
+import datetime
 import json
 
 import numpy as np
@@ -51,6 +52,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         """Initializes datasets window object"""
         super(Impl_DatasetsWindow, self).__init__()
         self.saved_dataset_path = None
+        self.xml_tag = None
         self.setupUi(self)
 
         self.customEvents()
@@ -108,6 +110,8 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
     def btn_Labeler_clicked(self):
         """Clicked event on btn_Labeler component."""
         """if dataset is xml and a respective csv file is not already present give user a choice to do so"""
+        if self.xml_tag is not None:
+           self.btn_SaveDataset_clicked()
         if self.saved_dataset_path is None:
             msg_box = QMessageBox()
             msg_box.setText("Please Save dataset before exporting!")
@@ -168,7 +172,6 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             fileName (str): Filepath to save dataset to.
         """
         self.d = self.ds_xml_dict.copy()
-        print(self.ds_roots)
         try:
          for k in self.ds_roots[self.cBox_Root.currentIndex()]:
             self.d = self.d[k]
@@ -176,7 +179,6 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             print("Error: Index is out of bounds.")
 
         cols = [col.split_name_xml() for col in self.datasetColumns]
-
         self.df_dataset = self.createDataFrameFromXML(self.d, cols)
 
         #self.df_dataset = self.df_dataset.drop_duplicates()
@@ -189,7 +191,11 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
         Opens a SaveFileDialog to specify the path to save as new dataset.
         """
-        if self.tbl_Dataset.rowCount() > 0:
+        if self.xml_tag is not None:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+            fileName = os.path.splitext(os.path.basename(self.saved_dataset_path))[0]+"_"+str(timestamp)+ ".csv"
+            self.saveDatasetFile(fileName)
+        elif self.tbl_Dataset.rowCount() > 0:
             widget = QWidget()
             options = QFileDialog.Options()
             options |= QFileDialog.DontUseNativeDialog
@@ -444,7 +450,8 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
         elif self.dataset_type == "xml":
             self.ds_xml_dict = {}
-            self.saved_dataset_path = None
+            self.xml_tag = True
+            self.saved_dataset_path = filepath
             self.statusBar().showMessage("Loading XML Dataset, please wait...")
 
             self.worker_xml_ds = WorkerLoadXMLDataset(filepath, parent=self)
