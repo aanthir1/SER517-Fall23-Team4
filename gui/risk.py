@@ -18,35 +18,36 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
     """Creates risk assessment window"""
 
     total_risk_list = []
-    #
+
     def __init__(self):
         """Initializes risk window object"""
         super(Ui_RiskWindow, self).__init__()
         self.setupUi(self)
-        risk_list_signal = QtCore.pyqtSignal(list)
-      
 
-    def testFunction(datasetDF, currentSample):
-        # self.datasetDF = datasetDF
-        # self.currentSample = self.datasetDF.iloc[[currentIdx]]
-        # self.currentIdx = currentIdx
+        file_path = r'gui/toolfiles/ccode dx labeled.csv'
+        self.datasetDF = pd.read_csv(file_path)
 
-        # self.customInit()
-        # self.customEvents()
+        # Access the first row using iloc
+        self.currentSample = self.datasetDF.iloc[[0]]
+        self.currentIdx = 0
+        print("idx value passed:",self.currentIdx)
+        self.customInit()
+        self.customEvents()
 
-        # for i in range(len(self.currentSample.columns.tolist())):
-        #     if "path" in self.currentSample.columns.tolist()[i].lower():
-        #         self.cBox_FindingFilepath.setCurrentIndex(i)
-        #         break
-        pass
+        for i in range(len(self.currentSample.columns.tolist())):
+            if "path" in self.currentSample.columns.tolist()[i].lower():
+                self.cBox_FindingFilepath.setCurrentIndex(i)
+                break
+
+    risk_list_signal = QtCore.pyqtSignal(list)
 
 
     def customInit(self):
         """Custom init method"""
         self.clearAll()
-        # self.fillCurrentSampleData()
-        # self.fillCWSSData()
-        # self.calculateRisk()
+        self.fillCurrentSampleData()
+        self.fillCWSSData()
+        self.calculateRisk()
 
         self.cBox_GL_File.addItems(
             ["Disabled"] + self.currentSample.columns.tolist()
@@ -172,7 +173,6 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.btn_CancelClose.clicked.connect(self.btn_CancelClose_clicked)
         self.btn_SaveScore.clicked.connect(self.btn_SaveScore_clicked)
         self.btn_SaveSchema.clicked.connect(self.btn_SaveSchema_clicked)
-        #self.btn_LearnMore.clicked.connect(self.btn_LearnMore_clicked)
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
         self.btn_SaveResults.clicked.connect(self.btn_SaveResults_clicked)
         self.btn_PrevLabeling.clicked.connect(self.btn_PrevLabeling_clicked)
@@ -231,7 +231,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         for i in range(25):
             self.lbls_Page[i].setText("{}".format((currPage-1)*25+i+1))
 
-        for i in range(25):
+        """for i in range(25):
             if (currPage-1)*25 + i >= self.n_samples_labeling:
                 break
             if self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "none":
@@ -251,7 +251,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
                 self.btns_Page[i].setStyleSheet("background-color: red")
             else:
                 self.btns_Page[i].setText("")
-                self.btns_Page[i].setStyleSheet("background-color: white")
+                self.btns_Page[i].setStyleSheet("background-color: white")"""
 
     def sBox_CurrentSample_valueChanged(self):
         self.currentIdx = int(self.sBox_CurrentSample.value()) - 1
@@ -329,7 +329,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         else:
             self.risk_list_signal.emit(risk_list)
         self.currentSample = self.datasetDF.iloc[[self.currentIdx]]
-        # self.fillCurrentSampleData()
+        self.fillCurrentSampleData()
         self.updatePageSamples()
         self.btn_SaveResults.setEnabled(True)
 
@@ -687,7 +687,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         else:
             self.risk_list_signal.emit(risk_list)
         self.currentSample = self.datasetDF.iloc[[self.currentIdx]]
-        # self.fillCurrentSampleData()
+        self.fillCurrentSampleData()
         self.updatePageSamples()
         self.btn_SaveResults.setEnabled(True)
 
