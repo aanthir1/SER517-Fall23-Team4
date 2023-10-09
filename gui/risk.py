@@ -26,18 +26,8 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
 
         file_path = r'gui/toolfiles/ccode dx labeled.csv'
         self.datasetDF = pd.read_csv(file_path)
-
-        # Access the first row using iloc
         self.currentSample = self.datasetDF.iloc[[0]]
         self.currentIdx = 0
-        print("idx value passed:",self.currentIdx)
-        self.customInit()
-        self.customEvents()
-
-        for i in range(len(self.currentSample.columns.tolist())):
-            if "path" in self.currentSample.columns.tolist()[i].lower():
-                self.cBox_FindingFilepath.setCurrentIndex(i)
-                break
 
     risk_list_signal = QtCore.pyqtSignal(list)
 
@@ -210,6 +200,29 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         btn_idx = int(btn_name.split("_")[-1])
         curr_sample_idx = (self.sBox_Page.value() - 1) * 25 + btn_idx
         self.sBox_CurrentSample.setValue(curr_sample_idx)
+
+    def btn_Load_Dataset_clicked(self):
+        """Clicked event on the Load Dataset button.
+        Opens a file dialog to select a data file.
+        """
+        file_dialog = QtWidgets.QFileDialog()
+        file_path, _ = file_dialog.getOpenFileName(self, 'Open Data File', '', 'CSV Files (*.csv);;XML Files (*.xml)')
+
+        if file_path:
+            print('Selected file:', file_path)
+            # Update the line edit with the selected file path
+            self.file_path_lineedit.setText(file_path)
+            self.datasetDF = pd.read_csv(file_path)
+             # Access the first row using iloc
+            print("idx value passed:",self.currentIdx)
+            self.customInit()
+            self.customEvents()
+            for i in range(len(self.currentSample.columns.tolist())):
+                if "path" in self.currentSample.columns.tolist()[i].lower():
+                    self.cBox_FindingFilepath.setCurrentIndex(i)
+                    break
+
+
 
     def sBox_Page_valueChanged(self):
         self.updatePageSamples()
