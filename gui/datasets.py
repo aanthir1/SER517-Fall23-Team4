@@ -174,10 +174,9 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         self.d = self.ds_xml_dict.copy()
         try:
          for k in self.ds_roots[self.cBox_Root.currentIndex()]:
-            self.d = self.d[k]
+             self.d = self.d[k]
         except IndexError:
             print("Error: Index is out of bounds.")
-
         cols = [col.split_name_xml() for col in self.datasetColumns]
         self.df_dataset = self.createDataFrameFromXML(self.d, cols)
 
@@ -754,9 +753,12 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         Returns:
             pd.DataFrame: Pandas dataframe containing all data
         """
+    
         col_data = [[] for _ in range(len(ds_cols))]
-
-        for entry in dict_list:
+        items = dict_list
+        if self.cBox_Preset.currentText() == "CodeDx (XML)":
+         items = dict_list['report']['findings']['finding']
+        for entry in items:
             for i in range(len(ds_cols)):
                 curr_col = ds_cols[i]
                 value = entry
