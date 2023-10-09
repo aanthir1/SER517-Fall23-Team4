@@ -12,20 +12,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_RiskWindow(object):
-    
-    def btn_Load_Dataset_clicked(self):
-        """Clicked event on the Load Dataset button.
-        Opens a file dialog to select a data file.
-        """
-        file_dialog = QtWidgets.QFileDialog()
-        file_path, _ = file_dialog.getOpenFileName(self, 'Open Data File', '', 'CSV Files (*.csv);;XML Files (*.xml)')
-
-        if file_path:
-            print('Selected file:', file_path)
-            # Update the line edit with the selected file path
-            self.file_path_lineedit.setText(file_path)
-            # Implement the logic to process the selected data file here
-            # You can use the file_path to access the selected data file
 
     def setupUi(self, RiskWindow):
         RiskWindow.setObjectName("RiskWindow")
