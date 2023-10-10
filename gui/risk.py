@@ -28,13 +28,15 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.datasetDF = pd.read_csv(file_path)
         self.currentSample = self.datasetDF.iloc[[0]]
         self.currentIdx = 0
+        self.clearAll()
 
     risk_list_signal = QtCore.pyqtSignal(list)
 
 
+
     def customInit(self):
         """Custom init method"""
-        self.clearAll()
+        # self.clearAll()
         self.fillCurrentSampleData()
         self.fillCWSSData()
         self.calculateRisk()
@@ -213,7 +215,13 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
             # Update the line edit with the selected file path
             self.file_path_lineedit.setText(file_path)
             self.datasetDF = pd.read_csv(file_path)
-             # Access the first row using iloc
+            # Adding a condition to verify if the uploaded file is labeled or not
+            if "output" not in self.datasetDF.columns:
+                QMessageBox.warning(self,'Column Missing', 'Please upload labeled dataset.')
+                self.file_path_lineedit.clear()
+                return
+        
+            # Access the first row using iloc
             print("idx value passed:",self.currentIdx)
             self.customInit()
             self.customEvents()
@@ -221,8 +229,6 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
                 if "path" in self.currentSample.columns.tolist()[i].lower():
                     self.cBox_FindingFilepath.setCurrentIndex(i)
                     break
-
-
 
     def sBox_Page_valueChanged(self):
         self.updatePageSamples()
@@ -244,27 +250,27 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         for i in range(25):
             self.lbls_Page[i].setText("{}".format((currPage-1)*25+i+1))
 
-        """for i in range(25):
+        for i in range(25):
             if (currPage-1)*25 + i >= self.n_samples_labeling:
                 break
-            if self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "none":
+            if str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "none":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: palegreen")
-            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "low":
+            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "low":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: khaki")
-            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "medium":
+            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "medium":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: orange")
-            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "high":
+            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "high":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: orangered")
-            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "critical":
+            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "critical":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: red")
             else:
                 self.btns_Page[i].setText("")
-                self.btns_Page[i].setStyleSheet("background-color: white")"""
+                self.btns_Page[i].setStyleSheet("background-color: white")
 
     def sBox_CurrentSample_valueChanged(self):
         self.currentIdx = int(self.sBox_CurrentSample.value()) - 1
