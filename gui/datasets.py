@@ -758,6 +758,16 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         items = dict_list
         if self.cBox_Preset.currentText() == "CodeDx (XML)":
          items = dict_list['report']['findings']['finding']
+        elif self.cBox_Preset.currentText() == "JSHint (XML)":
+         items = dict_list['checkstyle']['file']['error']
+        elif self.cBox_Preset.currentText() == "SpotBugs (XML)":
+         items = dict_list['BugCollection']['BugInstance']
+        elif self.cBox_Preset.currentText() == "CppCheck (XML)":
+         items = dict_list['results']['errors']['error']
+        elif self.cBox_Preset.currentText() == "Gendarme (XML)":
+         items = dict_list['gendarme-output']['results']['rule']
+        elif self.cBox_Preset.currentText() == "PHP_CodeSniffer(XML)":
+         items = dict_list['phpcs']['file']['error']
         for entry in items:
             for i in range(len(ds_cols)):
                 curr_col = ds_cols[i]
