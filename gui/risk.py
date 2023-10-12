@@ -220,6 +220,13 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
                 QMessageBox.warning(self,'Column Missing', 'Please upload labeled dataset.')
                 self.file_path_lineedit.clear()
                 return
+            
+            # Adding a condition to verify if there is atleast one record in the file uploaded
+            if self.datasetDF.empty:
+                QMessageBox.warning(self, 'No Records', 'There are no records in the dataset.')
+                self.file_path_lineedit.clear()
+                return
+
         
             # Access the first row using iloc
             print("idx value passed:",self.currentIdx)
