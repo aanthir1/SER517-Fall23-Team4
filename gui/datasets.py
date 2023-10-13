@@ -287,9 +287,40 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
         self.statusBar().showMessage("Loading XML Dataset Done!", 3000)
 
+    def inferDatasetOriginToolforCsv(self):
+        # Current ds should be an XML
+        print("coming into inferdatasetoriginal csv tool")
+        self.ds_raw = str(self.ds_raw)
+        origin_idx = -1
+        origin_str = None
+       
+        if '@status' in self.ds_raw:
+            # Current dataset comes from CodeDx XML
+            origin_idx = 2
+            origin_str = "CodeDx"
+        elif "Package" in self.ds_raw:
+            # Current dataset comes from Gendarme XML
+            origin_idx = 3
+            origin_str = "PMD"
+        elif "Fixable" in self.ds_raw:
+            # Current dataset comes from Gendarme XML
+            origin_idx = 12
+            origin_str = "PHP"
+        if origin_idx != -1:
+            QMessageBox.information(
+                self,
+                "Autoload Preset",
+                "Preset for {} has been loaded.\nYou can add/remove features as you see fit.".format(
+                    origin_str
+                ),
+                QMessageBox.Ok,
+                QMessageBox.Ok,
+            )
+            self.cBox_Preset.setCurrentIndex(origin_idx)
+        
     def inferDatasetOriginTool(self):
         # Current ds should be an XML
-
+        print("coming into inferdatasetoriginal tool")
         self.ds_raw = str(self.ds_raw)
         origin_idx = -1
         origin_str = None
@@ -409,7 +440,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
             with open(filepath, "r", encoding="utf-8") as f:
                 self.ds_raw = f.read()
-
+            self.inferDatasetOriginToolforCsv()
             self.txtB_InfoSamples.setText(
                 "{}".format(self.df_dataset.shape[0])
             )
