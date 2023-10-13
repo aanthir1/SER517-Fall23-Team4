@@ -1,4 +1,5 @@
 import csv
+import datetime
 import json
 
 import numpy as np
@@ -51,6 +52,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         """Initializes datasets window object"""
         super(Impl_DatasetsWindow, self).__init__()
         self.saved_dataset_path = None
+        self.xml_tag = None
         self.setupUi(self)
 
         self.customEvents()
@@ -108,6 +110,8 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
     def btn_Labeler_clicked(self):
         """Clicked event on btn_Labeler component."""
         """if dataset is xml and a respective csv file is not already present give user a choice to do so"""
+        if self.xml_tag is not None:
+           self.btn_SaveDataset_clicked()
         if self.saved_dataset_path is None:
             msg_box = QMessageBox()
             msg_box.setText("Please Save dataset before exporting!")
@@ -168,15 +172,12 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             fileName (str): Filepath to save dataset to.
         """
         self.d = self.ds_xml_dict.copy()
-        print(self.ds_roots)
         try:
          for k in self.ds_roots[self.cBox_Root.currentIndex()]:
-            self.d = self.d[k]
+             self.d = self.d[k]
         except IndexError:
             print("Error: Index is out of bounds.")
-
         cols = [col.split_name_xml() for col in self.datasetColumns]
-
         self.df_dataset = self.createDataFrameFromXML(self.d, cols)
 
         #self.df_dataset = self.df_dataset.drop_duplicates()
@@ -189,7 +190,11 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
         Opens a SaveFileDialog to specify the path to save as new dataset.
         """
-        if self.tbl_Dataset.rowCount() > 0:
+        if self.xml_tag is not None:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+            fileName = os.path.splitext(os.path.basename(self.saved_dataset_path))[0]+"_"+str(timestamp)+ ".csv"
+            self.saveDatasetFile(fileName)
+        elif self.tbl_Dataset.rowCount() > 0:
             widget = QWidget()
             options = QFileDialog.Options()
             options |= QFileDialog.DontUseNativeDialog
@@ -282,9 +287,40 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
         self.statusBar().showMessage("Loading XML Dataset Done!", 3000)
 
+    def inferDatasetOriginToolforCsv(self):
+        # Current ds should be an XML
+        print("coming into inferdatasetoriginal csv tool")
+        self.ds_raw = str(self.ds_raw)
+        origin_idx = -1
+        origin_str = None
+       
+        if '@status' in self.ds_raw:
+            # Current dataset comes from CodeDx XML
+            origin_idx = 2
+            origin_str = "CodeDx"
+        elif "Package" in self.ds_raw:
+            # Current dataset comes from Gendarme XML
+            origin_idx = 3
+            origin_str = "PMD"
+        elif "Fixable" in self.ds_raw:
+            # Current dataset comes from Gendarme XML
+            origin_idx = 12
+            origin_str = "PHP"
+        if origin_idx != -1:
+            QMessageBox.information(
+                self,
+                "Autoload Preset",
+                "Preset for {} has been loaded.\nYou can add/remove features as you see fit.".format(
+                    origin_str
+                ),
+                QMessageBox.Ok,
+                QMessageBox.Ok,
+            )
+            self.cBox_Preset.setCurrentIndex(origin_idx)
+        
     def inferDatasetOriginTool(self):
         # Current ds should be an XML
-
+        print("coming into inferdatasetoriginal tool")
         self.ds_raw = str(self.ds_raw)
         origin_idx = -1
         origin_str = None
@@ -404,7 +440,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
             with open(filepath, "r", encoding="utf-8") as f:
                 self.ds_raw = f.read()
-
+            self.inferDatasetOriginToolforCsv()
             self.txtB_InfoSamples.setText(
                 "{}".format(self.df_dataset.shape[0])
             )
@@ -444,7 +480,8 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
         elif self.dataset_type == "xml":
             self.ds_xml_dict = {}
-            self.saved_dataset_path = None
+            self.xml_tag = True
+            self.saved_dataset_path = filepath
             self.statusBar().showMessage("Loading XML Dataset, please wait...")
 
             self.worker_xml_ds = WorkerLoadXMLDataset(filepath, parent=self)
@@ -747,9 +784,22 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         Returns:
             pd.DataFrame: Pandas dataframe containing all data
         """
+    
         col_data = [[] for _ in range(len(ds_cols))]
-
-        for entry in dict_list:
+        items = dict_list
+        if self.cBox_Preset.currentText() == "CodeDx (XML)":
+         items = dict_list['report']['findings']['finding']
+        elif self.cBox_Preset.currentText() == "JSHint (XML)":
+         items = dict_list['checkstyle']['file']['error']
+        elif self.cBox_Preset.currentText() == "SpotBugs (XML)":
+         items = dict_list['BugCollection']['BugInstance']
+        elif self.cBox_Preset.currentText() == "CppCheck (XML)":
+         items = dict_list['results']['errors']['error']
+        elif self.cBox_Preset.currentText() == "Gendarme (XML)":
+         items = dict_list['gendarme-output']['results']['rule']
+        elif self.cBox_Preset.currentText() == "PHP_CodeSniffer(XML)":
+         items = dict_list['phpcs']['file']['error']
+        for entry in items:
             for i in range(len(ds_cols)):
                 curr_col = ds_cols[i]
                 value = entry

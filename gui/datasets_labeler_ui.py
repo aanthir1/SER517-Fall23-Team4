@@ -806,7 +806,37 @@ class Ui_DatasetsLabelerWindow(object):
         self.lbl_Page_25.setFont(font)
         self.lbl_Page_25.setAlignment(QtCore.Qt.AlignCenter)
         self.lbl_Page_25.setObjectName("lbl_Page_25")
-
+        self.btn_GroupLabelling = QtWidgets.QPushButton(self.groupBox_4)
+        self.btn_GroupLabelling.setEnabled(True)
+        self.btn_GroupLabelling.setGeometry(QtCore.QRect(1110, 90, 91, 41))
+        font = QtGui.QFont()
+        font.setFamily("MS Shell Dlg 2")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setUnderline(False)
+        font.setWeight(75)
+        font.setStrikeOut(False)
+        self.btn_GroupLabelling.setFont(font)
+        self.btn_GroupLabelling.setStyleSheet("* {\n"
+"    background-color:#ffffff;\n"
+"    border-radius:0px;\n"
+"    border:2px solid #2982ff;\n"
+"    color:#355398;\n"
+"    font: 75 12pt \"MS Shell Dlg 2\";\n"
+"    font-weight: bold;\n"
+"    padding:12px 31px;\n"
+"    text-decoration:none;\n"
+"}\n"
+"*:hover {\n"
+"    background-color:#def2ff;\n"
+"}\n"
+"*:active {\n"
+"    position:relative;\n"
+"    top:1px;\n"
+"}")
+        self.btn_GroupLabelling.setObjectName("btn_GroupLabelling")
+        self.group_vlayout321.addWidget(self.btn_GroupLabelling, stretch = 1)
         self.group_hlayout31311.addWidget(self.btn_Page_1)
         self.group_hlayout31311.addWidget(self.btn_Page_2)
         self.group_hlayout31311.addWidget(self.btn_Page_3)
@@ -942,5 +972,6 @@ class Ui_DatasetsLabelerWindow(object):
         self.lbl_Page_17.setText(_translate("DatasetsLabelerWindow", "17"))
         self.lbl_Page_20.setText(_translate("DatasetsLabelerWindow", "20"))
         self.lbl_Page_25.setText(_translate("DatasetsLabelerWindow", "25"))
+        self.btn_GroupLabelling.setText(_translate("DatasetsLabelerWindow", "Group"))
 
 import menu_res_rc
