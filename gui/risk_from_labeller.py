@@ -1104,3 +1104,9 @@ class Impl_RiskWindow_from_Labeller(Ui_RiskWindow_from_Labeller, QtWidgets.QMain
             final_score,
             risk_level,
         ) = self._calculateRisk()
+
+        self.txtB_CWSS_BF_info.setText("{0:0.2f}".format(bf_score))
+        self.txtB_CWSS_AS_info.setText("{0:0.2f}".format(as_score))
+        self.txtB_CWSS_E_info.setText("{0:0.2f}".format(e_score))
+        self.txtB_CWSS_Score_info.setText("{0:0.2f}".format(final_score))
+        self.txtB_CWSS_Threat_info.setText(risk_level)
