@@ -7,6 +7,7 @@ from datasets_labeler_ui import Ui_DatasetsLabelerWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from risk import Impl_RiskWindow
+from groupLabelling import Impl_GroupLabelling_Window
 from help import Impl_HelpWindow
 
 
@@ -71,6 +72,7 @@ class Impl_DatasetsLabelerWindow(
             self.btn_SaveDatasetLabeling_clicked
         )
         self.btn_Risk.clicked.connect(self.btn_Risk_clicked)
+        self.btn_GroupLabelling.clicked.connect(self.btn_GroupLabelling_clicked)
 
         self.txtB_ColumnLabel.textChanged.connect(
             self.txtB_ColumnLabel_textChanged
@@ -160,6 +162,14 @@ class Impl_DatasetsLabelerWindow(
           #self.rs_ui = Impl_RiskWindow(self.df_dataset_labeling, idx)
         self.rs_ui = Impl_RiskWindow()
           #self.rs_ui.risk_list_signal.connect(self.saveRiskLabels)
+        self.rs_ui.show()
+
+    def btn_GroupLabelling_clicked(self):
+        """Clicked event on btn_GroupLabelling component.
+        Loads and shows Group Labeler Window.
+        """
+        idx = int(self.sBox_Sample.value()) - 1
+        self.rs_ui = Impl_GroupLabelling_Window()
         self.rs_ui.show()
 
     def cBox_SampleType_currentTextChanged(self):
