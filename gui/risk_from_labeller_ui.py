@@ -11,8 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_RiskWindow(object):
-
+class Ui_RiskWindow_from_Labeller(object):
     def setupUi(self, RiskWindow):
         RiskWindow.setObjectName("RiskWindow")
         RiskWindow.setMinimumSize(1280, 800)
@@ -1499,28 +1498,6 @@ class Ui_RiskWindow(object):
         self.vlayout11.setContentsMargins(50, 50, 50, 0)
         self.vlayout11.setSpacing(0)
 
-        #september 2023 - sprint 2
-        
-        # Create a horizontal layout for "Load Dataset" and "File Path"
-        self.load_dataset_layout = QtWidgets.QHBoxLayout(self.centralwidget)
-        # Create a button named "Load Dataset"
-        self.load_dataset_button = QtWidgets.QPushButton(self)
-        self.load_dataset_button.setText("Load Dataset")
-        self.load_dataset_button.clicked.connect(self.btn_Load_Dataset_clicked)
-        # Create a QLabel to display the label "File Path:"
-        self.file_path_label = QtWidgets.QLabel(self)
-        self.file_path_label.setText("Path:")
-        # Calculate the width for the file path line edit
-        self.line_edit_width = self.width() - 320
-        # Create a line edit widget to display the file path
-        self.file_path_lineedit = QtWidgets.QLineEdit(self)
-        self.file_path_lineedit.setPlaceholderText('Selected file path')
-        self.file_path_lineedit.setReadOnly(True)
-        # Add widgets for "Load Dataset" and "File Path" to the horizontal layout
-        self.load_dataset_layout.addWidget(self.load_dataset_button)
-        self.load_dataset_layout.addWidget(self.file_path_label)
-        self.load_dataset_layout.addWidget(self.file_path_lineedit)
-
         # Adding first row of widgets to hlayout2
         self.hlayout2.addWidget(self.label_16, stretch = 1)
         self.hlayout2.addWidget(self.txtB_CWSS_BF_info, stretch = 2)
@@ -1544,7 +1521,6 @@ class Ui_RiskWindow(object):
         self.hlayout4.addWidget(self.btn_CancelClose, stretch = 1)
 
         # Adding all the horizontal layouts to the primary vertical layout.
-        self.vlayout2.addLayout(self.load_dataset_layout)
         self.vlayout2.addLayout(self.hlayout2)
         self.vlayout2.addLayout(self.hlayout3)
         self.vlayout2.addLayout(self.hlayout4)

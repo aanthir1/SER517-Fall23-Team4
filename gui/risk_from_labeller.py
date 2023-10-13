@@ -5,7 +5,7 @@ from risk_model import Impl_RiskModelWindow
 from help import Impl_HelpWindow
 import numpy as np
 from PyQt5 import QtCore, QtWidgets
-from risk_ui import Ui_RiskWindow
+from risk_from_labeller_ui import Ui_RiskWindow_from_Labeller
 from risk_info import Impl_RiskInfoWindow
 from vinci_utils import CWSS_DATA
 from PyQt5.QtWidgets import QMessageBox, QFileDialog, QWidget
@@ -14,29 +14,32 @@ import json
 from dataset_column import DatasetColumn
 import math
 
-class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
+class Impl_RiskWindow_from_Labeller(Ui_RiskWindow_from_Labeller, QtWidgets.QMainWindow):
     """Creates risk assessment window"""
 
     total_risk_list = []
-
-    def __init__(self):
+    def __init__(self, datasetDF, currentIdx):
         """Initializes risk window object"""
-        super(Ui_RiskWindow, self).__init__()
+        super(Ui_RiskWindow_from_Labeller, self).__init__()
         self.setupUi(self)
 
-        file_path = r'gui/toolfiles/ccode dx labeled.csv'
-        self.datasetDF = pd.read_csv(file_path)
-        self.currentSample = self.datasetDF.iloc[[0]]
-        self.currentIdx = 0
-        self.clearAll()
+        self.datasetDF = datasetDF
+        self.currentSample = self.datasetDF.iloc[[currentIdx]]
+        self.currentIdx = currentIdx
+
+        self.customInit()
+        self.customEvents()
+
+        for i in range(len(self.currentSample.columns.tolist())):
+            if "path" in self.currentSample.columns.tolist()[i].lower():
+                self.cBox_FindingFilepath.setCurrentIndex(i)
+                break
 
     risk_list_signal = QtCore.pyqtSignal(list)
 
-
-
     def customInit(self):
         """Custom init method"""
-        # self.clearAll()
+        self.clearAll()
         self.fillCurrentSampleData()
         self.fillCWSSData()
         self.calculateRisk()
@@ -165,6 +168,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.btn_CancelClose.clicked.connect(self.btn_CancelClose_clicked)
         self.btn_SaveScore.clicked.connect(self.btn_SaveScore_clicked)
         self.btn_SaveSchema.clicked.connect(self.btn_SaveSchema_clicked)
+        #self.btn_LearnMore.clicked.connect(self.btn_LearnMore_clicked)
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
         self.btn_SaveResults.clicked.connect(self.btn_SaveResults_clicked)
         self.btn_PrevLabeling.clicked.connect(self.btn_PrevLabeling_clicked)
@@ -203,40 +207,6 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         curr_sample_idx = (self.sBox_Page.value() - 1) * 25 + btn_idx
         self.sBox_CurrentSample.setValue(curr_sample_idx)
 
-    def btn_Load_Dataset_clicked(self):
-        """Clicked event on the Load Dataset button.
-        Opens a file dialog to select a data file.
-        """
-        file_dialog = QtWidgets.QFileDialog()
-        file_path, _ = file_dialog.getOpenFileName(self, 'Open Data File', '', 'CSV Files (*.csv);;XML Files (*.xml)')
-
-        if file_path:
-            print('Selected file:', file_path)
-            # Update the line edit with the selected file path
-            self.file_path_lineedit.setText(file_path)
-            self.datasetDF = pd.read_csv(file_path)
-            # Adding a condition to verify if the uploaded file is labeled or not
-            if "output" not in self.datasetDF.columns:
-                QMessageBox.warning(self,'Column Missing', 'Please upload labeled dataset.')
-                self.file_path_lineedit.clear()
-                return
-            
-            # Adding a condition to verify if there is atleast one record in the file uploaded
-            if self.datasetDF.empty:
-                QMessageBox.warning(self, 'No Records', 'There are no records in the dataset.')
-                self.file_path_lineedit.clear()
-                return
-
-        
-            # Access the first row using iloc
-            print("idx value passed:",self.currentIdx)
-            self.customInit()
-            self.customEvents()
-            for i in range(len(self.currentSample.columns.tolist())):
-                if "path" in self.currentSample.columns.tolist()[i].lower():
-                    self.cBox_FindingFilepath.setCurrentIndex(i)
-                    break
-
     def sBox_Page_valueChanged(self):
         self.updatePageSamples()
 
@@ -260,19 +230,19 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         for i in range(25):
             if (currPage-1)*25 + i >= self.n_samples_labeling:
                 break
-            if str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "none":
+            if self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "none":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: palegreen")
-            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "low":
+            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "low":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: khaki")
-            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "medium":
+            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "medium":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: orange")
-            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "high":
+            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "high":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: orangered")
-            elif str(self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"]).lower() == "critical":
+            elif self.datasetDF.iloc[(currPage-1)*25+i]["risk_level"].lower() == "critical":
                 self.btns_Page[i].setText("R")
                 self.btns_Page[i].setStyleSheet("background-color: red")
             else:
@@ -1135,7 +1105,6 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
             risk_level,
         ) = self._calculateRisk()
 
-        
         self.txtB_CWSS_BF_info.setText("{0:0.2f}".format(bf_score))
         self.txtB_CWSS_AS_info.setText("{0:0.2f}".format(as_score))
         self.txtB_CWSS_E_info.setText("{0:0.2f}".format(e_score))
