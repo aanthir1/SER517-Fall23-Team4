@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_DatasetsLabelerWindow(object):
     def setupUi(self, DatasetsLabelerWindow):
         DatasetsLabelerWindow.setObjectName("DatasetsLabelerWindow")
-        DatasetsLabelerWindow.setMinimumSize(1280, 720)
+        DatasetsLabelerWindow.setMinimumSize(1500, 900)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -371,8 +371,28 @@ class Ui_DatasetsLabelerWindow(object):
         self.group_vlayout321.addWidget(self.btn_Risk, stretch=1)
 
         self.groupBox = QtWidgets.QGroupBox(self.groupBox_4)
-        self.groupBox.setGeometry(QtCore.QRect(1010, 190, 181, 91))
+        self.groupBox.setGeometry(QtCore.QRect(30, 50, 201, 150))
         self.groupBox.setObjectName("groupBox")
+
+        scroll_area = QtWidgets.QScrollArea(self.groupBox)
+        scroll_area.setGeometry(QtCore.QRect(10, 30, 181, 91))
+        scroll_area.setWidgetResizable(True)
+
+        # Create content for the scroll area (in this case, some labels)
+        scroll_content = QtWidgets.QWidget()
+        content_layout = QtWidgets.QVBoxLayout()
+        self.rBtn_CurrentTrue = QtWidgets.QRadioButton()
+        self.rBtn_CurrentTrue.setEnabled(False)
+        self.rBtn_CurrentTrue.setChecked(True)
+        content_layout.addWidget(self.rBtn_CurrentTrue)
+
+        self.rBtn_CurrentFalse = QtWidgets.QRadioButton()
+        self.rBtn_CurrentFalse.setEnabled(False)
+        content_layout.addWidget(self.rBtn_CurrentFalse)
+        scroll_content.setLayout(content_layout)
+        scroll_area.setWidget(scroll_content)
+
+
         self.group_vlayout321.addWidget(self.groupBox, stretch=3)
 
         self.sampleHorizonatalLayout = QtWidgets.QHBoxLayout()
@@ -873,16 +893,6 @@ class Ui_DatasetsLabelerWindow(object):
         self.group_hlayout3132.addWidget(self.sBox_Page, stretch=1)
         self.group_hlayout3132.addWidget(self.lbl_PageMaxNumber, stretch=1)
 
-        self.rBtn_CurrentTrue = QtWidgets.QRadioButton(self.groupBox)
-        self.rBtn_CurrentTrue.setEnabled(False)
-        self.rBtn_CurrentTrue.setGeometry(QtCore.QRect(50, 30, 71, 20))
-        self.rBtn_CurrentTrue.setChecked(True)
-        self.rBtn_CurrentTrue.setObjectName("rBtn_CurrentTrue")
-
-        self.rBtn_CurrentFalse = QtWidgets.QRadioButton(self.groupBox)
-        self.rBtn_CurrentFalse.setEnabled(False)
-        self.rBtn_CurrentFalse.setGeometry(QtCore.QRect(50, 60, 71, 20))
-        self.rBtn_CurrentFalse.setObjectName("rBtn_CurrentFalse")
 
         self.hlayout.addLayout(self.vlayout)
         self.groupBox_3.setGeometry(QtCore.QRect(30, 20, 1221, 211))
