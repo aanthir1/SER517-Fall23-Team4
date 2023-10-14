@@ -789,6 +789,9 @@ class Ui_DatasetsLabelerWindow(object):
         self.btn_GroupLabelling = QtWidgets.QPushButton(self.groupBox_4)
         self.btn_GroupLabelling.setEnabled(True)
         self.btn_GroupLabelling.setGeometry(QtCore.QRect(1110, 90, 91, 41))
+        # Tooltip stating the functionality of the 'Group' button with tooltip duration of 6 seconds.
+        self.btn_GroupLabelling.setToolTip("Group Label the data with similar fields")
+        self.btn_GroupLabelling.setToolTipDuration(6000)
         font = QtGui.QFont()
         font.setFamily("MS Shell Dlg 2")
         font.setPointSize(12)
