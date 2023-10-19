@@ -168,7 +168,8 @@ class Impl_DatasetsLabelerWindow(
         Loads and shows Group Labeler Window.
         """
         idx = int(self.sBox_Sample.value()) - 1
-        self.rs_ui = Impl_GroupLabelling_Window()
+        datasetPath = self.path
+        self.rs_ui = Impl_GroupLabelling_Window(datasetPath)
         self.rs_ui.show()
 
     def cBox_SampleType_currentTextChanged(self):
