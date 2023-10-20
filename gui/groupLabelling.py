@@ -16,8 +16,8 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
             df = pd.read_csv(dataset_path)  # Use read_excel for Excel files
             column_names = df.columns
             self.comboBox.addItems(column_names)  # Add column names directly to the comboBox
-            
-
+            max_width = self.comboBox.view().sizeHintForColumn(0)
+            self.comboBox.view().setMinimumWidth(max_width)
             self.comboBox.currentIndexChanged.connect(self.updateDropdownItems)  # Connect the event handler
         except Exception as e:
             print("Error:", e)
@@ -31,8 +31,8 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 unique_values = df[selected_column].unique()
                 self.comboBox_2.clear()  # Clear the existing items
                 self.comboBox_2.addItems([str(val) for val in unique_values])
-
-                
+                max_width = self.comboBox_2.view().sizeHintForColumn(0)
+                self.comboBox_2.view().setMinimumWidth(max_width)
 
             except Exception as e:
                 print("Error:", e)
