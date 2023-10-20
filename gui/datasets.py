@@ -295,15 +295,15 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         origin_str = None
        
         if '@status' in self.ds_raw:
-            # Current dataset comes from CodeDx XML
+            # Current dataset comes from CodeDx CSV
             origin_idx = 2
             origin_str = "CodeDx"
         elif "Package" in self.ds_raw:
-            # Current dataset comes from Gendarme XML
+            # Current dataset comes from PMD CSV
             origin_idx = 3
             origin_str = "PMD"
         elif "Fixable" in self.ds_raw:
-            # Current dataset comes from Gendarme XML
+            # Current dataset comes from PHP CSV
             origin_idx = 12
             origin_str = "PHP"
         if origin_idx != -1:
@@ -440,7 +440,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
             with open(filepath, "r", encoding="utf-8") as f:
                 self.ds_raw = f.read()
-            self.inferDatasetOriginToolforCsv()
+           
             self.txtB_InfoSamples.setText(
                 "{}".format(self.df_dataset.shape[0])
             )
@@ -477,6 +477,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             self.btn_SaveSchema.setEnabled(True)
             self.btn_SaveDataset.setEnabled(True)
             self.cBox_Root.setEnabled(False)
+            self.inferDatasetOriginToolforCsv()
 
         elif self.dataset_type == "xml":
             self.ds_xml_dict = {}
@@ -1057,7 +1058,9 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         """currentTextChanged event on cBox_Preset
         Populates our column table with selected preset.
         """
+       
         currText = self.cBox_Preset.currentText()
+        print(currText == "CodeDx (CSV)")
         if currText == "CodeDx (XML)":
             self.tbl_Dataset.setRowCount(0)
             self.datasetColumns = []
@@ -1138,7 +1141,6 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
                     )
                 self.datasetColumns.append(dsCol)
                 new_row_idx = self.tbl_Dataset.rowCount()
-
                 self.tbl_Dataset.insertRow(new_row_idx)
 
                 self.tbl_Dataset.setItem(
