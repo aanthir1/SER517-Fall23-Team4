@@ -55,6 +55,9 @@ class Ui_Dialog(object):
         self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(Dialog)
         self.plainTextEdit_2.setGeometry(QtCore.QRect(380, 80, 81, 31))
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
+        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton.setGeometry(QtCore.QRect(570, 80, 91, 31))
+        self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -69,9 +72,8 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
         self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
-        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"
-""))
-
+        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
+        self.pushButton.setText(_translate("Dialog", "LABEL"))
 
 if __name__ == "__main__":
     import sys
