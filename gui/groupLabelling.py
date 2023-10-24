@@ -10,7 +10,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         super(Impl_GroupLabelling_Window, self).__init__()
         self.setupUi(self)
         self.path = dataset_path
-        self.pushButton.clicked.connect(self.displayMatchingRecords)
 
         # Add items to the comboBox
         try:
@@ -34,34 +33,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 self.comboBox_2.addItems([str(val) for val in unique_values])
                 max_width = self.comboBox_2.view().sizeHintForColumn(0)
                 self.comboBox_2.view().setMinimumWidth(max_width)
-
-            except Exception as e:
-                print("Error:", e)
-
-    def displayMatchingRecords(self):
-        key = self.comboBox.currentText()
-        value = self.comboBox_2.currentText()
-
-        if key and value:
-            try:
-                df = pd.read_csv(self.path)
-                matching_records = df[(df[key] == value)]
-                num_columns = len(df.columns)
-
-                # Clear previous content in the QTableWidget
-                self.tbl_MatchingRecords.setRowCount(0)
-                self.tbl_MatchingRecords.setColumnCount(num_columns+1)
-                header_labels = df.columns.tolist() + ["Output"]
-                self.tbl_MatchingRecords.setHorizontalHeaderLabels(header_labels)
-
-                # Populate the QTableWidget with matching records
-                for i, (_, row) in enumerate(matching_records.iterrows()):
-                    self.tbl_MatchingRecords.insertRow(i)
-                    for j, val in enumerate(row):
-                        item = QtWidgets.QTableWidgetItem(str(val))
-                        self.tbl_MatchingRecords.setItem(i, j, item)
-                    output_item = QtWidgets.QTableWidgetItem("Output Value")  # You can set the default output value here
-                    self.tbl_MatchingRecords.setItem(i, num_columns, output_item)
 
             except Exception as e:
                 print("Error:", e)
