@@ -10,7 +10,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         super(Impl_GroupLabelling_Window, self).__init__()
         self.setupUi(self)
         self.path = dataset_path
-        self.pushButton.clicked.connect(self.displayMatchingRecords)
+        self.pushButton.clicked.connect(self.displayMatchingRecordsfromfile)
 
         # Add items to the comboBox
         try:
@@ -38,7 +38,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
             except Exception as e:
                 print("Error:", e)
 
-    def displayMatchingRecords(self):
+    def displayMatchingRecordsfromfile(self):
         key = self.comboBox.currentText()
         value = self.comboBox_2.currentText()
 
