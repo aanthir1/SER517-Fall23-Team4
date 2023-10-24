@@ -317,6 +317,35 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
                 QMessageBox.Ok,
             )
             self.cBox_Preset.setCurrentIndex(origin_idx)
+    
+    def inferDatasetOriginToolforJSON(self):
+        # Current ds should be an JSON
+        print("coming into inferdatasetoriginal json tool")
+        with open(self.txtB_DatasetPath.text()) as f:
+            jsondata = json.load(f)
+        origin_idx = -1
+        origin_str = None
+        if 'messages' in jsondata:
+            # Current dataset comes from CodeDx CSV
+            origin_idx = 17
+            origin_str = "ESLint"
+        elif 'result' in jsondata:
+            origin_idx = 16
+            origin_str = "JSHint"
+        elif 'files' in jsondata:
+            origin_idx = 14
+            origin_str = "PHP_CodeSniffer"
+        if origin_idx != -1:
+            QMessageBox.information(
+                self,
+                "Autoload Preset",
+                "Preset for {} has been loaded.\nYou can add/remove features as you see fit.".format(
+                    origin_str
+                ),
+                QMessageBox.Ok,
+                QMessageBox.Ok,
+            )
+            self.cBox_Preset.setCurrentIndex(origin_idx)
         
     def inferDatasetOriginTool(self):
         # Current ds should be an XML
@@ -528,6 +557,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             self.btn_SaveSchema.setEnabled(False)
             self.btn_SaveDataset.setEnabled(False)
             self.cBox_Root.setEnabled(False)
+            self.inferDatasetOriginToolforJSON()
 
     def btn_LoadSchema_clicked(self):
         """Clicked event on btn_LoadSchema
@@ -1058,9 +1088,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         """currentTextChanged event on cBox_Preset
         Populates our column table with selected preset.
         """
-       
         currText = self.cBox_Preset.currentText()
-        print(currText == "CodeDx (CSV)")
         if currText == "CodeDx (XML)":
             self.tbl_Dataset.setRowCount(0)
             self.datasetColumns = []
@@ -1141,6 +1169,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
                     )
                 self.datasetColumns.append(dsCol)
                 new_row_idx = self.tbl_Dataset.rowCount()
+
                 self.tbl_Dataset.insertRow(new_row_idx)
 
                 self.tbl_Dataset.setItem(
