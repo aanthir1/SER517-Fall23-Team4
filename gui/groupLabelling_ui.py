@@ -14,7 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(889, 456)
+        Dialog.setWindowState(QtCore.Qt.WindowMaximized)  # Set initial state to maximized
+        Dialog.setObjectName("Dialog")
+        Dialog.setWindowTitle("Full Screen Window")
         # Create a scroll area widget to hold the radio buttons
         scroll_area = QtWidgets.QScrollArea(Dialog)
         scroll_area.setGeometry(QtCore.QRect(120, 330, 631, 50))
@@ -31,7 +33,7 @@ class Ui_Dialog(object):
         scroll_layout.addWidget(false_radio_button)
 
         self.tbl_MatchingRecords = QtWidgets.QTableWidget(Dialog)
-        self.tbl_MatchingRecords.setGeometry(QtCore.QRect(120, 140, 631, 181))
+        self.tbl_MatchingRecords.setGeometry(QtCore.QRect(120, 140, 1150, 500))
         self.tbl_MatchingRecords.setObjectName("tbl_MatchingRecords")
         self.tbl_MatchingRecords.setColumnCount(3)
         self.tbl_MatchingRecords.setHorizontalHeaderLabels(["Key", "Value", "Output"])  # Add the "Output" column
@@ -79,13 +81,14 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
         self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
-        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
+        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :"
+""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
+    Dialog = QMainWindow()
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
