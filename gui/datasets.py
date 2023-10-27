@@ -295,17 +295,46 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         origin_str = None
        
         if '@status' in self.ds_raw:
-            # Current dataset comes from CodeDx XML
+            # Current dataset comes from CodeDx CSV
             origin_idx = 2
             origin_str = "CodeDx"
         elif "Package" in self.ds_raw:
-            # Current dataset comes from Gendarme XML
+            # Current dataset comes from PMD CSV
             origin_idx = 3
             origin_str = "PMD"
         elif "Fixable" in self.ds_raw:
-            # Current dataset comes from Gendarme XML
+            # Current dataset comes from PHP CSV
             origin_idx = 12
             origin_str = "PHP"
+        if origin_idx != -1:
+            QMessageBox.information(
+                self,
+                "Autoload Preset",
+                "Preset for {} has been loaded.\nYou can add/remove features as you see fit.".format(
+                    origin_str
+                ),
+                QMessageBox.Ok,
+                QMessageBox.Ok,
+            )
+            self.cBox_Preset.setCurrentIndex(origin_idx)
+    
+    def inferDatasetOriginToolforJSON(self):
+        # Current ds should be an JSON
+        print("coming into inferdatasetoriginal json tool")
+        with open(self.txtB_DatasetPath.text()) as f:
+            jsondata = json.load(f)
+        origin_idx = -1
+        origin_str = None
+        if 'messages' in jsondata:
+            # Current dataset comes from CodeDx CSV
+            origin_idx = 17
+            origin_str = "ESLint"
+        elif 'result' in jsondata:
+            origin_idx = 16
+            origin_str = "JSHint"
+        elif 'files' in jsondata:
+            origin_idx = 14
+            origin_str = "PHP_CodeSniffer"
         if origin_idx != -1:
             QMessageBox.information(
                 self,
@@ -440,7 +469,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
             with open(filepath, "r", encoding="utf-8") as f:
                 self.ds_raw = f.read()
-            self.inferDatasetOriginToolforCsv()
+           
             self.txtB_InfoSamples.setText(
                 "{}".format(self.df_dataset.shape[0])
             )
@@ -477,6 +506,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             self.btn_SaveSchema.setEnabled(True)
             self.btn_SaveDataset.setEnabled(True)
             self.cBox_Root.setEnabled(False)
+            self.inferDatasetOriginToolforCsv()
 
         elif self.dataset_type == "xml":
             self.ds_xml_dict = {}
@@ -527,6 +557,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             self.btn_SaveSchema.setEnabled(False)
             self.btn_SaveDataset.setEnabled(False)
             self.cBox_Root.setEnabled(False)
+            self.inferDatasetOriginToolforJSON()
 
     def btn_LoadSchema_clicked(self):
         """Clicked event on btn_LoadSchema
