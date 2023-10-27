@@ -14,12 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.setWindowState(QtCore.Qt.WindowMaximized)  # Set initial state to maximized
-        Dialog.setObjectName("Dialog")
-        Dialog.setWindowTitle("Full Screen Window")
+        Dialog.resize(889, 600)  # Increase the height of the main window
+
         # Create a scroll area widget to hold the radio buttons
         scroll_area = QtWidgets.QScrollArea(Dialog)
-        scroll_area.setGeometry(QtCore.QRect(120, 330, 631, 50))
+        scroll_area.setGeometry(QtCore.QRect(120, 480, 631, 50))  # Adjust the position and size of the scroll area
         scroll_area.setWidgetResizable(True)
 
         scroll_widget = QtWidgets.QWidget()
@@ -27,29 +26,18 @@ class Ui_Dialog(object):
         scroll_layout = QtWidgets.QVBoxLayout(scroll_widget)
 
         # Create True and False radio buttons and add them to the layout
-        true_radio_button = QtWidgets.QRadioButton("True")
-        false_radio_button = QtWidgets.QRadioButton("False")
-        scroll_layout.addWidget(true_radio_button)
-        scroll_layout.addWidget(false_radio_button)
+        self.true_radio_button = QtWidgets.QRadioButton("True")
+        self.false_radio_button = QtWidgets.QRadioButton("False")
+        scroll_layout.addWidget(self.true_radio_button)
+        scroll_layout.addWidget(self.false_radio_button)
 
         self.tbl_MatchingRecords = QtWidgets.QTableWidget(Dialog)
-        self.tbl_MatchingRecords.setGeometry(QtCore.QRect(120, 140, 1150, 500))
+        self.tbl_MatchingRecords.setGeometry(QtCore.QRect(120, 140, 631, 331))  # Increase the height of the table widget
         self.tbl_MatchingRecords.setObjectName("tbl_MatchingRecords")
         self.tbl_MatchingRecords.setColumnCount(3)
-        self.tbl_MatchingRecords.setHorizontalHeaderLabels(["Key", "Value", "Output"])  # Add the "Output" column
+        self.tbl_MatchingRecords.setHorizontalHeaderLabels(["Key", "Value", "Output"])
         self.tbl_MatchingRecords.horizontalHeader().setStretchLastSection(True)
 
-        # Your existing table widget
-        # self.tbl_CurrentExample = QtWidgets.QTableWidget(Dialog)
-        # self.tbl_CurrentExample.setGeometry(QtCore.QRect(120, 140, 631, 181))
-        # self.tbl_CurrentExample.setObjectName("tbl_CurrentExample")
-        # self.tbl_CurrentExample.setColumnCount(2)
-        # self.tbl_CurrentExample.setRowCount(0)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tbl_CurrentExample.setHorizontalHeaderItem(0, item)
-        # item = QtWidgets.QTableWidgetItem()
-        # self.tbl_CurrentExample.setHorizontalHeaderItem(1, item)
-        # self.tbl_CurrentExample.horizontalHeader().setStretchLastSection(True)
         self.comboBox = QtWidgets.QComboBox(Dialog)
         self.comboBox.setGeometry(QtCore.QRect(260, 80, 81, 31))
         self.comboBox.setObjectName("comboBox")
@@ -81,15 +69,5 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
         self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
-        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :"
-""))
+        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QMainWindow()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())

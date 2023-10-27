@@ -50,19 +50,26 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
 
                 # Clear previous content in the QTableWidget
                 self.tbl_MatchingRecords.setRowCount(0)
-                self.tbl_MatchingRecords.setColumnCount(num_columns+1)
+                self.tbl_MatchingRecords.setColumnCount(num_columns + 1)
                 header_labels = df.columns.tolist() + ["Output"]
                 self.tbl_MatchingRecords.setHorizontalHeaderLabels(header_labels)
 
-                # Populate the QTableWidget with matching records
+                # Get the selected radio button
+                if self.true_radio_button.isChecked():
+                    output_value = "True"
+                elif self.false_radio_button.isChecked():
+                    output_value = "False"
+                else:
+                    output_value = ""  # Handle this case based on your requirements
+
+                # Populate the QTableWidget with matching records and set the output value
                 for i, (_, row) in enumerate(matching_records.iterrows()):
                     self.tbl_MatchingRecords.insertRow(i)
                     for j, val in enumerate(row):
                         item = QtWidgets.QTableWidgetItem(str(val))
                         self.tbl_MatchingRecords.setItem(i, j, item)
-                    output_item = QtWidgets.QTableWidgetItem("Output Value")  # You can set the default output value here
+                    output_item = QtWidgets.QTableWidgetItem(output_value)
                     self.tbl_MatchingRecords.setItem(i, num_columns, output_item)
 
             except Exception as e:
                 print("Error:", e)
-
