@@ -14,37 +14,50 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(889, 456)
-        self.tbl_CurrentExample = QtWidgets.QTableWidget(Dialog)
-        self.tbl_CurrentExample.setGeometry(QtCore.QRect(120, 140, 631, 181))
-        self.tbl_CurrentExample.setObjectName("tbl_CurrentExample")
-        self.tbl_CurrentExample.setColumnCount(2)
-        self.tbl_CurrentExample.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tbl_CurrentExample.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tbl_CurrentExample.setHorizontalHeaderItem(1, item)
-        self.tbl_CurrentExample.horizontalHeader().setStretchLastSection(True)
+        Dialog.resize(889, 600)  # Increase the height of the main window
+
+        # Create a scroll area widget to hold the radio buttons
+        scroll_area = QtWidgets.QScrollArea(Dialog)
+        scroll_area.setGeometry(QtCore.QRect(120, 480, 631, 50))  # Adjust the position and size of the scroll area
+        scroll_area.setWidgetResizable(True)
+
+        scroll_widget = QtWidgets.QWidget()
+        scroll_area.setWidget(scroll_widget)
+        scroll_layout = QtWidgets.QVBoxLayout(scroll_widget)
+
+        # Create True and False radio buttons and add them to the layout
+        self.true_radio_button = QtWidgets.QRadioButton("True")
+        self.false_radio_button = QtWidgets.QRadioButton("False")
+        scroll_layout.addWidget(self.true_radio_button)
+        scroll_layout.addWidget(self.false_radio_button)
+
+        self.tbl_MatchingRecords = QtWidgets.QTableWidget(Dialog)
+        self.tbl_MatchingRecords.setGeometry(QtCore.QRect(120, 140, 631, 331))  # Increase the height of the table widget
+        self.tbl_MatchingRecords.setObjectName("tbl_MatchingRecords")
+        self.tbl_MatchingRecords.setColumnCount(3)
+        self.tbl_MatchingRecords.setHorizontalHeaderLabels(["Key", "Value", "Output"])
+        self.tbl_MatchingRecords.horizontalHeader().setStretchLastSection(True)
+
         self.comboBox = QtWidgets.QComboBox(Dialog)
-        self.comboBox.setGeometry(QtCore.QRect(120, 80, 81, 22))
+        self.comboBox.setGeometry(QtCore.QRect(260, 80, 81, 31))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox_2 = QtWidgets.QComboBox(Dialog)
-        self.comboBox_2.setGeometry(QtCore.QRect(220, 80, 81, 22))
+        self.comboBox_2.setGeometry(QtCore.QRect(460, 80, 81, 31))
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
-        self.comboBox_3 = QtWidgets.QComboBox(Dialog)
-        self.comboBox_3.setGeometry(QtCore.QRect(320, 80, 81, 22))
-        self.comboBox_3.setObjectName("comboBox_3")
-        self.comboBox_3.addItem("")
-        self.comboBox_4 = QtWidgets.QComboBox(Dialog)
-        self.comboBox_4.setGeometry(QtCore.QRect(420, 80, 81, 22))
-        self.comboBox_4.setObjectName("comboBox_4")
-        self.comboBox_4.addItem("")
-        self.comboBox_5 = QtWidgets.QComboBox(Dialog)
-        self.comboBox_5.setGeometry(QtCore.QRect(520, 80, 81, 22))
-        self.comboBox_5.setObjectName("comboBox_5")
-        self.comboBox_5.addItem("")
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(Dialog)
+        self.plainTextEdit.setGeometry(QtCore.QRect(180, 80, 81, 31))
+        self.plainTextEdit.setObjectName("plainTextEdit")
+        self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(Dialog)
+        self.plainTextEdit_2.setGeometry(QtCore.QRect(380, 80, 81, 31))
+        self.plainTextEdit_2.setObjectName("plainTextEdit_2")
+        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton.setGeometry(QtCore.QRect(570, 80, 91, 31))
+        self.pushButton.setObjectName("pushButton")
+        self.save_dataset_button = QtWidgets.QPushButton("Save Dataset", Dialog)
+        self.save_dataset_button.setGeometry(QtCore.QRect(680, 80, 131, 31))  # Adjust the position and size
+        self.save_dataset_button.setObjectName("save_dataset_button")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -52,22 +65,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        item = self.tbl_CurrentExample.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "Key"))
-        item = self.tbl_CurrentExample.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "Value"))
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
         self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
-        self.comboBox_3.setItemText(0, _translate("Dialog", "Option 3"))
-        self.comboBox_4.setItemText(0, _translate("Dialog", "Option 4"))
-        self.comboBox_5.setItemText(0, _translate("Dialog", "Option 5"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+        self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
+        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
+        self.pushButton.setText(_translate("Dialog", "LABEL"))
+        self.save_dataset_button.setText(_translate("Dialog", "Save Dataset"))
