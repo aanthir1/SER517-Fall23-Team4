@@ -317,6 +317,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
                 QMessageBox.Ok,
             )
             self.cBox_Preset.setCurrentIndex(origin_idx)
+            self.btn_SaveDataset.setEnabled(False)
     
     def inferDatasetOriginToolforJSON(self):
         # Current ds should be an JSON
@@ -346,6 +347,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
                 QMessageBox.Ok,
             )
             self.cBox_Preset.setCurrentIndex(origin_idx)
+            self.btn_SaveDataset.setEnabled(False)
         
     def inferDatasetOriginTool(self):
         # Current ds should be an XML
@@ -401,6 +403,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
                 QMessageBox.Ok,
             )
             self.cBox_Preset.setCurrentIndex(origin_idx)
+            self.btn_SaveDataset.setEnabled(False)
 
     def loadDatasetFile(self, filepath, reportType=None):
         """Loads a datasets either in csv or xml format.
