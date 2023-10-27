@@ -55,6 +55,9 @@ class Ui_Dialog(object):
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(570, 80, 91, 31))
         self.pushButton.setObjectName("pushButton")
+        self.save_dataset_button = QtWidgets.QPushButton("Save Dataset", Dialog)
+        self.save_dataset_button.setGeometry(QtCore.QRect(680, 80, 131, 31))  # Adjust the position and size
+        self.save_dataset_button.setObjectName("save_dataset_button")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -62,12 +65,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        # item = self.tbl_CurrentExample.horizontalHeaderItem(0)
-        # item.setText(_translate("Dialog", "Key"))
-        # item = self.tbl_CurrentExample.horizontalHeaderItem(1)
-        # item.setText(_translate("Dialog", "Value"))
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
         self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
         self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
+        self.save_dataset_button.setText(_translate("Dialog", "Save Dataset"))
