@@ -77,39 +77,39 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 print("Error:", e)
                 
     def saveDataset(self):
-        key = self.comboBox.currentText()
-        value = self.comboBox_2.currentText()
+        # Create a QMessageBox for confirmation
+        confirm_msg = QMessageBox()
+        confirm_msg.setIcon(QMessageBox.Warning)
+        confirm_msg.setText("Are you sure you want to save the file?")
+        confirm_msg.setWindowTitle("Confirmation")
+        confirm_msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        
+        # Show the confirmation dialog and get the user's choice
+        choice = confirm_msg.exec_()
+        
+        if choice == QMessageBox.Ok:  # User clicked "OK"
+            key = self.comboBox.currentText()
+            value = self.comboBox_2.currentText()
 
-        if key and value:
-            try:
-                df = pd.read_csv(self.path)
-                matching_records = df[df[key] == value]
+            if key and value:
+                try:
+                    df = pd.read_csv(self.path)
+                    matching_records = df[df[key] == value]
 
-                # Get the selected radio button
-                if self.true_radio_button.isChecked():
-                    output_value = True
-                elif self.false_radio_button.isChecked():
-                    output_value = False
-                else:
-                    output_value = None  # Handle this case based on your requirements
+                    if self.true_radio_button.isChecked():
+                        output_value = True
+                    elif self.false_radio_button.isChecked():
+                        output_value = False
+                    else:
+                        output_value = None
 
-                # Update the 'Output' column with the selected output value using .loc
-                matching_records.loc[:, 'Output'] = output_value
+                    file_dialog = QFileDialog(self, "Save Labeled Dataset File", "", "CSV Files (*.csv)")
+                    file_dialog.setAcceptMode(QFileDialog.AcceptSave)
 
-                # Create a file dialog to allow the user to choose the save location
-                file_dialog = QFileDialog(self, "Save Labeled Dataset File", "", "CSV Files (*.csv)")
-                file_dialog.setAcceptMode(QFileDialog.AcceptSave)
+                    if file_dialog.exec_():
+                        selected_file = file_dialog.selectedFiles()[0]
 
-                if file_dialog.exec_():
-                    selected_file = file_dialog.selectedFiles()[0]
-
-                    # Prompt the user for a custom file name
-                    custom_file_name, _ = QInputDialog.getText(self, "Custom File Name", "Enter a custom file name:")
-
-                    if custom_file_name:
-                        selected_file = selected_file.rsplit("/", 1)[0] + "/" + custom_file_name + ".csv"
-
-                        # Save the updated DataFrame to the selected file
+                        matching_records.loc[:, 'Output'] = output_value
                         matching_records.to_csv(selected_file, index=False)
 
                         msg = QMessageBox()
@@ -118,5 +118,8 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                         msg.setWindowTitle("File saved")
                         msg.exec_()
 
-            except Exception as e:
-                print("Error:", e)
+                except Exception as e:
+                    print("Error:", e)
+        else:
+            # User clicked "Cancel" or closed the dialog, do nothing
+            pass
