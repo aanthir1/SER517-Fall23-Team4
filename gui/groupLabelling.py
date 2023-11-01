@@ -1,7 +1,7 @@
 import pandas as pd
 from groupLabelling_ui import Ui_Dialog
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget, QInputDialog
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget, QInputDialog, QTableWidgetItem
 
 class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
     """Creates Group Labeler window"""
@@ -13,6 +13,8 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         self.path = dataset_path
         self.pushButton.clicked.connect(self.displayMatchingRecordsfromfile)
         self.save_dataset_button.clicked.connect(self.saveDataset)
+        self.pushButton_1.clicked.connect(self.unlabelRows)
+        self.displayed_records_df = pd.DataFrame()
 
         # Add items to the comboBox
         try:
@@ -55,6 +57,8 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 self.tbl_MatchingRecords.setColumnCount(num_columns + 1)
                 header_labels = df.columns.tolist() + ["Output"]
                 self.tbl_MatchingRecords.setHorizontalHeaderLabels(header_labels)
+                self.displayed_records_df = matching_records
+                self.num_columns = len(self.displayed_records_df.columns)
 
                 # Get the selected radio button
                 if self.true_radio_button.isChecked():
@@ -123,3 +127,18 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         else:
             # User clicked "Cancel" or closed the dialog, do nothing
             pass
+    
+    def unlabelRows(self):
+        try:
+            if not self.displayed_records_df.empty:
+                # Iterate through displayed records and clear the "Output" value in the QTableWidget
+                for i in range(self.displayed_records_df.shape[0]):
+                    self.tbl_MatchingRecords.setItem(i, self.num_columns, QTableWidgetItem(""))  # Set the item in the "Output" column
+
+                # Clear the "Output" values in the displayed_records_df
+                self.displayed_records_df['Output'] = ""
+
+            else:
+                QMessageBox.information(self, "No Records", "No records to unlabel.")
+        except Exception as e:
+            print("Error:", e)
