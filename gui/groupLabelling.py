@@ -2,9 +2,11 @@ import pandas as pd
 from groupLabelling_ui import Ui_Dialog
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget, QInputDialog, QTableWidgetItem
+from PyQt5.QtCore import pyqtSignal
 
 class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
     """Creates Group Labeler window"""
+    window_closed = pyqtSignal(str)
 
     def __init__(self, dataset_path):
         """Initializes Group Labeler window object"""
@@ -13,6 +15,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         self.path = dataset_path
         self.pushButton.clicked.connect(self.displayMatchingRecordsfromfile)
         self.save_dataset_button.clicked.connect(self.saveDataset)
+        self.go_back_button.clicked.connect(self.goToLabeller)
         self.pushButton_1.clicked.connect(self.unlabelRows)
         self.displayed_records_df = pd.DataFrame()
 
@@ -112,6 +115,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
 
                     if file_dialog.exec_():
                         selected_file = file_dialog.selectedFiles()[0]
+                        self.path = selected_file
 
                         matching_records.loc[:, 'Output'] = output_value
                         matching_records.to_csv(selected_file, index=False)
@@ -142,3 +146,9 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 QMessageBox.information(self, "No Records", "No records to unlabel.")
         except Exception as e:
             print("Error:", e)
+            
+    def goToLabeller(self):
+        self.close()
+            
+    def closeEvent(self, event):
+        self.window_closed.emit(self.path)
