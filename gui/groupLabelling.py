@@ -16,7 +16,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         self.pushButton.clicked.connect(self.displayMatchingRecordsfromfile)
         self.save_dataset_button.clicked.connect(self.saveDataset)
         self.go_back_button.clicked.connect(self.goToLabeller)
-        self.pushButton_1.clicked.connect(self.unlabelRows)
         self.displayed_records_df = pd.DataFrame()
 
         # Add items to the comboBox
@@ -52,24 +51,30 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         if key and value:
             try:
                 df = pd.read_csv(self.path)
-                matching_records = df[(df[key] == value)]
-                num_columns = len(df.columns)
+                matching_records = df[df[key] == value]
+                
+                # Check if the "Output" column already exists in matching_records DataFrame and remove it
+                output_column_name = "Output"
+                if output_column_name in matching_records.columns:
+                    matching_records.drop(columns=[output_column_name], inplace=True)
+                
+                num_columns = len(matching_records.columns)
 
                 # Clear previous content in the QTableWidget
                 self.tbl_MatchingRecords.setRowCount(0)
                 self.tbl_MatchingRecords.setColumnCount(num_columns + 1)
-                header_labels = df.columns.tolist() + ["Output"]
+                header_labels = matching_records.columns.tolist() + [output_column_name]
                 self.tbl_MatchingRecords.setHorizontalHeaderLabels(header_labels)
                 self.displayed_records_df = matching_records
                 self.num_columns = len(self.displayed_records_df.columns)
 
                 # Get the selected radio button
                 if self.true_radio_button.isChecked():
-                    output_value = "True"
+                    output_value = True
                 elif self.false_radio_button.isChecked():
-                    output_value = "False"
-                else:
-                    output_value = ""  # Handle this case based on your requirements
+                    output_value = False
+                elif self.clear_button.isChecked():
+                    output_value = None
 
                 # Populate the QTableWidget with matching records and set the output value
                 for i, (_, row) in enumerate(matching_records.iterrows()):
@@ -77,11 +82,13 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                     for j, val in enumerate(row):
                         item = QtWidgets.QTableWidgetItem(str(val))
                         self.tbl_MatchingRecords.setItem(i, j, item)
-                    output_item = QtWidgets.QTableWidgetItem(output_value)
+                    output_item = QtWidgets.QTableWidgetItem(str(output_value))  # Always add the "Output" value
                     self.tbl_MatchingRecords.setItem(i, num_columns, output_item)
 
             except Exception as e:
                 print("Error:", e)
+
+
                 
     def saveDataset(self):
         # Create a QMessageBox for confirmation
@@ -135,12 +142,12 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
     def unlabelRows(self):
         try:
             if not self.displayed_records_df.empty:
-                # Iterate through displayed records and clear the "Output" value in the QTableWidget
+                # Iterate through displayed records and set the "Output" value to None in the QTableWidget
                 for i in range(self.displayed_records_df.shape[0]):
-                    self.tbl_MatchingRecords.setItem(i, self.num_columns, QTableWidgetItem(""))  # Set the item in the "Output" column
+                    self.tbl_MatchingRecords.setItem(i, self.num_columns, QTableWidgetItem("None"))  # Set the item in the "Output" column
 
-                # Clear the "Output" values in the displayed_records_df
-                self.displayed_records_df['Output'] = ""
+                # Set the "Output" values to None in the displayed_records_df
+                self.displayed_records_df['Output'] = "None"
 
             else:
                 QMessageBox.information(self, "No Records", "No records to unlabel.")

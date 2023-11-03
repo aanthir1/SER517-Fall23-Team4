@@ -28,8 +28,10 @@ class Ui_Dialog(object):
         # Create True and False radio buttons and add them to the layout
         self.true_radio_button = QtWidgets.QRadioButton("True")
         self.false_radio_button = QtWidgets.QRadioButton("False")
+        self.clear_button = QtWidgets.QRadioButton("None")
         scroll_layout.addWidget(self.true_radio_button)
         scroll_layout.addWidget(self.false_radio_button)
+        scroll_layout.addWidget(self.clear_button)
 
         self.tbl_MatchingRecords = QtWidgets.QTableWidget(Dialog)
         self.tbl_MatchingRecords.setGeometry(QtCore.QRect(120, 140, 631, 331))  # Increase the height of the table widget
@@ -55,9 +57,6 @@ class Ui_Dialog(object):
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(450, 80, 91, 31))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton_1 = QtWidgets.QPushButton(Dialog)
-        self.pushButton_1.setGeometry(QtCore.QRect(541, 80, 91, 31))
-        self.pushButton_1.setObjectName("pushButton")
         self.save_dataset_button = QtWidgets.QPushButton("Save Dataset", Dialog)
         self.save_dataset_button.setGeometry(QtCore.QRect(680, 80, 131, 31))  # Adjust the position and size
         self.save_dataset_button.setObjectName("save_dataset_button")
@@ -76,6 +75,6 @@ class Ui_Dialog(object):
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
         self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
-        self.pushButton_1.setText(_translate("Dialog", "UNLABEL"))
+
         self.save_dataset_button.setText(_translate("Dialog", "Save Dataset"))
         self.go_back_button.setText(_translate("Dialog", "Go back to Labeler"))
