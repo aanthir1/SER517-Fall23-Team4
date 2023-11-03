@@ -153,7 +153,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 QMessageBox.information(self, "No Records", "No records to unlabel.")
         except Exception as e:
             print("Error:", e)
-
             
     def goToLabeller(self):
         self.close()

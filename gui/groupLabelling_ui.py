@@ -75,5 +75,6 @@ class Ui_Dialog(object):
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
         self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
+
         self.save_dataset_button.setText(_translate("Dialog", "Save Dataset"))
         self.go_back_button.setText(_translate("Dialog", "Go back to Labeler"))
