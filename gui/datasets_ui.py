@@ -52,8 +52,7 @@ class Ui_DatasetsWindow(object):
         self.flexible_space = QtWidgets.QWidget()
         self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         self.toolbar.addWidget(self.flexible_space)
-        self.home_button = QtWidgets.QAction(QIcon("icon1.png"), "Home Button", self)
-        self.home_button = QtWidgets.QAction(QIcon("/Users/aakankshareddy/Desktop/SER517/SER517-Fall23-Team4/gui/download.png"), "Home Button", self)
+        self.home_button = QtWidgets.QAction(QIcon("gui/download.png"), "Home Button", self)
         self.toolbar.addAction(self.home_button)
 
         # The horizontal layout for the widget to help resizing the window
