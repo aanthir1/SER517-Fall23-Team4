@@ -72,6 +72,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
 
     def customEvents(self):
         """Custom events method; here you connect functions with the UI."""
+        self.home_button.triggered.connect(self.home_button_clicked)
         self.btn_LoadDataset.clicked.connect(self.btn_LoadDataset_clicked)
         self.btn_AddColumn.clicked.connect(self.btn_AddColumn_clicked)
         self.btn_RemoveColumn.clicked.connect(self.btn_RemoveColumn_clicked)
@@ -98,6 +99,9 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         self.hSld_TrainTestSplit.valueChanged.connect(
             self.hSld_TrainTestSplit_valueChanged
         )
+    
+    def home_button_clicked(self):
+        self.close()
     
     def btn_Help_clicked(self):
         """Clicked event on btn_Help component.

@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QHeaderView
+from PyQt5.QtGui import QIcon
 
 
 class Ui_DatasetsWindow(object):
@@ -45,6 +46,15 @@ class Ui_DatasetsWindow(object):
         DatasetsWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(DatasetsWindow)
         self.centralwidget.setObjectName("centralwidget")
+        
+        #tool bar
+        self.toolbar = DatasetsWindow.addToolBar("TopToolBar")
+        self.flexible_space = QtWidgets.QWidget()
+        self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.toolbar.addWidget(self.flexible_space)
+        self.home_button = QtWidgets.QAction(QIcon("icon1.png"), "Home Button", self)
+        self.home_button = QtWidgets.QAction(QIcon("/Users/aakankshareddy/Desktop/SER517/SER517-Fall23-Team4/gui/download.png"), "Home Button", self)
+        self.toolbar.addAction(self.home_button)
 
         # The horizontal layout for the widget to help resizing the window
         self.hlayout = QtWidgets.QHBoxLayout(self.centralwidget)
@@ -243,6 +253,7 @@ class Ui_DatasetsWindow(object):
         self.group_vlayout1.addWidget(self.tbl_Dataset)
 
         # second vlayout2
+        
         self.btn_Labeler = QtWidgets.QPushButton(self.centralwidget)
         self.btn_Labeler.setGeometry(QtCore.QRect(1010, 20, 241, 51))
         self.btn_Labeler.setObjectName("btn_Labeler")
