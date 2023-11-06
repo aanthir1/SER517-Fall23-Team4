@@ -58,6 +58,7 @@ class Impl_DatasetsLabelerWindow(
 
     def customEvents(self):
         """Custom events method; here you connect functions with the UI."""
+        self.home_button.triggered.connect(self.home_button_clicked)
         self.btn_LoadDatasetSampling.clicked.connect(
             self.btn_LoadDatasetSampling_clicked
         )
@@ -684,3 +685,6 @@ class Impl_DatasetsLabelerWindow(
         )
 
         self.tbl_CurrentExample.resizeRowsToContents()
+        
+    def home_button_clicked(self):
+        self.close()
