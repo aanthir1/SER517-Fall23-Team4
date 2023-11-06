@@ -124,6 +124,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         elif self.saved_dataset_path is not None:
             self.dsl_ui = Impl_DatasetsLabelerWindow(self.saved_dataset_path)
             self.dsl_ui.show()
+            self.close()
 
     def convertXmlToCSV(self, fileName):
         """Clicked event on btn_Labeler component.
