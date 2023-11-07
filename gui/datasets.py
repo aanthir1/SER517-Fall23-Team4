@@ -44,9 +44,11 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from help import Impl_HelpWindow
+from PyQt5.QtCore import pyqtSignal
 
 class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
     """Creates menu window"""
+    window_closed = pyqtSignal(str)
 
     def __init__(self):
         """Initializes datasets window object"""
@@ -73,6 +75,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
     def customEvents(self):
         """Custom events method; here you connect functions with the UI."""
         self.home_button.triggered.connect(self.home_button_clicked)
+        self.go_back_button.triggered.connect(self.go_back_button_clicked)
         self.btn_LoadDataset.clicked.connect(self.btn_LoadDataset_clicked)
         self.btn_AddColumn.clicked.connect(self.btn_AddColumn_clicked)
         self.btn_RemoveColumn.clicked.connect(self.btn_RemoveColumn_clicked)
@@ -101,6 +104,9 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         )
     
     def home_button_clicked(self):
+        self.close()
+        
+    def go_back_button_clicked(self):
         self.close()
     
     def btn_Help_clicked(self):
@@ -2185,4 +2191,10 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             msg.setText("File saved successfully!")
             msg.setWindowTitle("File saved")
             msg.exec_()
+            
+    def closeEvent(self, event):
+        self.window_closed.emit("")
+        
+    def goBack(self):
+        self.close()
 
