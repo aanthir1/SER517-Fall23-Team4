@@ -291,6 +291,15 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         self.inferDatasetOriginTool()
 
         self.statusBar().showMessage("Loading XML Dataset Done!", 3000)
+        self.d = self.ds_xml_dict.copy()
+        try:
+         for k in self.ds_roots[self.cBox_Root.currentIndex()]:
+             self.d = self.d[k]
+        except IndexError:
+            print("Error: Index is out of bounds.")
+        cols = [col.split_name_xml() for col in self.datasetColumns]
+        self.df_dataset = self.createDataFrameFromXML(self.d, cols)
+        self.cBox_Column.addItems(list(self.df_dataset.columns))
 
     def inferDatasetOriginToolforCsv(self):
         # Current ds should be an XML

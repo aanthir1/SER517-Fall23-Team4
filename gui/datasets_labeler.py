@@ -165,12 +165,16 @@ class Impl_DatasetsLabelerWindow(
         self.rs_ui.show()
 
     def btn_GroupLabelling_clicked(self):
-        """Clicked event on btn_GroupLabelling component.
-        Loads and shows Group Labeler Window.
-        """
         idx = int(self.sBox_Sample.value()) - 1
         datasetPath = self.path
         self.rs_ui = Impl_GroupLabelling_Window(datasetPath)
+        self.rs_ui.window_closed.connect(self.receive_dataset_path)
+        self.rs_ui.show()
+        
+    def receive_dataset_path(self, path):
+        print("Received dataset path:", path)
+        self.close()
+        self.rs_ui = Impl_DatasetsLabelerWindow(path)
         self.rs_ui.show()
 
     def cBox_SampleType_currentTextChanged(self):

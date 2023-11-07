@@ -1,18 +1,23 @@
 import pandas as pd
 from groupLabelling_ui import Ui_Dialog
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget, QInputDialog
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget, QInputDialog, QTableWidgetItem
+from PyQt5.QtCore import pyqtSignal
 
 class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
     """Creates Group Labeler window"""
+    window_closed = pyqtSignal(str)
 
     def __init__(self, dataset_path):
         """Initializes Group Labeler window object"""
         super(Impl_GroupLabelling_Window, self).__init__()
         self.setupUi(self)
         self.path = dataset_path
-        self.pushButton.clicked.connect(self.displayMatchingRecordsfromfile)
-        self.save_dataset_button.clicked.connect(self.saveDataset)
+        self.displayed_records_df = pd.DataFrame()
+        self.labeled_records = {}
+        self.go_back_button.clicked.connect(self.goToLabeller)
+        
+                                                                                     
 
         # Add items to the comboBox
         try:
@@ -21,10 +26,18 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
             self.comboBox.addItems(column_names)  # Add column names directly to the comboBox
             max_width = self.comboBox.view().sizeHintForColumn(0)
             self.comboBox.view().setMinimumWidth(max_width)
-            self.comboBox.currentIndexChanged.connect(self.updateDropdownItems)  # Connect the event handler
+            self.comboBox.currentIndexChanged.connect(self.displayMatchingRecords)
+            self.comboBox_2.currentIndexChanged.connect(self.displayMatchingRecords)
+        
+            self.comboBox.currentIndexChanged.connect(self.updateDropdownItems)
+              # Connect the event handler
         except Exception as e:
             print("Error:", e)
-    
+        
+        self.pushButton.clicked.connect(self.labelRecords)
+        self.save_dataset_button.clicked.connect(self.saveDataset)
+        
+
     def updateDropdownItems(self, index):
         """Update the dropdown with unique values from the selected column"""
         selected_column = self.comboBox.currentText()  # Get the selected column name
@@ -40,42 +53,100 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
             except Exception as e:
                 print("Error:", e)
 
-    def displayMatchingRecordsfromfile(self):
+    
+
+    def displayMatchingRecords(self):
         key = self.comboBox.currentText()
         value = self.comboBox_2.currentText()
 
         if key and value:
             try:
                 df = pd.read_csv(self.path)
-                matching_records = df[(df[key] == value)]
+                matching_records = df[df[key] == value]
+
+                # Clear previous content in the QTableWidget by setting row count to 0
+                self.tbl_MatchingRecords.setRowCount(0)
+
                 num_columns = len(df.columns)
 
-                # Clear previous content in the QTableWidget
-                self.tbl_MatchingRecords.setRowCount(0)
+                # Check if the "Output" column already exists in the original CSV file
+                if "Output" not in df.columns:
+                    # Add the "Output" column to the DataFrame and initialize it with None
+                    df["Output"] = None
+                    num_columns += 1  # Increment the column count
+
+                # Set up the QTableWidget with the correct number of columns
                 self.tbl_MatchingRecords.setColumnCount(num_columns + 1)
-                header_labels = df.columns.tolist() + ["Output"]
+                header_labels = ['Number'] + df.columns.tolist()
                 self.tbl_MatchingRecords.setHorizontalHeaderLabels(header_labels)
+                self.tbl_MatchingRecords.verticalHeader().setVisible(False)
 
-                # Get the selected radio button
-                if self.true_radio_button.isChecked():
-                    output_value = "True"
-                elif self.false_radio_button.isChecked():
-                    output_value = "False"
-                else:
-                    output_value = ""  # Handle this case based on your requirements
 
-                # Populate the QTableWidget with matching records and set the output value
-                for i, (_, row) in enumerate(matching_records.iterrows()):
-                    self.tbl_MatchingRecords.insertRow(i)
+                # Populate the QTableWidget with matching records, including original row numbers
+                for i, (original_row_number, row) in enumerate(matching_records.iterrows(), start=1):
+                    self.tbl_MatchingRecords.insertRow(i - 1)
+                    # Display the original row number in the first column
+                    item = QtWidgets.QTableWidgetItem(str(original_row_number + 1))
+                    self.tbl_MatchingRecords.setItem(i - 1, 0, item)
                     for j, val in enumerate(row):
                         item = QtWidgets.QTableWidgetItem(str(val))
-                        self.tbl_MatchingRecords.setItem(i, j, item)
-                    output_item = QtWidgets.QTableWidgetItem(output_value)
-                    self.tbl_MatchingRecords.setItem(i, num_columns, output_item)
+                        self.tbl_MatchingRecords.setItem(i - 1, j + 1, item)
+                    # Set the "Output" column to its actual value if it exists, or None otherwise
+                    output_value = row.get("Output", None)
+                    if output_value is not None:
+                        output_item = QtWidgets.QTableWidgetItem(str(output_value))
+                    else:
+                        output_item = QtWidgets.QTableWidgetItem("None")
+                    self.tbl_MatchingRecords.setItem(i - 1, num_columns, output_item)
 
             except Exception as e:
                 print("Error:", e)
-                
+
+
+
+    def labelRecords(self):
+        # This method is called when the "Label" button is clicked.
+
+        # Check if a label has been selected
+        if not self.true_radio_button.isChecked() and \
+        not self.false_radio_button.isChecked() and \
+        not self.clear_button.isChecked():
+            # None of the radio buttons are selected, show an error message
+            QMessageBox.critical(self, "Error", "Please select a label (True/False/None).")
+            return
+
+        # Get the selected label
+        if self.true_radio_button.isChecked():
+            label_value = "True"
+        elif self.false_radio_button.isChecked():
+            label_value = "False"
+        elif self.clear_button.isChecked():
+            label_value = "None"
+
+        # Get the selected key and value
+        key = self.comboBox.currentText()
+        value = self.comboBox_2.currentText()
+
+        if key and value:
+            # Update both the QTableWidget and the labeled_records dictionary
+            for row_index in range(self.tbl_MatchingRecords.rowCount()):
+                number_item = self.tbl_MatchingRecords.item(row_index, 0)
+                if number_item is not None:
+                    original_row_number = int(number_item.text())
+                    # Update the QTableWidget
+                    output_item = self.tbl_MatchingRecords.item(row_index, self.tbl_MatchingRecords.columnCount() - 1)
+                    if output_item is not None:
+                        output_item.setText(label_value)
+                    else:
+                        output_item = QTableWidgetItem(label_value)
+                        self.tbl_MatchingRecords.setItem(row_index, self.tbl_MatchingRecords.columnCount() - 1, output_item)
+
+                    # Update the labeled_records dictionary
+                    self.labeled_records[original_row_number] = label_value
+
+            # Inform the user that the labels have been applied
+            QMessageBox.information(self, "Info", "Labels applied to displayed records.")
+
     def saveDataset(self):
         # Create a QMessageBox for confirmation
         confirm_msg = QMessageBox()
@@ -108,6 +179,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
 
                     if file_dialog.exec_():
                         selected_file = file_dialog.selectedFiles()[0]
+                        self.path = selected_file
 
                         matching_records.loc[:, 'Output'] = output_value
                         matching_records.to_csv(selected_file, index=False)
@@ -123,3 +195,14 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         else:
             # User clicked "Cancel" or closed the dialog, do nothing
             pass
+            
+    def goToLabeller(self):
+        self.close()
+
+    def closeEvent(self, event):
+        self.window_closed.emit(self.path)
+
+
+
+
+
