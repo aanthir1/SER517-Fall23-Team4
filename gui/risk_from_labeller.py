@@ -99,6 +99,7 @@ class Impl_RiskWindow_from_Labeller(Ui_RiskWindow_from_Labeller, QtWidgets.QMain
     def customEvents(self):
         """Custom events method; here you connect functions with the UI."""
         self.home_button.triggered.connect(self.home_button_clicked)
+        self.go_back_button.triggered.connect(self.go_back_button_clicked)
 
         self.cBox_BF_AL.currentTextChanged.connect(
             self.cBox_BF_AL_currentTextChanged
@@ -1113,4 +1114,7 @@ class Impl_RiskWindow_from_Labeller(Ui_RiskWindow_from_Labeller, QtWidgets.QMain
         self.txtB_CWSS_Threat_info.setText(risk_level)
     
     def home_button_clicked(self):
+        self.close()
+    
+    def go_back_button_clicked(self):
         self.close()
