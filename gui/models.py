@@ -36,6 +36,7 @@ class Impl_ModelsWindow(Ui_ModelsWindow, QtWidgets.QMainWindow):
             self.dsBox_Threshold_valueChanged
         )
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
+        self.home_button.triggered.connect(self.home_button_clicked)
 
     def btn_Help_clicked(self):
         """Clicked event on btn_Help component.
@@ -481,3 +482,6 @@ class Impl_ModelsWindow(Ui_ModelsWindow, QtWidgets.QMainWindow):
         self.txtB_InfoFeatures.setText("")
         self.txtB_InfoTrainSamples.setText("")
         self.txtB_InfoTestSamples.setText("")
+
+    def home_button_clicked(self):
+        self.close()
