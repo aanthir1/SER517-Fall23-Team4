@@ -47,6 +47,8 @@ class Ui_RiskWindow_from_Labeller(object):
         self.flexible_space = QtWidgets.QWidget()
         self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         self.toolbar.addWidget(self.flexible_space)
+        self.go_back_button = QtWidgets.QAction(QIcon("gui/goback.png"), "Go Back Button", self)
+        self.toolbar.addAction(self.go_back_button)
         self.home_button = QtWidgets.QAction(QIcon("gui/download.png"), "Home Button", self)
         self.toolbar.addAction(self.home_button)
 
