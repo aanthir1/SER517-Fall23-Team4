@@ -13,16 +13,19 @@ import pandas as pd
 import json
 from dataset_column import DatasetColumn
 import math
+from PyQt5.QtCore import pyqtSignal
 
 class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
     """Creates risk assessment window"""
 
     total_risk_list = []
-
+    window_closed = pyqtSignal(str)
     def __init__(self):
         """Initializes risk window object"""
         super(Ui_RiskWindow, self).__init__()
         self.setupUi(self)
+        self.home_button.triggered.connect(self.home_button_clicked)
+        self.go_back_button.triggered.connect(self.go_back_button_clicked)
 
         file_path = r'gui/toolfiles/ccode dx labeled.csv'
         self.datasetDF = pd.read_csv(file_path)
@@ -174,6 +177,15 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
 
         for b in self.btns_Page:
             b.clicked.connect(self.btn_Page_clicked)
+            
+    def home_button_clicked(self):
+        self.close()
+        
+    def go_back_button_clicked(self):
+        self.close()
+        
+    def closeEvent(self, event):
+        self.window_closed.emit("")
 
     def cBox_GL_File_currentTextChanged(self):
         filepathCol = self.cBox_GL_File.currentText()
@@ -1140,4 +1152,4 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.txtB_CWSS_AS_info.setText("{0:0.2f}".format(as_score))
         self.txtB_CWSS_E_info.setText("{0:0.2f}".format(e_score))
         self.txtB_CWSS_Score_info.setText("{0:0.2f}".format(final_score))
-        self.txtB_CWSS_Threat_info.setText(risk_level)
+        self.txtB_CWSS_Threat_info.setText(risk_level) 
