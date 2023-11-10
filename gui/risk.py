@@ -1,5 +1,4 @@
 import os
-
 from risk_predictions import Impl_RiskPredictionsWindow
 from risk_model import Impl_RiskModelWindow
 from help import Impl_HelpWindow
