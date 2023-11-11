@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
+from common_ui import add_actions_to_toolbar
 
 
 class Ui_DatasetsLabelerWindow(object):
@@ -47,14 +48,14 @@ class Ui_DatasetsLabelerWindow(object):
         
         #tool bar
         self.toolbar = DatasetsLabelerWindow.addToolBar("TopToolBar")
+        self.toolbar, self.go_back_button, self.home_button = add_actions_to_toolbar(self.toolbar, self)
+        '''
         self.flexible_space = QtWidgets.QWidget()
         self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         self.toolbar.addWidget(self.flexible_space)
-        self.go_back_button = QtWidgets.QAction(QIcon("gui/goback.png"), "Go Back Button", self)
-        self.toolbar.addAction(self.go_back_button)
-        self.home_button = QtWidgets.QAction(QIcon("gui/download.png"), "Home Button", self)
+        self.home_button = QtWidgets.QAction(QIcon("./download.png"), "Home Button", self)
         self.toolbar.addAction(self.home_button)
-
+        '''
         # The horizontal layout for the widget to help resizing the window
         self.hlayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.hlayout.setObjectName("hlayout")

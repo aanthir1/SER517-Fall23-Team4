@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QIcon
+from common_ui import add_actions_to_toolbar
 
 
 class Ui_ModelsWindow(object):
@@ -45,18 +45,8 @@ class Ui_ModelsWindow(object):
         self.centralwidget = QtWidgets.QWidget(ModelsWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-
-
-        #tool bar
         self.toolbar = ModelsWindow.addToolBar("TopToolBar")
-        self.flexible_space = QtWidgets.QWidget()
-        self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.toolbar.addWidget(self.flexible_space)
-        self.home_button = QtWidgets.QAction(QIcon("icon1.png"), "Home Button", self)
-        self.home_button = QtWidgets.QAction(QIcon("C:/Users/spaladu9/Desktop/SER517-Fall23-Team4-1/gui/download.png"), "Home Button", self)
-        self.toolbar.addAction(self.home_button)
-
-
+        self.toolbar, self.go_back_button, self.home_button = add_actions_to_toolbar(self.toolbar, self)
 
         # The horizontal layout for the widget to help resizing the window
         self.vlayout = QtWidgets.QVBoxLayout(self.centralwidget)
