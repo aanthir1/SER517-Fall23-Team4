@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QIcon
 
 
 class Ui_RiskWindow(object):
@@ -42,6 +43,16 @@ class Ui_RiskWindow(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../res/ML4CYBER_Logo.png"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         RiskWindow.setWindowIcon(icon)
+        #tool bar
+        self.toolbar = RiskWindow.addToolBar("TopToolBar")
+        self.flexible_space = QtWidgets.QWidget()
+        self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.toolbar.addWidget(self.flexible_space)
+        self.go_back_button = QtWidgets.QAction(QIcon("gui/goback.png"), "Go Back Button", self)
+        self.toolbar.addAction(self.go_back_button)
+        self.home_button = QtWidgets.QAction(QIcon("gui/download.png"), "Home Button", self)
+        self.toolbar.addAction(self.home_button)
+        
         self.centralwidget = QtWidgets.QWidget(RiskWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)

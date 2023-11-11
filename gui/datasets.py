@@ -129,8 +129,13 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             msg_box.exec()
         elif self.saved_dataset_path is not None:
             self.dsl_ui = Impl_DatasetsLabelerWindow(self.saved_dataset_path)
+            self.dsl_ui.window_closed.connect(self.receive_window_path)
             self.dsl_ui.show()
             self.hide()
+            
+    def receive_window_path(self, path):
+        self.rs_ui = Impl_DatasetsWindow()
+        self.rs_ui.show()
 
 
     def convertXmlToCSV(self, fileName):
