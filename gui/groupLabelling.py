@@ -17,7 +17,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         self.labeled_records = {}
         self.go_back_button.clicked.connect(self.goback_button_clicked)
         self.home_button.triggered.connect(self.home_button_clicked)
-                                                                                     
 
         # Add items to the comboBox
         try:
@@ -52,8 +51,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
 
             except Exception as e:
                 print("Error:", e)
-
-    
 
     def displayMatchingRecords(self):
         key = self.comboBox.currentText()
@@ -103,7 +100,6 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 print("Error:", e)
 
 
-
     def labelRecords(self):
         # This method is called when the "Label" button is clicked.
 
@@ -147,54 +143,49 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
             # Inform the user that the labels have been applied
             QMessageBox.information(self, "Info", "Labels applied to displayed records.")
 
+    # Modify the saveDataset method
     def saveDataset(self):
-        # Create a QMessageBox for confirmation
-        confirm_msg = QMessageBox()
-        confirm_msg.setIcon(QMessageBox.Warning)
-        confirm_msg.setText("Are you sure you want to save the file?")
-        confirm_msg.setWindowTitle("Confirmation")
-        confirm_msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        
-        # Show the confirmation dialog and get the user's choice
-        choice = confirm_msg.exec_()
-        
-        if choice == QMessageBox.Ok:  # User clicked "OK"
-            key = self.comboBox.currentText()
-            value = self.comboBox_2.currentText()
+        # Show a confirmation dialog before saving the dataset
+        confirm_dialog = QMessageBox()
+        confirm_dialog.setIcon(QMessageBox.Question)
+        confirm_dialog.setText("Are you sure you want to save the dataset?")
+        confirm_dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        confirm_dialog.setDefaultButton(QMessageBox.No)
 
-            if key and value:
+        # User's choice
+        user_choice = confirm_dialog.exec_()
+
+        if user_choice == QMessageBox.Yes:
+            # Get the path to save the updated dataset
+            save_path, _ = QFileDialog.getSaveFileName(self, "Save Dataset", "", "CSV Files (*.csv)")
+            # self.path = save_path
+
+            if save_path:
                 try:
-                    df = pd.read_csv(self.path)
-                    matching_records = df[df[key] == value]
+                    # Read the original dataset
+                    original_df = pd.read_csv(self.path)
 
-                    if self.true_radio_button.isChecked():
-                        output_value = True
-                    elif self.false_radio_button.isChecked():
-                        output_value = False
-                    else:
-                        output_value = None
+                    # Create a copy of the original dataset to store labeled records
+                    labeled_df = original_df.copy()
 
-                    file_dialog = QFileDialog(self, "Save Labeled Dataset File", "", "CSV Files (*.csv)")
-                    file_dialog.setAcceptMode(QFileDialog.AcceptSave)
+                    # Apply labels to the copy based on the labeled_records dictionary
+                    for row_number, label_value in self.labeled_records.items():
+                        labeled_df.at[row_number - 1, "Output"] = label_value
 
-                    if file_dialog.exec_():
-                        selected_file = file_dialog.selectedFiles()[0]
-                        self.path = selected_file
+                    # Save the labeled dataset as a new CSV file
+                    labeled_df.to_csv(save_path, index=False)
 
-                        matching_records.loc[:, 'Output'] = output_value
-                        matching_records.to_csv(selected_file, index=False)
+                    self.path = save_path
 
-                        msg = QMessageBox()
-                        msg.setIcon(QMessageBox.Information)
-                        msg.setText("Labeled dataset file at: {} saved successfully!".format(selected_file))
-                        msg.setWindowTitle("File saved")
-                        msg.exec_()
+                    # Display the saved file path
+                    QMessageBox.information(self, "Info", f"Labeled dataset saved to: {save_path}")
 
                 except Exception as e:
-                    print("Error:", e)
-        else:
-            # User clicked "Cancel" or closed the dialog, do nothing
-            pass
+                    QMessageBox.critical(self, "Error", f"Error while saving dataset: {e}")
+
+            else:
+                # If the user cancels, do nothing
+                return
             
     def goToLabeller(self):
         self.close()
