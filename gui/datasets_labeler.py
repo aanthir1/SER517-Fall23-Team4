@@ -9,13 +9,14 @@ from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from risk_from_labeller import Impl_RiskWindow_from_Labeller
 from groupLabelling import Impl_GroupLabelling_Window
 from help import Impl_HelpWindow
+from PyQt5.QtCore import pyqtSignal
 
 
 class Impl_DatasetsLabelerWindow(
     Ui_DatasetsLabelerWindow, QtWidgets.QMainWindow
 ):
     """Creates datasets labeler window"""
-
+    window_closed = pyqtSignal(str)
     def __init__(self, datasetPath):
         """Initializes datasets window object"""
         super(Impl_DatasetsLabelerWindow, self).__init__()
@@ -58,6 +59,8 @@ class Impl_DatasetsLabelerWindow(
 
     def customEvents(self):
         """Custom events method; here you connect functions with the UI."""
+        self.home_button.triggered.connect(self.home_button_clicked)
+        self.go_back_button.triggered.connect(self.go_back_button_clicked)
         self.btn_LoadDatasetSampling.clicked.connect(
             self.btn_LoadDatasetSampling_clicked
         )
@@ -161,7 +164,22 @@ class Impl_DatasetsLabelerWindow(
         idx = int(self.sBox_Sample.value()) - 1
         self.rs_ui = Impl_RiskWindow_from_Labeller(self.df_dataset_labeling, idx)
         self.rs_ui.risk_list_signal.connect(self.saveRiskLabels)
+        self.rs_ui.window_closed.connect(self.receive_window_path)
         self.rs_ui.show()
+            
+    def receive_window_path(self, path):
+        print("Received dataset path:", path)
+        self.hide()
+        try:
+            # Assuming you want to open Impl_DatasetsLabelerWindow with the received path
+            self.rs_ui = Impl_DatasetsLabelerWindow(self.path)
+            self.rs_ui.show()
+            if path == "home":
+                print("clicked home button")
+                self.home_button_clicked()
+        except Exception as e:
+            print(f"Error creating or showing Impl_DatasetsLabelerWindow: {e}")
+        
 
     def btn_GroupLabelling_clicked(self):
         idx = int(self.sBox_Sample.value()) - 1
@@ -172,9 +190,13 @@ class Impl_DatasetsLabelerWindow(
         
     def receive_dataset_path(self, path):
         print("Received dataset path:", path)
-        self.close()
-        self.rs_ui = Impl_DatasetsLabelerWindow(path)
-        self.rs_ui.show()
+        self.hide()
+        try:
+            # Assuming you want to open Impl_DatasetsLabelerWindow with the received path
+            self.rs_ui = Impl_DatasetsLabelerWindow(path)
+            self.rs_ui.show()
+        except Exception as e:
+            print(f"Error creating or showing Impl_DatasetsLabelerWindow: {e}")
 
     def cBox_SampleType_currentTextChanged(self):
         """currentTextChanged event on cBox_SampleType
@@ -688,3 +710,13 @@ class Impl_DatasetsLabelerWindow(
         )
 
         self.tbl_CurrentExample.resizeRowsToContents()
+        
+    def home_button_clicked(self):
+        self.path = "home"
+        self.close()
+        
+    def go_back_button_clicked(self):
+        self.close()
+        
+    def closeEvent(self, event):
+        self.window_closed.emit(self.path)

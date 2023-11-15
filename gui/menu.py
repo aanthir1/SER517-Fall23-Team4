@@ -7,7 +7,6 @@ from datasets import Impl_DatasetsWindow
 from models import Impl_ModelsWindow
 from predictions import Impl_PredictionsWindow
 from help import Impl_HelpWindow
-from Main_risk_ui import RiskWindow
 from risk import Impl_RiskWindow
 
 
@@ -43,6 +42,12 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Datasets Window.
         """
         self.ds_ui = Impl_DatasetsWindow()
+        self.ds_ui.window_closed.connect(self.reloadScreen)
+        self.ds_ui.show()
+        self.close()
+        
+    def reloadScreen(self):
+        self.ds_ui = Impl_MainWindow()
         self.ds_ui.show()
 
     def btn_Models_clicked(self):
@@ -61,9 +66,10 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
     # 2023 September (sprint2)
     def btn_Risk_clicked(self):
-        if self.risk_window is None:
-            self.risk_window = Impl_RiskWindow()
+        self.risk_window = Impl_RiskWindow()
+        self.risk_window.window_closed.connect(self.reloadScreen)
         self.risk_window.show()
+        self.close()
 
     def btn_Help_clicked(self):
         """Clicked event on btn_Help component.
