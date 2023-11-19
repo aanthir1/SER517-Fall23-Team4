@@ -15,6 +15,7 @@ PHP_CODESNIFFER_PRESET_ROOT = "phpcs->file->error"
 CODE_DX_PRESET_XML = [
     "@status",
     "@severity",
+    "@last-updated",
     "cwe->@id",
     "results->result->description->#text",
     "results->result->tool->@category",
@@ -26,6 +27,7 @@ CODE_DX_PRESET_XML = [
 CODE_DX_PRESET_CSV = [
     "@status",
     "@severity",
+    "@last-updated",
     "cwe->@id",
     "results->result->description->#text",
     "results->result->tool->@category",
