@@ -71,9 +71,9 @@ class Ui_Dialog(object):
         self.save_dataset_button = QtWidgets.QPushButton("Save Dataset", Dialog)
         self.save_dataset_button.setGeometry(QtCore.QRect(680, 80, 131, 31))  # Adjust the position and size
         self.save_dataset_button.setObjectName("save_dataset_button")
-        self.go_back_button = QtWidgets.QPushButton("Go back to Labeler", Dialog)
-        self.go_back_button.setGeometry(QtCore.QRect((Dialog.width() - self.go_back_button.width()) / 2, 550, 141, 31))
-        self.go_back_button.setObjectName("go_back_button")
+        # self.go_back_button = QtWidgets.QPushButton("Go back to Labeler", Dialog)
+        # self.go_back_button.setGeometry(QtCore.QRect((Dialog.width() - self.go_back_button.width()) / 2, 550, 141, 31))
+        #self.go_back_button.setObjectName("go_back_button")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)

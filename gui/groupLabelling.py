@@ -15,7 +15,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         self.path = dataset_path
         self.displayed_records_df = pd.DataFrame()
         self.labeled_records = {}
-        self.go_back_button.clicked.connect(self.goback_button_clicked)
+        self.go_back_button.triggered.connect(self.goback_button_clicked)
         self.home_button.triggered.connect(self.home_button_clicked)
 
         # Add items to the comboBox
@@ -187,8 +187,8 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 # If the user cancels, do nothing
                 return
             
-    def goToLabeller(self):
-        self.close()
+    # def goToLabeller(self):
+    #     self.close()
 
     def goback_button_clicked(self):
         self.close()
