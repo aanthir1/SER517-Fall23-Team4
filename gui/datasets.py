@@ -134,8 +134,16 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             self.hide()
             
     def receive_window_path(self, path):
-        self.rs_ui = Impl_DatasetsWindow()
-        self.rs_ui.show()
+        print("Received dataset path:", path)
+        try:
+            # Assuming you want to open Impl_DatasetsLabelerWindow with the received path
+            self.rs_ui = Impl_DatasetsWindow()
+            self.rs_ui.show()
+            if path == "home":
+                print("clicked home button")
+                self.home_button_clicked()
+        except Exception as e:
+            print(f"Error creating or showing Impl_DatasetsWindow: {e}")
 
 
     def convertXmlToCSV(self, fileName):

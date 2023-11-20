@@ -17,6 +17,7 @@ class Impl_DatasetsLabelerWindow(
 ):
     """Creates datasets labeler window"""
     window_closed = pyqtSignal(str)
+    op_str = "back"
     def __init__(self, datasetPath):
         """Initializes datasets window object"""
         super(Impl_DatasetsLabelerWindow, self).__init__()
@@ -712,11 +713,11 @@ class Impl_DatasetsLabelerWindow(
         self.tbl_CurrentExample.resizeRowsToContents()
         
     def home_button_clicked(self):
-        self.path = "home"
+        self.op_str = "home"
         self.close()
         
     def go_back_button_clicked(self):
         self.close()
         
     def closeEvent(self, event):
-        self.window_closed.emit(self.path)
+        self.window_closed.emit(self.op_str)
