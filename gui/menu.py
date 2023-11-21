@@ -55,14 +55,20 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Models Window.
         """
         self.md_ui = Impl_ModelsWindow()
+        self.md_ui.window_closed.connect(self.reloadScreen)
         self.md_ui.show()
+        self.close()
+        
 
     def btn_Predictions_clicked(self):
         """Clicked event on btn_Preditions component.
         Loads and shows Predictions Window.
         """
         self.pd_ui = Impl_PredictionsWindow()
+        self.pd_ui.window_closed.connect(self.reloadScreen)
         self.pd_ui.show()
+        self.close()
+        
 
     # 2023 September (sprint2)
     def btn_Risk_clicked(self):
