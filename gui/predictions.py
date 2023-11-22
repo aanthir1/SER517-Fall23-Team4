@@ -7,10 +7,12 @@ from datasets_workers import WorkerLoadXMLDataset, WorkerLoadXMLCols
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from help import Impl_HelpWindow
+from PyQt5.QtCore import pyqtSignal
 
 
 class Impl_PredictionsWindow(Ui_PredictionsWindow, QtWidgets.QMainWindow):
     """Creates predictions window"""
+    window_closed = pyqtSignal(str)
 
     def __init__(self):
         """Initializes predictions window object"""
@@ -299,3 +301,6 @@ class Impl_PredictionsWindow(Ui_PredictionsWindow, QtWidgets.QMainWindow):
         
     def go_back_button_clicked(self):
         self.close()
+
+    def closeEvent(self, event):
+        self.window_closed.emit("")
