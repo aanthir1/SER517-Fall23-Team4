@@ -42,13 +42,8 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Datasets Window.
         """
         self.ds_ui = Impl_DatasetsWindow()
-        self.ds_ui.window_closed.connect(self.reloadScreen)
         self.ds_ui.show()
         self.close()
-        
-    def reloadScreen(self):
-        self.ds_ui = Impl_MainWindow()
-        self.ds_ui.show()
 
     def btn_Models_clicked(self):
         """Clicked event on btn_Models component.
