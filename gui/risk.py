@@ -26,11 +26,20 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.setupUi(self)
         self.home_button.triggered.connect(self.home_button_clicked)
         self.go_back_button.triggered.connect(self.home_button_clicked)
-        current_dir = os.path.abspath(os.path.dirname(__file__))
-        r_path= os.path.abspath('toolfiles/ccode dx labeled.csv')  # Change this to the path of your file
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Define the path to the file folder and the file itself
+        file_folder = os.path.join(script_dir, 'toolfiles')
+        file_name = 'ccode dx labeled.csv'
+        r_Path = os.path.join(file_folder, file_name)
+
+        # Get the relative path of the file from the script's directory
+        file_path = os.path.relpath(r_Path, script_dir)
+        #current_dir = os.path.abspath(os.path.dirname(__file__))
+        #r_path= os.path.abspath('toolfiles/ccode dx labeled.csv')  # Change this to the path of your file
 
         # Get the relative path of the file from the current directory
-        file_path = os.path.relpath(r_path, current_dir)
+        #file_path = os.path.relpath(r_path, current_dir)
 
         #file_name = "ccode dx labeled.csv"
         #script_dir = os.path.dirname(os.path.abspath(__file__))
