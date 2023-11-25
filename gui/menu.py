@@ -60,7 +60,7 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Predictions Window.
         """
         self.pd_ui = Impl_PredictionsWindow()
-        self.pd_ui.window_closed.connect(self.reloadScreen)
+        #self.pd_ui.window_closed.connect(self.reloadScreen)
         self.pd_ui.show()
         self.close()
         
@@ -68,7 +68,7 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     # 2023 September (sprint2)
     def btn_Risk_clicked(self):
         self.risk_window = Impl_RiskWindow()
-        self.risk_window.window_closed.connect(self.reloadScreen)
+        #self.risk_window.window_closed.connect(self.reloadScreen)
         self.risk_window.show()
         self.close()
 
