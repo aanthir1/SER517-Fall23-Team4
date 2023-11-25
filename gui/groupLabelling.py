@@ -197,6 +197,9 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
         self.window_closed.emit(self.path)
 
     def home_button_clicked(self):
+        from menu import Impl_MainWindow
+        self.hm_ui = Impl_MainWindow()
+        self.hm_ui.show()
         self.close()
 
 
