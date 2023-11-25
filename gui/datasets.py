@@ -106,7 +106,7 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         from menu import Impl_MainWindow
         self.hm_ui = Impl_MainWindow()
         self.hm_ui.show()
-        self.close()   
+        self.close()
     
     def btn_Help_clicked(self):
         """Clicked event on btn_Help component.
@@ -128,21 +128,8 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
             msg_box.exec()
         elif self.saved_dataset_path is not None:
             self.dsl_ui = Impl_DatasetsLabelerWindow(self.saved_dataset_path)
-            self.dsl_ui.window_closed.connect(self.receive_window_path)
             self.dsl_ui.show()
             self.hide()
-            
-    def receive_window_path(self, path):
-        print("Received dataset path:", path)
-        try:
-            # Assuming you want to open Impl_DatasetsLabelerWindow with the received path
-            self.rs_ui = Impl_DatasetsWindow()
-            self.rs_ui.show()
-            if path == "home":
-                print("clicked home button")
-                self.home_button_clicked()
-        except Exception as e:
-            print(f"Error creating or showing Impl_DatasetsWindow: {e}")
 
 
     def convertXmlToCSV(self, fileName):

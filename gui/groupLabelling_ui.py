@@ -29,7 +29,7 @@ class Ui_Dialog(object):
 
         # Create a scroll area widget to hold the radio buttons
         scroll_area = QtWidgets.QScrollArea(Dialog)
-        scroll_area.setGeometry(QtCore.QRect(120, 480, 631, 50))  # Adjust the position and size of the scroll area
+        scroll_area.setGeometry(QtCore.QRect(120, 480, 631, 100))  # Adjust the position and size of the scroll area
         scroll_area.setWidgetResizable(True)
 
         scroll_widget = QtWidgets.QWidget()
@@ -82,9 +82,9 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
-        self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
+        self.comboBox_2.setItemText(0, _translate("Dialog", "Select"))
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
-        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
+        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :"""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
 
         self.save_dataset_button.setText(_translate("Dialog", "Save Dataset"))
