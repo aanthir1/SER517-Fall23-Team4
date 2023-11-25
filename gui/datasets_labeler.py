@@ -167,6 +167,7 @@ class Impl_DatasetsLabelerWindow(
         self.rs_ui.risk_list_signal.connect(self.saveRiskLabels)
         self.rs_ui.window_closed.connect(self.receive_window_path)
         self.rs_ui.show()
+        self.hide()
             
     def receive_window_path(self, path):
         print("Received dataset path:", path)
@@ -713,11 +714,16 @@ class Impl_DatasetsLabelerWindow(
         self.tbl_CurrentExample.resizeRowsToContents()
         
     def home_button_clicked(self):
-        self.op_str = "home"
+        from menu import Impl_MainWindow
+        self.hm_ui = Impl_MainWindow()
+        self.hm_ui.show()
         self.close()
         
     def go_back_button_clicked(self):
+        from datasets import Impl_DatasetsWindow
+        self.hm_ui = Impl_DatasetsWindow()
+        self.hm_ui.show()
         self.close()
         
-    def closeEvent(self, event):
-        self.window_closed.emit(self.op_str)
+    #def closeEvent(self, event):
+    #    self.window_closed.emit(self.op_str)

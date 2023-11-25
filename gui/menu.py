@@ -60,7 +60,7 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Predictions Window.
         """
         self.pd_ui = Impl_PredictionsWindow()
-        self.pd_ui.window_closed.connect(self.reloadScreen)
+        #self.pd_ui.window_closed.connect(self.reloadScreen)
         self.pd_ui.show()
         self.close()
         
