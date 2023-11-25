@@ -1122,10 +1122,7 @@ class Impl_RiskWindow_from_Labeller(Ui_RiskWindow_from_Labeller, QtWidgets.QMain
         self.close()
         
     def go_back_button_clicked(self):
-        from datasets import Impl_DatasetsWindow
-        self.hm_ui = Impl_DatasetsWindow()
-        self.hm_ui.show()
         self.close()
         
-    #def closeEvent(self, event):
-    #    self.window_closed.emit(self.op_str)
+    def closeEvent(self, event):
+       self.window_closed.emit(self.op_str)
