@@ -13,8 +13,6 @@ from PyQt5.QtCore import pyqtSignal
 
 class Impl_ModelsWindow(Ui_ModelsWindow, QtWidgets.QMainWindow):
     """Creates models window"""
-    window_closed = pyqtSignal(str)
-
     def __init__(self):
         """Initializes models window object"""
         super(Impl_ModelsWindow, self).__init__()
@@ -39,7 +37,7 @@ class Impl_ModelsWindow(Ui_ModelsWindow, QtWidgets.QMainWindow):
         )
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
         self.home_button.triggered.connect(self.home_button_clicked)
-        self.go_back_button.triggered.connect(self.go_back_button_clicked)
+        self.go_back_button.triggered.connect(self.home_button_clicked)
 
     def btn_Help_clicked(self):
         """Clicked event on btn_Help component.
@@ -487,10 +485,11 @@ class Impl_ModelsWindow(Ui_ModelsWindow, QtWidgets.QMainWindow):
         self.txtB_InfoTestSamples.setText("")
     
     def home_button_clicked(self):
+        from menu import Impl_MainWindow
+        self.hm_ui = Impl_MainWindow()
+        self.hm_ui.show()
         self.close()
     
-    def go_back_button_clicked(self):
-        self.close()
+    
 
-    def closeEvent(self, event):
-        self.window_closed.emit("")
+    

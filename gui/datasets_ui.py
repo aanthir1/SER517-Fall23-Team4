@@ -52,15 +52,7 @@ class Ui_DatasetsWindow(object):
         self.toolbar = DatasetsWindow.addToolBar("TopToolBar")
         self.toolbar, self.go_back_button, self.home_button = add_actions_to_toolbar(self.toolbar, self)
 
-        #self.flexible_space = QtWidgets.QWidget()
-        #self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        #self.toolbar.addWidget(self.flexible_space)
-        '''
-        self.go_back_button = create_action1(self)
-        self.toolbar.addAction(self.go_back_button)
-        self.home_button = create_action2(self)
-        self.toolbar.addAction(self.home_button)
-        '''
+       
         
         # The horizontal layout for the widget to help resizing the window
         self.hlayout = QtWidgets.QHBoxLayout(self.centralwidget)

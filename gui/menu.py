@@ -50,7 +50,6 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Models Window.
         """
         self.md_ui = Impl_ModelsWindow()
-        self.md_ui.window_closed.connect(self.reloadScreen)
         self.md_ui.show()
         self.close()
         
