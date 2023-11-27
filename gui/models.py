@@ -484,7 +484,7 @@ class Impl_ModelsWindow(Ui_ModelsWindow, QtWidgets.QMainWindow):
         self.txtB_InfoTrainSamples.setText("")
         self.txtB_InfoTestSamples.setText("")
     
-   def home_button_clicked(self):
+    def home_button_clicked(self):
         from menu import Impl_MainWindow
         self.hm_ui = Impl_MainWindow()
         self.hm_ui.show()
