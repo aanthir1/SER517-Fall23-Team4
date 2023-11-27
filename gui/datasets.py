@@ -431,6 +431,10 @@ class Impl_DatasetsWindow(Ui_DatasetsWindow, QtWidgets.QMainWindow,):
         Args:
             filepath (str): File path to the dataset.
         """
+        if os.path.getsize(filepath) == 0:
+            QMessageBox.warning(self, 'Empty Dataset', 'The selected dataset file is empty. Reload another file.',
+                            QMessageBox.Ok)
+            return
         self.txtB_DatasetPath.setText(filepath)
         self.dataset_type = os.path.splitext(filepath)[1][1:].lower()
 
