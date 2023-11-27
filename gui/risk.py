@@ -13,6 +13,7 @@ import json
 from dataset_column import DatasetColumn
 import math
 from PyQt5.QtCore import pyqtSignal
+from pathlib import Path
 
 class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
     """Creates risk assessment window"""
@@ -24,8 +25,7 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         super(Ui_RiskWindow, self).__init__()
         self.setupUi(self)
         self.home_button.triggered.connect(self.home_button_clicked)
-        self.go_back_button.triggered.connect(self.go_back_button_clicked)
-
+        self.go_back_button.triggered.connect(self.home_button_clicked)
         file_path = r'gui/toolfiles/ccode dx labeled.csv'
         self.datasetDF = pd.read_csv(file_path)
         self.currentSample = self.datasetDF.iloc[[0]]
@@ -178,13 +178,16 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
             b.clicked.connect(self.btn_Page_clicked)
             
     def home_button_clicked(self):
+        from menu import Impl_MainWindow
+        self.p = Impl_MainWindow()
+        self.p.show()
         self.close()
         
     def go_back_button_clicked(self):
         self.close()
         
-    def closeEvent(self, event):
-        self.window_closed.emit("")
+   # def closeEvent(self, event):
+   #     self.window_closed.emit("")
 
     def cBox_GL_File_currentTextChanged(self):
         filepathCol = self.cBox_GL_File.currentText()

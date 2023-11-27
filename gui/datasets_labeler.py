@@ -16,7 +16,6 @@ class Impl_DatasetsLabelerWindow(
     Ui_DatasetsLabelerWindow, QtWidgets.QMainWindow
 ):
     """Creates datasets labeler window"""
-    window_closed = pyqtSignal(str)
     def __init__(self, datasetPath):
         """Initializes datasets window object"""
         super(Impl_DatasetsLabelerWindow, self).__init__()
@@ -162,9 +161,8 @@ class Impl_DatasetsLabelerWindow(
         Loads and shows Risk Window.
         """
         idx = int(self.sBox_Sample.value()) - 1
-        self.rs_ui = Impl_RiskWindow_from_Labeller(self.df_dataset_labeling, idx)
+        self.rs_ui = Impl_RiskWindow_from_Labeller(self.df_dataset_labeling, idx, self.path)
         self.rs_ui.risk_list_signal.connect(self.saveRiskLabels)
-        self.rs_ui.window_closed.connect(self.receive_window_path)
         self.rs_ui.show()
             
     def receive_window_path(self, path):
@@ -185,18 +183,7 @@ class Impl_DatasetsLabelerWindow(
         idx = int(self.sBox_Sample.value()) - 1
         datasetPath = self.path
         self.rs_ui = Impl_GroupLabelling_Window(datasetPath)
-        self.rs_ui.window_closed.connect(self.receive_dataset_path)
         self.rs_ui.show()
-        
-    def receive_dataset_path(self, path):
-        print("Received dataset path:", path)
-        self.hide()
-        try:
-            # Assuming you want to open Impl_DatasetsLabelerWindow with the received path
-            self.rs_ui = Impl_DatasetsLabelerWindow(path)
-            self.rs_ui.show()
-        except Exception as e:
-            print(f"Error creating or showing Impl_DatasetsLabelerWindow: {e}")
 
     def cBox_SampleType_currentTextChanged(self):
         """currentTextChanged event on cBox_SampleType
@@ -712,11 +699,13 @@ class Impl_DatasetsLabelerWindow(
         self.tbl_CurrentExample.resizeRowsToContents()
         
     def home_button_clicked(self):
-        self.path = "home"
+        from menu import Impl_MainWindow
+        self.hm_ui = Impl_MainWindow()
+        self.hm_ui.show()
         self.close()
         
     def go_back_button_clicked(self):
+        from datasets import Impl_DatasetsWindow
+        self.hm_ui = Impl_DatasetsWindow()
+        self.hm_ui.show()
         self.close()
-        
-    def closeEvent(self, event):
-        self.window_closed.emit(self.path)
