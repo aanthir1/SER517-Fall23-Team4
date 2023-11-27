@@ -6,7 +6,6 @@ from PyQt5.QtCore import pyqtSignal
 
 class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
     """Creates Group Labeler window"""
-    window_closed = pyqtSignal(str)
 
     def __init__(self, dataset_path):
         """Initializes Group Labeler window object"""
@@ -191,10 +190,10 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
     #     self.close()
 
     def goback_button_clicked(self):
+        from datasets_labeler import Impl_DatasetsLabelerWindow
+        self.bw_ui = Impl_DatasetsLabelerWindow(self.path)
+        self.bw_ui.show()
         self.close()
-
-    def closeEvent(self, event):
-        self.window_closed.emit(self.path)
 
     def home_button_clicked(self):
         from menu import Impl_MainWindow

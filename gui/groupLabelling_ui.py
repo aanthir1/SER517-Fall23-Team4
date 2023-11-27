@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
+from common_ui import add_actions_to_toolbar
 
 
 class Ui_Dialog(object):
@@ -19,13 +20,7 @@ class Ui_Dialog(object):
         
         #tool bar
         self.toolbar = Dialog.addToolBar("TopToolBar")
-        self.flexible_space = QtWidgets.QWidget()
-        self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.toolbar.addWidget(self.flexible_space)
-        self.go_back_button = QtWidgets.QAction(QIcon("gui/goback.png"), "Go Back Button", self)
-        self.toolbar.addAction(self.go_back_button)
-        self.home_button = QtWidgets.QAction(QIcon("gui/download.png"), "Home Button", self)
-        self.toolbar.addAction(self.home_button)
+        self.toolbar, self.go_back_button, self.home_button = add_actions_to_toolbar(self.toolbar, self)
 
         # Create a scroll area widget to hold the radio buttons
         scroll_area = QtWidgets.QScrollArea(Dialog)
