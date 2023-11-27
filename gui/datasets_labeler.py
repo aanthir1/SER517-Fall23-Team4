@@ -161,7 +161,7 @@ class Impl_DatasetsLabelerWindow(
         Loads and shows Risk Window.
         """
         idx = int(self.sBox_Sample.value()) - 1
-        self.rs_ui = Impl_RiskWindow_from_Labeller(self.df_dataset_labeling, idx)
+        self.rs_ui = Impl_RiskWindow_from_Labeller(self.df_dataset_labeling, idx, self.path)
         self.rs_ui.risk_list_signal.connect(self.saveRiskLabels)
         self.rs_ui.show()
             
