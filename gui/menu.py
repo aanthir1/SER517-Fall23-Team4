@@ -42,32 +42,33 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         Loads and shows Datasets Window.
         """
         self.ds_ui = Impl_DatasetsWindow()
-        self.ds_ui.window_closed.connect(self.reloadScreen)
         self.ds_ui.show()
         self.close()
-        
-    def reloadScreen(self):
-        self.ds_ui = Impl_MainWindow()
-        self.ds_ui.show()
 
     def btn_Models_clicked(self):
         """Clicked event on btn_Models component.
         Loads and shows Models Window.
         """
         self.md_ui = Impl_ModelsWindow()
+        self.md_ui.window_closed.connect(self.reloadScreen)
         self.md_ui.show()
+        self.close()
+        
 
     def btn_Predictions_clicked(self):
         """Clicked event on btn_Preditions component.
         Loads and shows Predictions Window.
         """
         self.pd_ui = Impl_PredictionsWindow()
+        #self.pd_ui.window_closed.connect(self.reloadScreen)
         self.pd_ui.show()
+        self.close()
+        
 
     # 2023 September (sprint2)
     def btn_Risk_clicked(self):
         self.risk_window = Impl_RiskWindow()
-        self.risk_window.window_closed.connect(self.reloadScreen)
+        #self.risk_window.window_closed.connect(self.reloadScreen)
         self.risk_window.show()
         self.close()
 
