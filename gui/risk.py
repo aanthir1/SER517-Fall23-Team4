@@ -26,7 +26,14 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
         self.setupUi(self)
         self.home_button.triggered.connect(self.home_button_clicked)
         self.go_back_button.triggered.connect(self.home_button_clicked)
-        file_path = r'gui/toolfiles/ccode dx labeled.csv'
+        script_path = os.path.abspath(__file__)
+        script_dir = os.path.dirname(script_path)+'/test.csv'
+        file_path = script_dir
+        if not file_path:
+            script_dir = os.path.dirname(script_path)+'\test.csv'
+            file_path = script_dir
+
+
         self.datasetDF = pd.read_csv(file_path)
         self.currentSample = self.datasetDF.iloc[[0]]
         self.currentIdx = 0
