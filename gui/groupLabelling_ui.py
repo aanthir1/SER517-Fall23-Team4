@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
+from common_ui import add_actions_to_toolbar
 
 
 class Ui_Dialog(object):
@@ -19,17 +20,11 @@ class Ui_Dialog(object):
         
         #tool bar
         self.toolbar = Dialog.addToolBar("TopToolBar")
-        self.flexible_space = QtWidgets.QWidget()
-        self.flexible_space.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.toolbar.addWidget(self.flexible_space)
-        self.go_back_button = QtWidgets.QAction(QIcon("gui/goback.png"), "Go Back Button", self)
-        self.toolbar.addAction(self.go_back_button)
-        self.home_button = QtWidgets.QAction(QIcon("gui/download.png"), "Home Button", self)
-        self.toolbar.addAction(self.home_button)
+        self.toolbar, self.go_back_button, self.home_button = add_actions_to_toolbar(self.toolbar, self)
 
         # Create a scroll area widget to hold the radio buttons
         scroll_area = QtWidgets.QScrollArea(Dialog)
-        scroll_area.setGeometry(QtCore.QRect(120, 480, 631, 50))  # Adjust the position and size of the scroll area
+        scroll_area.setGeometry(QtCore.QRect(120, 480, 631, 100))  # Adjust the position and size of the scroll area
         scroll_area.setWidgetResizable(True)
 
         scroll_widget = QtWidgets.QWidget()
@@ -71,9 +66,9 @@ class Ui_Dialog(object):
         self.save_dataset_button = QtWidgets.QPushButton("Save Dataset", Dialog)
         self.save_dataset_button.setGeometry(QtCore.QRect(680, 80, 131, 31))  # Adjust the position and size
         self.save_dataset_button.setObjectName("save_dataset_button")
-        self.go_back_button = QtWidgets.QPushButton("Go back to Labeler", Dialog)
-        self.go_back_button.setGeometry(QtCore.QRect((Dialog.width() - self.go_back_button.width()) / 2, 550, 141, 31))
-        self.go_back_button.setObjectName("go_back_button")
+        # self.go_back_button = QtWidgets.QPushButton("Go back to Labeler", Dialog)
+        # self.go_back_button.setGeometry(QtCore.QRect((Dialog.width() - self.go_back_button.width()) / 2, 550, 141, 31))
+        #self.go_back_button.setObjectName("go_back_button")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -82,9 +77,9 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.comboBox.setItemText(0, _translate("Dialog", "Status"))
-        self.comboBox_2.setItemText(0, _translate("Dialog", "Option 2"))
+        self.comboBox_2.setItemText(0, _translate("Dialog", "Select"))
         self.plainTextEdit.setPlainText(_translate("Dialog", "Key :"))
-        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :\n"""))
+        self.plainTextEdit_2.setPlainText(_translate("Dialog", "Value :"""))
         self.pushButton.setText(_translate("Dialog", "LABEL"))
 
         self.save_dataset_button.setText(_translate("Dialog", "Save Dataset"))

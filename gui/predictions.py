@@ -7,10 +7,12 @@ from datasets_workers import WorkerLoadXMLDataset, WorkerLoadXMLCols
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QWidget
 from help import Impl_HelpWindow
+from PyQt5.QtCore import pyqtSignal
 
 
 class Impl_PredictionsWindow(Ui_PredictionsWindow, QtWidgets.QMainWindow):
     """Creates predictions window"""
+    window_closed = pyqtSignal(str)
 
     def __init__(self):
         """Initializes predictions window object"""
@@ -29,7 +31,7 @@ class Impl_PredictionsWindow(Ui_PredictionsWindow, QtWidgets.QMainWindow):
         self.btn_SaveResults.clicked.connect(self.btn_SaveResults_clicked)
         self.btn_Help.clicked.connect(self.btn_Help_clicked)
         self.home_button.triggered.connect(self.home_button_clicked)
-        self.go_back_button.triggered.connect(self.go_back_button_clicked)
+        self.go_back_button.triggered.connect(self.home_button_clicked)
 
     def customInit(self):
         """Custom init method"""
@@ -295,7 +297,13 @@ class Impl_PredictionsWindow(Ui_PredictionsWindow, QtWidgets.QMainWindow):
                 msg.exec_()
      
     def home_button_clicked(self):
-        self.close()
+       from menu import Impl_MainWindow
+       self.p = Impl_MainWindow()
+       self.p.show()
+       self.close()
         
     def go_back_button_clicked(self):
         self.close()
+
+    def closeEvent(self, event):
+        self.window_closed.emit("")
