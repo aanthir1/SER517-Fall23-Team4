@@ -51,8 +51,9 @@ class Impl_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         """
         self.md_ui = Impl_ModelsWindow()
         self.md_ui.show()
+
         self.close()
-        
+
 
     def btn_Predictions_clicked(self):
         """Clicked event on btn_Preditions component.

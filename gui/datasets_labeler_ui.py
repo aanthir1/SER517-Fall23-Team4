@@ -16,7 +16,7 @@ from common_ui import add_actions_to_toolbar
 class Ui_DatasetsLabelerWindow(object):
     def setupUi(self, DatasetsLabelerWindow):
         DatasetsLabelerWindow.setObjectName("DatasetsLabelerWindow")
-        DatasetsLabelerWindow.setMinimumSize(1280, 720)
+        DatasetsLabelerWindow.setMinimumSize(1380, 900)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
