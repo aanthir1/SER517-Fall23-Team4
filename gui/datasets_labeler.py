@@ -164,6 +164,7 @@ class Impl_DatasetsLabelerWindow(
         self.rs_ui = Impl_RiskWindow_from_Labeller(self.df_dataset_labeling, idx, self.path)
         self.rs_ui.risk_list_signal.connect(self.saveRiskLabels)
         self.rs_ui.show()
+        self.close()
             
     def receive_window_path(self, path):
         print("Received dataset path:", path)
