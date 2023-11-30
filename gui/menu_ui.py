@@ -66,8 +66,8 @@ class Ui_MainWindow(object):
         # The vertical layout of the widget to help resizing the window
         self.vlayout = QtWidgets.QVBoxLayout()
         self.vlayout.setObjectName("vlayout")
-        self.vlayout.setContentsMargins(50, 10, 50, 50)
-        self.vlayout.setSpacing(10)
+        self.vlayout.setContentsMargins(50, 30, 50, 50)
+        self.vlayout.setSpacing(30)
 
         spacer_item = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.vlayout.addItem(spacer_item)
@@ -297,7 +297,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        # MainWindow.setWindowTitle(_translate("MainWindow", "Vinci ML Tool"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Vinci ML Tool"))
         self.btn_Datasets.setText(_translate("MainWindow", "DATASETS"))
         self.btn_Models.setText(_translate("MainWindow", "MODEL TRAINING"))
         # 09/14/2023
