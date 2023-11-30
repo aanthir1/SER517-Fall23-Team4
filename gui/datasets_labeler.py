@@ -185,6 +185,7 @@ class Impl_DatasetsLabelerWindow(
         datasetPath = self.path
         self.rs_ui = Impl_GroupLabelling_Window(datasetPath)
         self.rs_ui.show()
+        self.close()
 
     def cBox_SampleType_currentTextChanged(self):
         """currentTextChanged event on cBox_SampleType
