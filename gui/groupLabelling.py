@@ -144,7 +144,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
 
     # Modify the saveDataset method
     def saveDataset(self):
-        # Show a confirmation dialog before saving the dataset
+    # Show a confirmation dialog before saving the dataset
         confirm_dialog = QMessageBox()
         confirm_dialog.setIcon(QMessageBox.Question)
         confirm_dialog.setText("Are you sure you want to save the dataset?")
@@ -163,6 +163,10 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
                 try:
                     # Read the original dataset
                     original_df = pd.read_csv(self.path)
+
+                    # Add 'risk_level' column if not already present
+                    if 'risk_level' not in original_df.columns:
+                        original_df['risk_level'] = ''
 
                     # Create a copy of the original dataset to store labeled records
                     labeled_df = original_df.copy()
@@ -185,6 +189,7 @@ class Impl_GroupLabelling_Window(Ui_Dialog, QtWidgets.QMainWindow):
             else:
                 # If the user cancels, do nothing
                 return
+
             
     # def goToLabeller(self):
     #     self.close()

@@ -237,10 +237,11 @@ class Impl_RiskWindow(Ui_RiskWindow, QtWidgets.QMainWindow):
             self.file_path_lineedit.setText(file_path)
             self.datasetDF = pd.read_csv(file_path)
             # Adding a condition to verify if the uploaded file is labeled or not
-            if "output" not in self.datasetDF.columns:
-                QMessageBox.warning(self,'Column Missing', 'Please upload labeled dataset.')
-                self.file_path_lineedit.clear()
-                return
+            if "Output" not in self.datasetDF.columns:
+                if "output" not in self.datasetDF.columns:
+                    QMessageBox.warning(self,'Column Missing', 'Please upload labeled dataset.')
+                    self.file_path_lineedit.clear()
+                    return
             
             # Adding a condition to verify if there is atleast one record in the file uploaded
             if self.datasetDF.empty:
